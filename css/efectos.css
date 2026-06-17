@@ -1,0 +1,184 @@
+/* Paralaje de imagenes*/
+.parallax {
+  height: 200px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-attachment: fixed;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+/*Hover Contenedor Servicios y Soluciones*/
+.con {
+  position: relative;
+  width: 100%;
+  height: 200px;
+}
+
+.front {
+    width: 100%;
+    height: 200px;
+    background-color: #008CBA;
+    color: white;
+  display: block;
+  text-align: center;
+}
+
+.overlay {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 100%;
+  width: 100%;
+  opacity: 0;
+  transition: .5s;
+  background-color: black;
+  
+}
+
+.con:hover .overlay {
+  opacity: 1;
+}
+
+.texto-back {
+  color: white;
+  font-size: 18px;
+  position: relative;
+  -webkit-transform: translate(-0, -0);
+  transform: translate(-0, -0);
+  text-align: center;
+  justify-content: center;
+
+}
+
+.texto-back p {
+  justify-content: center;
+  text-align: center;
+  padding: 8px;
+}
+
+ /* AnimaciÃ³n de inicio */
+
+ @keyframes reveal-mask {
+  from {
+    max-width: 1.3em;
+ }
+  to {
+    max-width: 50e;
+ }
+}
+@keyframes reveal-content {
+  from {
+    opacity: 0;
+ }
+  to {
+    opacity: 1;
+ }
+}
+@keyframes grow-height {
+  from {
+    height: 0;
+ }
+  to {
+    height: 100%;
+ }
+}
+
+.title-container {
+  position: absolute;
+  top: 300px; 
+  bottom: 200px;
+  width: 100%;
+  right: 200px;
+
+}
+
+.title-container-in {
+  position: absolute;
+  top: 300px; 
+  bottom: 200px;
+  width: 100%;
+  right: 200px;
+  left: 30px;
+}
+
+.title-mask {
+  animation-name: reveal-mask;
+  animation-duration: 500ms;
+  animation-timing-function: cubic-bezier(0.14, 0.87, 0.05, 0.95);
+  animation-delay: 900ms;
+  animation-fill-mode: both;
+  transition: background 300ms cubic-bezier(0.14, 0.87, 0.05, 0.95);
+  max-width: 600px;
+  height: 250px;
+  overflow-x: hidden;
+  overflow-y: auto;
+  margin: 0 auto;
+  position: relative;
+  transform: skew(-10deg);
+  cursor: pointer;
+  background: rgba(255, 255, 255, 0.0);
+}
+.title-mask:hover {
+  background: rgba(255, 255, 255, 0.1);
+}
+.title-mask:before, .title-mask:after {
+  animation-name: grow-height;
+  animation-duration: 400ms;
+  animation-timing-function: cubic-bezier(0.14, 0.87, 0.05, 0.95);
+  animation-delay: 500ms;
+  animation-fill-mode: both;
+  content: "";
+  display: block;
+  position: absolute;
+  height: 100%;
+  z-index: 1;
+}
+.title-mask:before {
+  border-right: 0.3em solid white;
+  top: 0;
+  left: 0;
+}
+.title-mask:after {
+  border-left: 0.3em solid #073E63;
+  right: 0;
+  bottom: 0;
+}
+.title-content {
+  animation-name: reveal-content;
+  animation-duration: 50ms;
+  animation-timing-function: cubic-bezier(0.14, 0.87, 0.05, 0.95);
+  animation-delay: 900ms;
+  animation-fill-mode: both;
+  margin: 0;
+  padding: 0;
+  color: white;
+  overflow: hidden;
+  text-align: center;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  overflow: visible;
+  white-space: nowrap;
+  line-height: 2em;
+ 
+  transform: translate(-50%, -50%);
+  text-transform: uppercase;
+}
+.title-highlight {
+  font-weight: bold;
+  font-size: .9em;
+  
+}
+
+.title-content p {
+  font-size: 18px;;
+  line-height: 0.5;
+}  
+
+
+

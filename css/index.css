@@ -1,0 +1,433 @@
+* {
+  font-family: 'Montserrat', sans-serif;
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  font-family: 'Montserrat', sans-serif;
+  height: 100%;
+}
+
+*,
+*::after,
+*::before{
+    margin: 0; 
+    padding: 0;
+    font-family: inherit;
+    box-sizing: inherit;
+}
+
+body {
+  font-family: 'Montserrat', sans-serif;
+  display: flex;
+   min-height: 100%;
+   
+}
+
+/* Cortinilla*/
+.introduction {
+
+    position: fixed;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100vh;
+    background-color: #073E63;
+    transition: 1s;
+    
+}
+
+.introduction img {
+    top: 200px;
+    position: absolute;
+}
+
+.logo-intro {
+  
+    font-size: 2.5rem;
+    color: #ffffff;
+}
+
+.logo-parts {
+  top: 120px;
+    position: relative;
+    display: inline-block;
+    bottom: -10px;
+    opacity: 0;
+}
+
+.logo-parts.active {
+    bottom: 0;
+    opacity: 1;
+    transition: ease-in-out 3s;
+}
+
+.logo-parts.fade {
+    bottom: 300px;
+    opacity: 0;
+    transition: ease-in-out 2.5s;
+}
+.introduction p{
+    margin-top: 200px;
+    color: gray;
+    font-size: 1.6rem;
+    
+}
+
+/*CSS Grid*/
+
+.grid-container > * {
+  border-radius: 4px;
+}
+
+.grid-container {
+  
+    display: grid;
+    gap: 5px;
+    grid-template:
+      "header"  80px
+      "inicio"  700px
+      "main"    auto
+      "footer"  25px;
+  }
+
+  .grid-container-empleos {
+  
+    display: grid;
+    gap: 5px;
+    grid-template:
+      "header"  80px
+      "main__emp" auto 
+      "footer"  25px;
+  }
+
+  .grid-container-categorias {
+    display: grid;
+    gap: 5px;
+    grid-template:
+      "header"  80px
+      "main__cat" auto 
+      "footer"  25px;
+  }
+
+  .grid-container-post {
+    display: grid;
+    gap: 5px;
+    grid-template:
+      "header"  80px
+      "main__post" auto 
+      "footer"  25px;
+  }
+
+
+/* Contenido */
+.main {
+  grid-area: main;
+ background-color: white;
+}
+
+.img-contenido {
+  width: 400px;
+  height: 400px;
+  margin: 2px 1em 0 auto;
+  display:block;   
+}
+
+/*Inicio*/
+.inicio{
+  grid-area: inicio;
+  background-image: url(../img/landing.png);
+
+  background-repeat: no-repeat;
+  background-size: cover;
+  color: white;
+}
+
+.inicio h1{
+  font-size: 60px;
+  letter-spacing: 2px;
+ 
+}
+
+.inicio p{
+  font-size: 20px;
+  margin-top: 15px;
+}
+
+.inicio-img{
+  padding: 100px;
+ 
+}
+
+/*Animación Inicio*/
+
+.title-mask-in {
+  animation-name: reveal-mask;
+  animation-duration: 500ms;
+  animation-timing-function: cubic-bezier(0.14, 0.87, 0.05, 0.95);
+  animation-delay: 5400ms; /* time*/
+  animation-fill-mode: both;
+  transition: background 300ms cubic-bezier(0.14, 0.87, 0.05, 0.95);
+  max-width: 600px;
+  height: 250px;
+  overflow-x: hidden;
+  overflow-y: auto;
+  margin: 0 auto;
+  position: relative;
+  transform: skew(-10deg);
+  cursor: pointer;
+  background: rgba(255, 255, 255, 0.0);
+}
+.title-mask-in:hover {
+  background: rgba(255, 255, 255, 0.1);
+}
+.title-mask-in:before, .title-mask-in:after {
+  animation-name: grow-height;
+  animation-duration: 400ms;
+  animation-timing-function: cubic-bezier(0.14, 0.87, 0.05, 0.95);
+  animation-delay: 5000ms; /* time*/
+  animation-fill-mode: both;
+  content: "";
+  display: block;
+  position: absolute;
+  height: 100%;
+  z-index: 1;
+}
+.title-mask-in:before {
+  border-right: 0.3em solid white;
+  top: 0;
+  left: 0;
+}
+.title-mask-in:after {
+  border-left: 0.3em solid #073E63;
+  right: 0;
+  bottom: 0;
+}
+.title-content-in {
+  animation-name: reveal-content;
+  animation-duration: 50ms;
+  animation-timing-function: cubic-bezier(0.14, 0.87, 0.05, 0.95);
+  animation-delay: 5400ms; /* time*/
+  animation-fill-mode: both;
+  margin: 0;
+  padding: 0;
+  color: white;
+  overflow: hidden;
+  text-align: center;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  overflow: visible;
+  white-space: nowrap;
+  line-height: 2em;
+ 
+  transform: translate(-50%, -50%);
+  text-transform: uppercase;
+}
+.title-highlight-in {
+  font-weight: bold;
+  font-size: .9em;
+  
+}
+
+.title-content-in p {
+  font-size: 18px;;
+  line-height: 0.5;
+}  
+
+ /*contenido compartido sección*/
+ .contenido{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+ }
+
+ ul.section-content{
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+ }
+
+ .section-content li{
+  padding: 20px;
+  height: 700px;
+  background-clip: content-box;
+  background-size: cover;
+  background-position: center;
+ }
+
+ .section-title {
+	text-transform: uppercase;
+	font-size: 40px;
+	margin-bottom: 5%;
+  text-align: center;
+}
+.section-title span {
+	color: #073E63;
+}
+
+.about-right p  {
+  font-size: 15px;
+	max-width: 800px;
+	margin-bottom: 35px;
+	line-height: 1.5;
+	text-align: left;
+	padding-left: 50;
+}
+.servicios-left, .empleo-left, .blog-left, p  {
+  font-size: 15px;
+	max-width: 800px;
+	margin-bottom: 35px;
+	line-height: 1.5;
+	text-align: right;
+	padding-left: 50;
+}
+
+
+/* Sobre Nosotros*/
+ .about-left {
+  flex-basis: 50%;
+  background-image: url(../img/about.jpg);
+ }
+
+ .about-right {
+	flex-basis: 50%;
+}
+
+/*Servicios y Soluciones*/
+.servicios-left {
+  flex-basis: 50%; 
+ }
+
+ .servicios-right {
+	flex-basis: 50%;
+}
+
+
+/*Empleos*/
+
+.empleo-left {
+  flex-basis: 40%;
+ }
+
+ .empleo-right {
+	flex-basis: 60%;
+}
+
+.hiringroom-internal-iframe-id{
+   width: 500px;
+}
+
+
+/*Blog*/
+.blog-left {
+  flex-basis: 10%;
+ }
+
+ .blog-right {
+	flex-basis: 10%;
+}
+
+/*Pagina Vacante*/
+.main__post {
+  grid-area: main__post;
+ background-color: white;
+}
+
+.singlepost {
+  margin: 3rem 5rem 3rem 5rem;
+  color: white;
+}
+
+.singlepost__container {
+  width: var(--form-width);
+  background-color: #073E63;
+  padding: 1rem 2rem 3rem;
+}
+
+.singlepost__thumbnail {
+  margin: 1.5rem 8rem 1rem 8rem; 
+}
+
+
+.post__body-singlepost{
+  margin: 1.5rem 5rem 1rem 5rem; 
+}
+
+.container img {
+  display: block;
+  width: 100%;
+  object-fit: cover;
+}
+
+/* ---------------------------------------------- Movil. ----------------------------------------*/
+
+
+@media screen and (max-width: 600px) {
+  * {
+      font-family: 'Montserrat', sans-serif;
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    /* Cortinilla */ 
+    .introduction {
+      text-align: center;
+    }
+
+    .grid-container {  
+      display: grid;
+      gap: 5px;
+      grid-template:
+        "header"  85px
+        "inicio"  600px
+        "main"    auto
+        "footer"  25px;
+    }
+
+    /* Sección Inicio*/
+    
+  .inicio{
+    background-image: url(../img/landing.png);
+    background-size: cover;
+  }
+
+
+  /* Titulo de secciones */ 
+  .section-title {
+  font-size: 35px;
+}
+
+
+/* Sobre AITI pag Index/home*/ 
+.about-left, .about-right {
+  flex-basis: 100%;
+}
+.section-content li {
+  padding: 8px;
+}
+
+
+  /*Servicios y Soluciones*/ 
+ .servicios-right {
+    flex-basis: 100%;
+}
+
+.hiringroom-iframe-id{
+  width: 100%;
+    max-height: 600px;
+    
+    }
+   
+
+
+}

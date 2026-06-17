@@ -1,0 +1,160 @@
+/* Media Queries Movil*/
+
+@media screen and (max-width: 600px) {
+    * {
+        font-family: 'Montserrat', sans-serif;
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+
+      /* Cortinilla */ 
+      .introduction {
+        text-align: center;
+      }
+
+      .grid-container {  
+        display: grid;
+        gap: 5px;
+        grid-template:
+          "header"  85px
+          "inicio"  600px
+          "main"    auto
+          "footer"  25px;
+      }
+
+      /* Sección Inicio Index*/
+      .inicio{
+        grid-area: inicio;
+        background-image: url(../img/landing.png);
+        background-repeat: no-repeat;
+        background-size: cover;
+        color: white;
+      }
+      
+
+
+
+    .title-highlight-in {
+        font-size: .45em;
+    }
+
+    /* Titulo de secciones */ 
+    .section-title {
+		font-size: 35px;
+	}
+
+
+  /* Sobre AITI pag Index/home*/ 
+	.about-left, .about-right {
+		flex-basis: 100%;
+	}
+	.section-content li {
+		padding: 8px;
+	}
+
+
+    /*Servicios y Soluciones*/ 
+   .servicios-right {
+      flex-basis: 100%;
+  }
+
+   /* Sección Inicio Otras paginas*/
+      
+   .title-mask {
+    margin-bottom: 20rem !important;
+     margin-left: 240px !important;
+     margin-right: -180px !important;
+ }
+
+ .title-highlight {
+     font-size: .45em !important;
+ }
+
+
+
+  
+
+
+    section {
+        margin-top: 2rem;
+    }
+
+    h1 {
+        font-size: 2rem;
+    }
+
+    .featured {
+        margin-top: 6rem;
+        margin-bottom: 30px;
+    }
+
+    .featured__container {
+        grid-template-columns: 1fr;
+        gap: 0;
+        margin-bottom: 30px;
+    }
+
+    .posts__container {
+        grid-template-columns: 1fr;
+    }
+
+    .category__buttons-container {
+        grid-template-columns: 1fr 1fr;
+    }
+
+    .form__section-container {
+        padding: 0;
+    }
+
+    .dashboard {
+        margin-top: 5rem;
+    }
+
+    .dashboard__container {
+        grid-template-columns: 1fr;
+        gap: 0;
+    }
+
+    .dashboard__main {
+        margin: 0;
+    }
+
+    .dashboard main h2 {
+        margin-top: 1rem;
+    }
+
+    .dashboard aside {
+        position: fixed;
+        box-shadow: 2rem 0 4rem rgba(0, 0, 0, 0.4);
+        left: -120%;
+        height: 100vh;
+        transition: var(--transition);
+    }
+
+    .dashboard .sidebar__toggle {
+        display: inline-block;
+        background-color: #0d85a8;
+        color: white;
+        position: fixed;
+        right: 0;
+        top: 8rem;
+        z-index: 1;
+        width: 2.5rem;
+        height: 2.5rem;
+        border-radius: 50% 0 0 50%;
+        font-size: 1.3rem;
+        cursor: pointer;
+        box-shadow: -1rem 0 2rem rgba(0, 0, 0, 0.4);
+    }
+
+    .dashboard aside a h5 {
+        display: inline-block;
+    }
+
+    #hide__sidebar-btn {
+        display: none;
+    }
+
+
+}

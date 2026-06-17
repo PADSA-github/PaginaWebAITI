@@ -1,0 +1,53 @@
+/* Encabezado y Navegación" */
+.header {
+  grid-area: header;
+  background-color: #073E63;
+ 
+}
+
+
+.navbar .navbar-nav .nav-link {
+max-height: 70px;
+  color: white;
+  font-size: 1em;
+  
+}
+.navbar .navbar-nav .nav-link:hover {
+color: #289CC7;
+}
+.navbar .navbar-nav .nav-item {
+position: relative;
+}
+.navbar .navbar-nav .nav-item::after {
+position: absolute;
+bottom: 0;
+left: 0;
+right: 0;
+margin: auto;
+background-color: #289CC7;
+width: 0%;
+content: "";
+height: 4px;
+transition: all 0.5s;
+}
+
+.navbar .navbar-nav .nav-item:hover::after {
+width: 100%;
+}
+
+#header #logo img {
+ 
+  position: relative;
+  left: 100px;
+  height: 85px;
+}
+
+/* Pie de Página */
+.footer {
+grid-area: footer;
+background-color: #073E63;
+color: white;
+font-size: 1em;
+padding: 7px;
+}
+
