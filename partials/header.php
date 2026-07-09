@@ -43,8 +43,8 @@ require 'config/database.php';
                             </a>
                         </li>
                         <li class="nav-item col-4 col-md-auto">
-                            <a class="nav-link" href="https://twitter.com/AI_TI_SAdeCV"> 
-                                <i class="bi bi-twitter"></i> 
+                            <a class="nav-link" href="https://www.instagram.com/aiti.mx"> 
+                                <i class="bi bi-instagram"></i> 
                             </a>
                         </li>
                         <li class="nav-item col-4 col-md-auto">

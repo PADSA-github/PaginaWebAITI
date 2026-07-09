@@ -164,39 +164,79 @@
          <section class="contenido" id="clientes">
         <div class="card-group">
             <div class="card">
-                <img src="img/cuenta.jpg" class="card-img-top" alt="..." >
+                <img src="img/vips.jpg" class="card-img-top" alt="..." >
                 <div class="card-body">
-                    <h5 class="card-title text-center">Grupo C1FRA</h5>
+                    <h5 class="card-title text-center">VIPS Restaurantes</h5>
+                    <!-- 
                     <p class="card-text text-center"><small> Cuenta por Pagar SICAPLUS</small></p>
                     <p class="card-text text-center"><small>1995-1996</small></p>
                     <p class="card-text text-center">Generación de la Cuenta por Pagar para todos los negocios del grupo C1FRA</p>
-                   
+                    -->
                 </div>
             </div>
             <div class="card">
-                <img src="img/cedis.jpg" class="card-img-top" alt="...">
+                <img src="img/suburbia.jpg" class="card-img-top" alt="...">
                 <div class="card-body">
-                <h5 class="card-title text-center">Wal-Mart de México y Centro América, S. de R.L. de C.V. </h5>
+                <h5 class="card-title text-center">Suburbia </h5>
+                <!-- 
                     <p class="card-text text-center"><small>  Oasys Radiofrecuencia</small></p>
                     <p class="card-text text-center"><small> 2001</small></p>
                     <p class="card-text text-center">
                     Cedis Tiendas Vips. Se realizo la integración de sistema de Radiofrecuencia para las operaciones de Recibo y Distribución del Cedis Tiendas Vips.
-
                     </p>
-                   
+                   -->
                 </div>
             </div>
             <div class="card">
                 <img src="img/desarrollo.jpg" class="card-img-top" alt="...">
                 <div class="card-body">
-                <h5 class="card-title text-center">Wal-Mart de México y Centro América, S. de R.L. de C.V. </h5>
+                <h5 class="card-title text-center">Wal-Mart de México </h5>
+                <!-- 
                     <p class="card-text text-center"><small>  MART-PLUS</small></p>
                     <p class="card-text text-center"><small> 2001</small></p>
                     <p class="card-text text-center">
                     Se realizó una re - ingenieria de procesos de la Cuenta por pagar, para la producción Batch, que se ejecutan en el site del Mainframe IBM-9121 de Bentonville, Ar. Reduciendo los tiempo de ejecución de 250 min hasta 37 min, logrando un reducción en el consumo de tiempo maquina hasta un 87%.
-
                     </p>
-                   
+                    -->                   
+                </div>
+            </div>
+            <div class="card">
+                <img src="img/sams.jpg" class="card-img-top" alt="...">
+                <div class="card-body">
+                <h5 class="card-title text-center">Sams Club</h5>
+                <!-- 
+                    <p class="card-text text-center"><small>  MART-PLUS</small></p>
+                    <p class="card-text text-center"><small> 2001</small></p>
+                    <p class="card-text text-center">
+                    Se realizó una re - ingenieria de procesos de la Cuenta por pagar, para la producción Batch, que se ejecutan en el site del Mainframe IBM-9121 de Bentonville, Ar. Reduciendo los tiempo de ejecución de 250 min hasta 37 min, logrando un reducción en el consumo de tiempo maquina hasta un 87%.
+                    </p>
+                    -->                   
+                </div>
+            </div>
+            <div class="card">
+                <img src="img/alsea.jpg" class="card-img-top" alt="...">
+                <div class="card-body">
+                <h5 class="card-title text-center">Grupo Alsea</h5>
+                <!-- 
+                    <p class="card-text text-center"><small>  MART-PLUS</small></p>
+                    <p class="card-text text-center"><small> 2001</small></p>
+                    <p class="card-text text-center">
+                    Se realizó una re - ingenieria de procesos de la Cuenta por pagar, para la producción Batch, que se ejecutan en el site del Mainframe IBM-9121 de Bentonville, Ar. Reduciendo los tiempo de ejecución de 250 min hasta 37 min, logrando un reducción en el consumo de tiempo maquina hasta un 87%.
+                    </p>
+                    -->                   
+                </div>
+            </div>
+            <div class="card">
+                <img src="img/banamex.jpg" class="card-img-top" alt="...">
+                <div class="card-body">
+                <h5 class="card-title text-center">Banamex</h5>
+                <!-- 
+                    <p class="card-text text-center"><small>  MART-PLUS</small></p>
+                    <p class="card-text text-center"><small> 2001</small></p>
+                    <p class="card-text text-center">
+                    Se realizó una re - ingenieria de procesos de la Cuenta por pagar, para la producción Batch, que se ejecutan en el site del Mainframe IBM-9121 de Bentonville, Ar. Reduciendo los tiempo de ejecución de 250 min hasta 37 min, logrando un reducción en el consumo de tiempo maquina hasta un 87%.
+                    </p>
+                    -->                   
                 </div>
             </div>
         </div>
