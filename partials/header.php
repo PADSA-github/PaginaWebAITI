@@ -38,17 +38,17 @@ require 'config/database.php';
                     <!--Redes Sociales-->
                     <ul class="navbar-nav flex-row flex-wrap md-auto" >
                         <li class="nav-item col-4 col-md-auto">
-                            <a class="nav-link" href="https://www.facebook.com/profile.php?id=100083620180531"> 
+                            <a class="nav-link" target="_blank" rel="noopener noreferrer" href="https://www.facebook.com/profile.php?id=100083620180531"> 
                                 <i class="bi bi-facebook"></i> 
                             </a>
                         </li>
                         <li class="nav-item col-4 col-md-auto">
-                            <a class="nav-link" href="https://www.instagram.com/aiti.mx"> 
+                            <a class="nav-link" target="_blank" rel="noopener noreferrer" href="https://www.instagram.com/aiti.mx"> 
                                 <i class="bi bi-instagram"></i> 
                             </a>
                         </li>
                         <li class="nav-item col-4 col-md-auto">
-                            <a class="nav-link" href="https://www.linkedin.com/in/ai-ti-sa-de-cv-5577b823b/">
+                            <a class="nav-link" target="_blank" rel="noopener noreferrer" href="https://www.linkedin.com/in/ai-ti-sa-de-cv-5577b823b/">
                                 <i class="bi bi-linkedin"></i> 
                             </a>
                         </li>
