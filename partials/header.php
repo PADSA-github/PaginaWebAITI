@@ -34,6 +34,9 @@ require 'config/database.php';
                         <li class="nav-item">
                             <a class="nav-link" href="<?= ROOT_URL ?>empleos.php">Oportunidades de Empleo</a>
                         </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="<?= ROOT_URL ?>examen/">Evaluación Técnica</a>
+                        </li>
                     </ul>
                     <!--Redes Sociales-->
                     <ul class="navbar-nav flex-row flex-wrap md-auto" >

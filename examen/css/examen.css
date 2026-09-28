@@ -1,0 +1,538 @@
+/* ==========================================================
+   HOJA DE ESTILOS DEL MÓDULO DE EXAMEN TÉCNICO AITI
+   ========================================================== */
+
+:root {
+    --aiti-primary: #073E63;
+    --aiti-primary-dark: #04253c;
+    --aiti-secondary: #00A8CC;
+    --aiti-accent: #00E1D9;
+    --aiti-bg-light: #F4F7FB;
+    --aiti-card-bg: #FFFFFF;
+    --aiti-text-main: #2C3E50;
+    --aiti-text-muted: #6C7A89;
+    --aiti-border: #E2E8F0;
+
+    /* Colores por Complejidad */
+    --color-jr: #10B981;
+    --color-mid: #3B82F6;
+    --color-sr: #F59E0B;
+    --color-exp: #8B5CF6;
+
+    --radius-sm: 8px;
+    --radius-md: 14px;
+    --radius-lg: 20px;
+    --shadow-soft: 0 10px 25px -5px rgba(7, 62, 99, 0.08), 0 8px 10px -6px rgba(7, 62, 99, 0.04);
+    --shadow-hover: 0 20px 30px -10px rgba(7, 62, 99, 0.16);
+    --transition-fast: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+body.examen-body {
+    background-color: var(--aiti-bg-light);
+    color: var(--aiti-text-main);
+    font-family: 'Poppins', -apple-system, BlinkMacSystemFont, sans-serif;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Encabezado Superior */
+.examen-navbar {
+    background: linear-gradient(135deg, var(--aiti-primary), var(--aiti-primary-dark));
+    box-shadow: 0 4px 20px rgba(4, 37, 60, 0.2);
+    padding: 12px 0;
+}
+
+.examen-brand {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    text-decoration: none;
+    color: #ffffff;
+}
+
+.examen-brand img {
+    height: 42px;
+    filter: drop-shadow(0 2px 4px rgba(0,0,0,0.2));
+}
+
+.examen-brand-text {
+    font-size: 1.15rem;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+    color: #ffffff;
+    display: flex;
+    flex-direction: column;
+    line-height: 1.2;
+}
+
+.examen-brand-subtitle {
+    font-size: 0.75rem;
+    font-weight: 400;
+    color: var(--aiti-accent);
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+}
+
+/* Hero y Tarjeta Principal */
+.examen-hero-header {
+    background: linear-gradient(180deg, rgba(7, 62, 99, 0.04) 0%, transparent 100%);
+    padding: 35px 0 20px;
+    text-align: center;
+}
+
+.examen-main-title {
+    font-weight: 800;
+    color: var(--aiti-primary);
+    font-size: 2.2rem;
+    margin-bottom: 8px;
+}
+
+.examen-main-desc {
+    color: var(--aiti-text-muted);
+    font-size: 1.05rem;
+    max-width: 650px;
+    margin: 0 auto;
+}
+
+/* Tarjetas de Selección de Lenguaje */
+.language-card {
+    border: 2px solid var(--aiti-border);
+    border-radius: var(--radius-md);
+    background: #ffffff;
+    padding: 24px;
+    cursor: pointer;
+    transition: var(--transition-fast);
+    position: relative;
+    overflow: hidden;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.language-card:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--shadow-hover);
+    border-color: var(--aiti-secondary);
+}
+
+.language-card.selected {
+    border-color: var(--aiti-secondary);
+    background: #f0faff;
+    box-shadow: 0 0 0 3px rgba(0, 168, 204, 0.25);
+}
+
+.language-card .lang-check {
+    position: absolute;
+    top: 16px;
+    right: 16px;
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    border: 2px solid #CBD5E1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: transparent;
+    transition: var(--transition-fast);
+}
+
+.language-card.selected .lang-check {
+    background: var(--aiti-secondary);
+    border-color: var(--aiti-secondary);
+    color: #ffffff;
+}
+
+.lang-icon-wrap {
+    width: 56px;
+    height: 56px;
+    border-radius: 14px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.8rem;
+    margin-bottom: 16px;
+}
+
+.lang-title {
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: var(--aiti-primary);
+    margin-bottom: 6px;
+}
+
+.lang-desc {
+    font-size: 0.88rem;
+    color: var(--aiti-text-muted);
+    flex-grow: 1;
+    margin-bottom: 14px;
+}
+
+.lang-meta {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-size: 0.8rem;
+    font-weight: 600;
+    padding-top: 10px;
+    border-top: 1px solid var(--aiti-border);
+}
+
+/* Formulario del Candidato */
+.candidate-box {
+    background: #ffffff;
+    border-radius: var(--radius-md);
+    box-shadow: var(--shadow-soft);
+    padding: 30px;
+    margin-top: 25px;
+    border: 1px solid var(--aiti-border);
+}
+
+.form-floating label {
+    color: var(--aiti-text-muted);
+}
+
+.form-control:focus {
+    border-color: var(--aiti-secondary);
+    box-shadow: 0 0 0 0.25rem rgba(0, 168, 204, 0.18);
+}
+
+/* Barra de Estado y Progreso del Examen */
+.sticky-exam-header {
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid var(--aiti-border);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+    padding: 12px 0;
+}
+
+.exam-info-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: var(--aiti-bg-light);
+    border: 1px solid var(--aiti-border);
+    padding: 6px 14px;
+    border-radius: 30px;
+    font-size: 0.88rem;
+    font-weight: 600;
+    color: var(--aiti-primary);
+}
+
+.timer-pill {
+    background: #FEF3C7;
+    border-color: #FCD34D;
+    color: #92400E;
+}
+
+.timer-pill.urgent {
+    background: #FEE2E2;
+    border-color: #FCA5A5;
+    color: #B91C1C;
+    animation: pulse 1s infinite;
+}
+
+@keyframes pulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.04); }
+    100% { transform: scale(1); }
+}
+
+.exam-progress-bar {
+    height: 6px;
+    background-color: #E2E8F0;
+    border-radius: 10px;
+    overflow: hidden;
+    margin-top: 8px;
+}
+
+.exam-progress-fill {
+    height: 100%;
+    background: linear-gradient(90deg, var(--aiti-secondary), var(--aiti-accent));
+    transition: width 0.3s ease;
+    border-radius: 10px;
+}
+
+/* Tarjeta de Pregunta */
+.question-card {
+    background: #ffffff;
+    border-radius: var(--radius-md);
+    box-shadow: var(--shadow-soft);
+    border: 1px solid var(--aiti-border);
+    padding: 30px;
+    margin-bottom: 25px;
+    transition: var(--transition-fast);
+}
+
+.question-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 16px;
+}
+
+.badge-complexity {
+    font-size: 0.8rem;
+    font-weight: 700;
+    padding: 6px 12px;
+    border-radius: 20px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.badge-jr { background-color: #D1FAE5; color: #065F46; }
+.badge-mid { background-color: #DBEAFE; color: #1E40AF; }
+.badge-sr { background-color: #FEF3C7; color: #92400E; }
+.badge-exp { background-color: #EDE9FE; color: #5B21B6; }
+
+.question-text {
+    font-size: 1.18rem;
+    font-weight: 600;
+    color: var(--aiti-primary-dark);
+    line-height: 1.5;
+    margin-bottom: 22px;
+}
+
+/* Opciones de Respuesta */
+.option-label {
+    display: flex;
+    align-items: flex-start;
+    gap: 14px;
+    background: #ffffff;
+    border: 2px solid var(--aiti-border);
+    border-radius: var(--radius-sm);
+    padding: 14px 18px;
+    margin-bottom: 12px;
+    cursor: pointer;
+    transition: var(--transition-fast);
+}
+
+.option-label:hover {
+    border-color: var(--aiti-secondary);
+    background: #f8fafc;
+}
+
+.option-input {
+    display: none;
+}
+
+.option-key {
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    border: 2px solid #94A3B8;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+    font-size: 0.85rem;
+    color: #64748B;
+    flex-shrink: 0;
+    transition: var(--transition-fast);
+    margin-top: 1px;
+}
+
+.option-content {
+    font-size: 0.98rem;
+    color: var(--aiti-text-main);
+    line-height: 1.45;
+}
+
+.option-input:checked + .option-label {
+    border-color: var(--aiti-secondary);
+    background-color: #f0f9ff;
+}
+
+.option-input:checked + .option-label .option-key {
+    background-color: var(--aiti-secondary);
+    border-color: var(--aiti-secondary);
+    color: #ffffff;
+}
+
+/* Navegador Rápido de Preguntas (Grid Selector) */
+.nav-questions-grid {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 8px;
+    margin-bottom: 20px;
+}
+
+.grid-q-btn {
+    width: 100%;
+    aspect-ratio: 1;
+    border-radius: 8px;
+    border: 1px solid var(--aiti-border);
+    background: #F8FAFC;
+    color: #64748B;
+    font-weight: 600;
+    font-size: 0.9rem;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: var(--transition-fast);
+}
+
+.grid-q-btn:hover {
+    border-color: var(--aiti-secondary);
+}
+
+.grid-q-btn.answered {
+    background: #E0F2FE;
+    border-color: #38BDF8;
+    color: #0369A1;
+}
+
+.grid-q-btn.current {
+    background: var(--aiti-primary);
+    border-color: var(--aiti-primary);
+    color: #ffffff;
+    box-shadow: 0 0 0 2px rgba(7, 62, 99, 0.3);
+}
+
+/* Pantalla de Resultados */
+.results-card {
+    background: #ffffff;
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-soft);
+    border: 1px solid var(--aiti-border);
+    padding: 40px;
+    text-align: center;
+}
+
+.score-circle {
+    width: 160px;
+    height: 160px;
+    border-radius: 50%;
+    margin: 0 auto 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background: radial-gradient(circle, #ffffff 65%, transparent 66%),
+                conic-gradient(var(--score-color, #10B981) calc(var(--score-pct, 0) * 1%), #E2E8F0 0);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.05);
+}
+
+.score-number {
+    font-size: 2.5rem;
+    font-weight: 800;
+    color: var(--aiti-primary);
+    line-height: 1;
+}
+
+.score-total {
+    font-size: 0.9rem;
+    color: var(--aiti-text-muted);
+    font-weight: 500;
+}
+
+.badge-rank {
+    display: inline-block;
+    padding: 10px 24px;
+    border-radius: 30px;
+    font-size: 1.15rem;
+    font-weight: 800;
+    letter-spacing: 0.5px;
+    margin-bottom: 20px;
+    box-shadow: 0 4px 14px rgba(0,0,0,0.1);
+}
+
+.breakdown-row {
+    background: #F8FAFC;
+    border-radius: var(--radius-sm);
+    padding: 14px 18px;
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.breakdown-progress {
+    height: 8px;
+    border-radius: 10px;
+    background: #E2E8F0;
+    flex-grow: 1;
+    margin: 0 16px;
+    overflow: hidden;
+}
+
+.breakdown-fill {
+    height: 100%;
+    border-radius: 10px;
+}
+
+/* Revisión de Preguntas (Correcta/Incorrecta) */
+.review-item {
+    border-radius: var(--radius-sm);
+    padding: 20px;
+    margin-bottom: 18px;
+    border-left: 6px solid;
+    background: #ffffff;
+    border: 1px solid var(--aiti-border);
+    text-align: left;
+}
+
+.review-correct {
+    border-left: 6px solid var(--color-jr);
+}
+
+.review-incorrect {
+    border-left: 6px solid #EF4444;
+}
+
+.explanation-box {
+    background: #F8FAFC;
+    border-radius: 6px;
+    padding: 12px 16px;
+    margin-top: 14px;
+    font-size: 0.9rem;
+    color: #475569;
+    border-left: 3px solid var(--aiti-secondary);
+}
+
+/* Botones con estilo */
+.btn-aiti {
+    background: linear-gradient(135deg, var(--aiti-primary), #0b588c);
+    color: #ffffff;
+    font-weight: 600;
+    padding: 12px 28px;
+    border-radius: 10px;
+    border: none;
+    transition: var(--transition-fast);
+}
+
+.btn-aiti:hover {
+    background: linear-gradient(135deg, #0b588c, var(--aiti-primary-dark));
+    color: #ffffff;
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(7, 62, 99, 0.25);
+}
+
+.btn-aiti-outline {
+    background: transparent;
+    color: var(--aiti-primary);
+    border: 2px solid var(--aiti-primary);
+    font-weight: 600;
+    padding: 10px 24px;
+    border-radius: 10px;
+    transition: var(--transition-fast);
+}
+
+.btn-aiti-outline:hover {
+    background: var(--aiti-primary);
+    color: #ffffff;
+}
+
+/* Footer del módulo */
+.examen-footer {
+    background: #ffffff;
+    border-top: 1px solid var(--aiti-border);
+    padding: 20px 0;
+    margin-top: auto;
+    font-size: 0.88rem;
+    color: var(--aiti-text-muted);
+}

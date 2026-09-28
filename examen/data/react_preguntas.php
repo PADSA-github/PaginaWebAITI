@@ -1,0 +1,1020 @@
+<?php
+// Banco de 100 Preguntas de React.js (25 Junior, 25 Semi-Senior, 25 Senior, 25 Experto)
+
+return [
+    // ==========================================
+    // NIVEL JUNIOR (25 PREGUNTAS)
+    // ==========================================
+    [
+        'pregunta' => '¿Qué es JSX en el ecosistema de React?',
+        'opcion_a' => 'Un motor de base de datos en tiempo real',
+        'opcion_b' => 'Una extensión de sintaxis de JavaScript que permite escribir estructuras similares a HTML',
+        'opcion_c' => 'Un nuevo lenguaje de programación que reemplaza a TypeScript',
+        'opcion_d' => 'Una librería exclusiva para estilos CSS',
+        'respuesta_correcta' => 'B',
+        'complejidad' => 'Junior',
+        'explicacion' => 'JSX es una extensión de sintaxis para JavaScript recomendada por React para describir cómo debe verse la interfaz de usuario.'
+    ],
+    [
+        'pregunta' => '¿Qué hook básico de React se utiliza para agregar estado local a un componente funcional?',
+        'opcion_a' => 'useEffect',
+        'opcion_b' => 'useContext',
+        'opcion_c' => 'useState',
+        'opcion_d' => 'useReducer',
+        'respuesta_correcta' => 'C',
+        'complejidad' => 'Junior',
+        'explicacion' => 'useState declara una variable de estado que conserva su valor entre renderizados del componente.'
+    ],
+    [
+        'pregunta' => '¿Cuál es la forma correcta de pasar una propiedad (prop) llamada "titulo" a un componente llamado <Tarjeta />?',
+        'opcion_a' => '<Tarjeta prop="titulo: \'Hola\'" />',
+        'opcion_b' => '<Tarjeta titulo="Hola" />',
+        'opcion_c' => '<Tarjeta {titulo = "Hola"} />',
+        'opcion_d' => '<Tarjeta>titulo="Hola"</Tarjeta>',
+        'respuesta_correcta' => 'B',
+        'complejidad' => 'Junior',
+        'explicacion' => 'Las props se pasan como atributos en la etiqueta JSX: <Componente nombreProp="valor" />.'
+    ],
+    [
+        'pregunta' => '¿Por qué es obligatorio asignar una prop "key" única al renderizar listas de elementos en React?',
+        'opcion_a' => 'Para que el navegador aplique estilos CSS automáticamente',
+        'opcion_b' => 'Para ayudar a React a identificar qué elementos han cambiado, agregado o eliminado y optimizar la reconciliación del DOM Virtual',
+        'opcion_c' => 'Para ordenar los elementos alfabéticamente',
+        'opcion_d' => 'Es solo una sugerencia opcional que no afecta a React',
+        'respuesta_correcta' => 'B',
+        'complejidad' => 'Junior',
+        'explicacion' => 'Las keys dan a los elementos una identidad estable para que el algoritmo de reconciliación actualice eficientemente el DOM.'
+    ],
+    [
+        'pregunta' => '¿Cuál de las siguientes afirmaciones sobre las "props" en React es correcta?',
+        'opcion_a' => 'Las props son mutables y el componente hijo puede reasignarlas directamente',
+        'opcion_b' => 'Las props son de solo lectura (inmutables) para el componente que las recibe',
+        'opcion_c' => 'Las props solo pueden recibir datos de tipo String',
+        'opcion_d' => 'Las props se eliminan cada vez que el componente se re-renderiza',
+        'respuesta_correcta' => 'B',
+        'complejidad' => 'Junior',
+        'explicacion' => 'Todos los componentes de React deben actuar como funciones puras con respecto a sus props (las props nunca se modifican).'
+    ],
+    [
+        'pregunta' => '¿Cómo se maneja un evento de clic en un botón en JSX?',
+        'opcion_a' => '<button onclick="handleClick()">',
+        'opcion_b' => '<button onClick={handleClick}>',
+        'opcion_c' => '<button click={handleClick()}>',
+        'opcion_d' => '<button on_click={handleClick}>',
+        'respuesta_correcta' => 'B',
+        'complejidad' => 'Junior',
+        'explicacion' => 'En JSX los nombres de eventos usan camelCase (onClick) y reciben una referencia a la función entre llaves.'
+    ],
+    [
+        'pregunta' => '¿Qué debe retornar un componente de React válido?',
+        'opcion_a' => 'Únicamente cadenas de texto planas',
+        'opcion_b' => 'Un elemento JSX, fragmento, null, o tipos renderizables válidos',
+        'opcion_c' => 'Un objeto JSON con clave "html"',
+        'opcion_d' => 'Una promesa sin resolver',
+        'respuesta_correcta' => 'B',
+        'complejidad' => 'Junior',
+        'explicacion' => 'Un componente funcional debe devolver elementos React (JSX), fragments (<></>), strings, números, arrays o null.'
+    ],
+    [
+        'pregunta' => '¿Para qué sirve un React Fragment (<> ... </>) o <React.Fragment>?',
+        'opcion_a' => 'Para aislar el componente en un iframe',
+        'opcion_b' => 'Para agrupar múltiples elementos hijos sin agregar nodos adicionales innecesarios al DOM HTML',
+        'opcion_c' => 'Para crear animaciones de transición',
+        'opcion_d' => 'Para conectar con un servidor remoto',
+        'respuesta_correcta' => 'B',
+        'complejidad' => 'Junior',
+        'explicacion' => 'Fragments permiten retornar múltiples elementos adyacentes sin introducir un <div> extra en el DOM resultante.'
+    ],
+    [
+        'pregunta' => '¿Cuál es el propósito del DOM Virtual (Virtual DOM) en React?',
+        'opcion_a' => 'Reemplazar permanentemente al navegador web',
+        'opcion_b' => 'Mantener una representación ligera del DOM en memoria para calcular cambios (diffing) y actualizar solo lo necesario en el DOM real',
+        'opcion_c' => 'Almacenar contraseñas de forma segura',
+        'opcion_d' => 'Descargar archivos del servidor más rápido',
+        'respuesta_correcta' => 'B',
+        'complejidad' => 'Junior',
+        'explicacion' => 'El Virtual DOM optimiza el rendimiento minimizando las costosas operaciones directas sobre el DOM real del navegador.'
+    ],
+    [
+        'pregunta' => '¿Qué regla fundamental deben cumplir los Hooks en React?',
+        'opcion_a' => 'Solo pueden invocarse dentro de bucles for',
+        'opcion_b' => 'Solo deben llamarse en el nivel superior del componente funcional (nunca dentro de condicionales, bucles o funciones anidadas)',
+        'opcion_c' => 'Deben llamarse siempre después de la sentencia return',
+        'opcion_d' => 'Pueden llamarse en cualquier función regular de JavaScript sin restricciones',
+        'respuesta_correcta' => 'B',
+        'complejidad' => 'Junior',
+        'explicacion' => 'Llamar hooks en el nivel superior garantiza que se ejecuten en el mismo orden en cada renderizado.'
+    ],
+    [
+        'pregunta' => '¿Cómo se define el valor inicial en useState?',
+        'opcion_a' => 'const [estado, setEstado] = useState(valorInicial);',
+        'opcion_b' => 'const estado = useState.init(valorInicial);',
+        'opcion_c' => 'useState = valorInicial;',
+        'opcion_d' => 'const [estado] = useState.create(valorInicial);',
+        'respuesta_correcta' => 'A',
+        'complejidad' => 'Junior',
+        'explicacion' => 'useState(valorInicial) retorna un array con dos elementos: el valor actual del estado y la función para actualizarlo.'
+    ],
+    [
+        'pregunta' => '¿Qué atributo de HTML se debe escribir como "className" en JSX?',
+        'opcion_a' => 'id',
+        'opcion_b' => 'class',
+        'opcion_c' => 'style',
+        'opcion_d' => 'type',
+        'respuesta_correcta' => 'B',
+        'complejidad' => 'Junior',
+        'explicacion' => 'Dado que "class" es una palabra reservada en JavaScript, en JSX se utiliza "className" para las clases de CSS.'
+    ],
+    [
+        'pregunta' => '¿Cómo se aplican estilos inline en un elemento JSX?',
+        'opcion_a' => '<div style="color: red; font-size: 14px;">',
+        'opcion_b' => '<div style={{ color: "red", fontSize: "14px" }}>',
+        'opcion_c' => '<div css={color: red}>',
+        'opcion_d' => '<div style="color=red">',
+        'respuesta_correcta' => 'B',
+        'complejidad' => 'Junior',
+        'explicacion' => 'En JSX la prop style acepta un objeto JavaScript con propiedades CSS escritas en camelCase.'
+    ],
+    [
+        'pregunta' => '¿Qué hook se ejecuta después de que el componente se renderiza en pantalla para realizar efectos secundarios?',
+        'opcion_a' => 'useState',
+        'opcion_b' => 'useEffect',
+        'opcion_c' => 'useRef',
+        'opcion_d' => 'useMemo',
+        'respuesta_correcta' => 'B',
+        'complejidad' => 'Junior',
+        'explicacion' => 'useEffect permite realizar efectos secundarios (llamadas a APIs, suscripciones, manipulación manual del DOM) tras el render.'
+    ],
+    [
+        'pregunta' => '¿Qué significa pasar un array de dependencias vacío [] como segundo argumento en useEffect?',
+        'opcion_a' => 'El efecto se ejecutará en cada renderizado',
+        'opcion_b' => 'El efecto se ejecutará únicamente una vez cuando el componente se monte',
+        'opcion_c' => 'El efecto nunca se ejecutará',
+        'opcion_d' => 'Provoca un error de sintaxis en React',
+        'respuesta_correcta' => 'B',
+        'complejidad' => 'Junior',
+        'explicacion' => 'El array vacío [] indica que el efecto no depende de ninguna prop o estado, ejecutándose solo al montar el componente.'
+    ],
+    [
+        'pregunta' => '¿Qué es el renderizado condicional en React?',
+        'opcion_a' => 'Cargar componentes solo si hay conexión a internet',
+        'opcion_b' => 'Mostrar u ocultar elementos de la interfaz en función de condiciones lógicas o del estado',
+        'opcion_c' => 'Compilar el código condicionalmente según el navegador',
+        'opcion_d' => 'Renderizar siempre el 100% de los componentes sin importar el estado',
+        'respuesta_correcta' => 'B',
+        'complejidad' => 'Junior',
+        'explicacion' => 'El renderizado condicional usa operadores como && o el ternario ? : para renderizar UI según el estado.'
+    ],
+    [
+        'pregunta' => '¿Cómo se evita que un formulario recargue la página en el evento onSubmit en React?',
+        'opcion_a' => 'return false;',
+        'opcion_b' => 'e.stopPropagation();',
+        'opcion_c' => 'e.preventDefault();',
+        'opcion_d' => 'e.cancelSubmit();',
+        'respuesta_correcta' => 'C',
+        'complejidad' => 'Junior',
+        'explicacion' => 'e.preventDefault() en el objeto del evento sintético cancela la acción predeterminada de envío del formulario en el navegador.'
+    ],
+    [
+        'pregunta' => '¿Qué es un "componente controlado" (controlled component) en React?',
+        'opcion_a' => 'Un componente protegido con contraseña',
+        'opcion_b' => 'Un input o elemento de formulario cuyo valor es gestionado y controlado por el estado de React mediante value y onChange',
+        'opcion_c' => 'Un componente que no permite interacción del usuario',
+        'opcion_d' => 'Un componente manejado exclusivamente por jQuery',
+        'respuesta_correcta' => 'B',
+        'complejidad' => 'Junior',
+        'explicacion' => 'En un componente controlado, el estado de React sirve como la "única fuente de la verdad" para los elementos de formulario.'
+    ],
+    [
+        'pregunta' => '¿Cuál es la función especial de la prop reservada "children" en React?',
+        'opcion_a' => 'Obtener la lista de componentes huérfanos',
+        'opcion_b' => 'Representar y renderizar el contenido anidado que se pasa entre las etiquetas de apertura y cierre de un componente',
+        'opcion_c' => 'Definir el número de versiones hijas en Git',
+        'opcion_d' => 'Heredar estilos del elemento body',
+        'respuesta_correcta' => 'B',
+        'complejidad' => 'Junior',
+        'explicacion' => 'props.children contiene los elementos colocados dentro de <Componente>{children}</Componente>.'
+    ],
+    [
+        'pregunta' => '¿Qué comando de terminal crea un nuevo proyecto de React moderno con Vite rápidamente?',
+        'opcion_a' => 'npm run react-new',
+        'opcion_b' => 'npm create vite@latest mi-app -- --template react',
+        'opcion_c' => 'git clone react-template',
+        'opcion_d' => 'npm install react -g -make',
+        'respuesta_correcta' => 'B',
+        'complejidad' => 'Junior',
+        'explicacion' => 'Vite es la herramienta moderna estándar recomendada para generar proyectos React con arranque instantáneo y HMR veloz.'
+    ],
+    [
+        'pregunta' => '¿Cuál es el operador más común para renderizar un elemento solo si una condición booleana es verdadera en JSX?',
+        'opcion_a' => 'condicion || <Elemento />',
+        'opcion_b' => 'condicion && <Elemento />',
+        'opcion_c' => 'condicion ?? <Elemento />',
+        'opcion_d' => 'condicion == <Elemento />',
+        'respuesta_correcta' => 'B',
+        'complejidad' => 'Junior',
+        'explicacion' => 'En JavaScript, true && expresion evalúa a la expresión, permitiendo renderizado condicional limpio.'
+    ],
+    [
+        'pregunta' => '¿Qué paquete oficial contiene el método createRoot para inicializar la aplicación React en el DOM?',
+        'opcion_a' => 'react',
+        'opcion_b' => 'react-dom/client',
+        'opcion_c' => 'react-scripts',
+        'opcion_d' => 'react-native',
+        'respuesta_correcta' => 'B',
+        'complejidad' => 'Junior',
+        'explicacion' => 'A partir de React 18, createRoot se importa desde "react-dom/client" para habilitar las nuevas funciones concurrentes.'
+    ],
+    [
+        'pregunta' => '¿Qué sucede si modificas directamente una variable de estado (ej: estado = "nuevo") sin usar la función setEstado?',
+        'opcion_a' => 'React actualiza la interfaz automáticamente de inmediato',
+        'opcion_b' => 'React no detectará el cambio y no provocará un re-renderizado del componente',
+        'opcion_c' => 'El navegador muestra una pantalla azul de error',
+        'opcion_d' => 'La aplicación se reinicia',
+        'respuesta_correcta' => 'B',
+        'complejidad' => 'Junior',
+        'explicacion' => 'Mutar el estado directamente rompe el modelo reactivo; la función setter es la encargada de agendar el re-render.'
+    ],
+    [
+        'pregunta' => '¿Qué tipo de funciones deben ser los componentes en React?',
+        'opcion_a' => 'Funciones asíncronas obligatorias con async/await',
+        'opcion_b' => 'Funciones puras respecto a sus props y sin efectos secundarios durante la fase de render',
+        'opcion_c' => 'Funciones anónimas autoejecutables (IIFE)',
+        'opcion_d' => 'Generadores con function*',
+        'respuesta_correcta' => 'B',
+        'complejidad' => 'Junior',
+        'explicacion' => 'React espera que los componentes sean puros durante la fase de cálculo de JSX (mismas props y estado => mismo JSX).'
+    ],
+    [
+        'pregunta' => '¿Cómo se exporta por defecto un componente en un archivo JavaScript / ES6?',
+        'opcion_a' => 'module.exports = MiComponente;',
+        'opcion_b' => 'export default MiComponente;',
+        'opcion_c' => 'export MiComponente as default;',
+        'opcion_d' => 'send MiComponente;',
+        'respuesta_correcta' => 'B',
+        'complejidad' => 'Junior',
+        'explicacion' => 'export default MiComponente es la sintaxis estándar de módulos ES6 para exportación principal.'
+    ],
+
+    // ==========================================
+    // NIVEL SEMI-SENIOR (25 PREGUNTAS)
+    // ==========================================
+    [
+        'pregunta' => '¿Para qué sirve la función de limpieza (cleanup function) retornada dentro de un useEffect?',
+        'opcion_a' => 'Para eliminar componentes de la memoria caché del navegador',
+        'opcion_b' => 'Para cancelar suscripciones, temporizadores (intervals/timeouts) o abortar peticiones antes de que el componente se desmonte o el efecto se vuelva a ejecutar',
+        'opcion_c' => 'Para reiniciar el estado a sus valores por defecto',
+        'opcion_d' => 'Para vaciar el contenido de la consola de depuración',
+        'respuesta_correcta' => 'B',
+        'complejidad' => 'Semi-Senior',
+        'explicacion' => 'Retornar una función desde useEffect permite limpiar recursos y prevenir memory leaks al desmontar o antes de re-ejecutar el efecto.'
+    ],
+    [
+        'pregunta' => '¿Cuál es la diferencia principal entre useRef y useState?',
+        'opcion_a' => 'useRef solo guarda strings y useState cualquier dato',
+        'opcion_b' => 'Modificar ref.current no desencadena un re-renderizado del componente, mientras que llamar al setter de useState sí provoca un re-render',
+        'opcion_c' => 'useRef se reinicia en cada renderizado',
+        'opcion_d' => 'useState no conserva datos entre renders',
+        'respuesta_correcta' => 'B',
+        'complejidad' => 'Semi-Senior',
+        'explicacion' => 'useRef persiste valores mutables en su propiedad .current a través de renders sin notificar a React para volver a dibujar la interfaz.'
+    ],
+    [
+        'pregunta' => '¿Cuándo es apropiado utilizar el hook useReducer en lugar de múltiples llamadas a useState?',
+        'opcion_a' => 'Cuando la aplicación tiene menos de 10 líneas de código',
+        'opcion_b' => 'Cuando el estado es complejo, tiene múltiples subvalores o el siguiente estado depende fuertemente del anterior siguiendo un patrón de acciones tipo Redux',
+        'opcion_c' => 'Únicamente para hacer peticiones HTTP POST',
+        'opcion_d' => 'Solo cuando no se usan componentes funcionales',
+        'respuesta_correcta' => 'B',
+        'complejidad' => 'Semi-Senior',
+        'explicacion' => 'useReducer centraliza transiciones de estado complejas en una función reducer pura (state, action) => newState.'
+    ],
+    [
+        'pregunta' => '¿Cuál es el objetivo principal del hook useMemo en React?',
+        'opcion_a' => 'Recordar las contraseñas del usuario',
+        'opcion_b' => 'Memorizar el resultado del cálculo de una función costosa para evitar recalcularla en cada render si sus dependencias no han cambiado',
+        'opcion_c' => 'Crear una copia profunda (deep clone) de un objeto',
+        'opcion_d' => 'Conectar con el LocalStorage automáticamente',
+        'respuesta_correcta' => 'B',
+        'complejidad' => 'Semi-Senior',
+        'explicacion' => 'useMemo calcula y almacena en caché un valor derivado costoso, recalculándolo únicamente cuando cambian sus dependencias declaradas.'
+    ],
+    [
+        'pregunta' => '¿Qué diferencia clave existe entre useMemo y useCallback?',
+        'opcion_a' => 'useMemo memoriza un valor retornado, mientras que useCallback memoriza la propia definición de una función (evita crear nuevas referencias de función)',
+        'opcion_b' => 'useCallback solo funciona en componentes de clase',
+        'opcion_c' => 'useMemo solo sirve para números y useCallback para cadenas',
+        'opcion_d' => 'Son idénticos y completamente intercambiables',
+        'respuesta_correcta' => 'A',
+        'complejidad' => 'Semi-Senior',
+        'explicacion' => 'useCallback(fn, deps) es equivalente a useMemo(() => fn, deps); estabiliza la referencia de una función pasada a componentes hijos memorizados.'
+    ],
+    [
+        'pregunta' => '¿Qué problema resuelve React Context API?',
+        'opcion_a' => 'La velocidad de descarga de archivos JavaScript',
+        'opcion_b' => 'El "prop drilling" (pasar props manualmente a través de múltiples niveles intermedios de componentes que no las necesitan directamente)',
+        'opcion_c' => 'El soporte para Internet Explorer 6',
+        'opcion_d' => 'La compilación de código TypeScript a C++',
+        'respuesta_correcta' => 'B',
+        'complejidad' => 'Semi-Senior',
+        'explicacion' => 'Context permite compartir datos globales (tema, usuario autenticado, idioma) a cualquier nivel del árbol sin pasar props manualmente.'
+    ],
+    [
+        'pregunta' => '¿Cómo se consume un Contexto dentro de un componente funcional moderno?',
+        'opcion_a' => 'Con el hook useContext(MiContexto)',
+        'opcion_b' => 'Con Context.read()',
+        'opcion_c' => 'Con this.context()',
+        'opcion_d' => 'Con el hook useStore()',
+        'respuesta_correcta' => 'A',
+        'complejidad' => 'Semi-Senior',
+        'explicacion' => 'const value = useContext(MyContext) se suscribe a los cambios del contexto provisto por el <MyContext.Provider> más cercano.'
+    ],
+    [
+        'pregunta' => '¿Qué es un Custom Hook (Hook personalizado) en React?',
+        'opcion_a' => 'Una función especial que modifica el código fuente de React en node_modules',
+        'opcion_b' => 'Una función JavaScript cuyo nombre comienza con "use" que puede encapsular y reutilizar lógica con estado llamando a otros hooks de React',
+        'opcion_c' => 'Un plugin del navegador Chrome',
+        'opcion_d' => 'Una clase que hereda de React.HookComponent',
+        'respuesta_correcta' => 'B',
+        'complejidad' => 'Semi-Senior',
+        'explicacion' => 'Los custom hooks extraen lógica reutilizable (ej: useFetch, useWindowSize) compartiendo lógica con estado entre componentes sin alterar la jerarquía.'
+    ],
+    [
+        'pregunta' => '¿Para qué sirve React.memo() en un componente funcional?',
+        'opcion_a' => 'Para evitar que el componente se desmonte nunca',
+        'opcion_b' => 'Para hacer un componente de orden superior (HOC) que evita re-renderizados si las props recibidas no han cambiado (comparación superficial)',
+        'opcion_c' => 'Para guardar el componente en la memoria RAM del servidor',
+        'opcion_d' => 'Para encriptar los datos del componente',
+        'respuesta_correcta' => 'B',
+        'complejidad' => 'Semi-Senior',
+        'explicacion' => 'React.memo memoriza la salida renderizada del componente, saltándose el re-render si las nuevas props son idénticas por comparación superficial.'
+    ],
+    [
+        'pregunta' => '¿Por qué es mala práctica usar el índice del array como "key" en listas dinámicas que se reordenan, filtran o eliminan?',
+        'opcion_a' => 'Porque React lanza un error fatal de compilación',
+        'opcion_b' => 'Porque puede causar bugs visuales graves, estados locales desalineados entre elementos y degradación del rendimiento al confundir la reconciliación',
+        'opcion_c' => 'Porque los índices de array son números negativos en JavaScript',
+        'opcion_d' => 'Porque ocupa el doble de memoria',
+        'respuesta_correcta' => 'B',
+        'complejidad' => 'Semi-Senior',
+        'explicacion' => 'Si el orden cambia o se elimina un elemento, los índices se reasignan, haciendo que React asocie erróneamente el estado interno del elemento anterior al nuevo.'
+    ],
+    [
+        'pregunta' => '¿Qué hace la función updater en el setter de estado: setContador(prevContador => prevContador + 1)?',
+        'opcion_a' => 'Garantiza que la actualización se calcule usando el valor de estado más reciente y seguro, evitando problemas por closures obsoletos (stale closures)',
+        'opcion_b' => 'Fuerza una llamada síncrona inmediata al servidor',
+        'opcion_c' => 'Convierte el contador en un string',
+        'opcion_d' => 'Cancela todos los efectos secundarios pendientes',
+        'respuesta_correcta' => 'A',
+        'complejidad' => 'Semi-Senior',
+        'explicacion' => 'La forma funcional prev => next garantiza leer el estado pendiente más reciente de la cola de actualizaciones por lotes (batching).'
+    ],
+    [
+        'pregunta' => '¿Qué función de React Router v6 se utiliza para navegar programáticamente a otra ruta tras una acción?',
+        'opcion_a' => 'useHistory().push()',
+        'opcion_b' => 'useNavigate()',
+        'opcion_c' => 'window.redirect()',
+        'opcion_d' => 'useRouting()',
+        'respuesta_correcta' => 'B',
+        'complejidad' => 'Semi-Senior',
+        'explicacion' => 'En React Router v6, useNavigate reemplazó a useHistory: const navigate = useNavigate(); navigate("/ruta").'
+    ],
+    [
+        'pregunta' => '¿Qué es un "Error Boundary" en React?',
+        'opcion_a' => 'Una librería externa para validar formularios',
+        'opcion_b' => 'Un componente de React que captura errores de JavaScript en cualquier parte de su árbol de componentes hijos, registra el error y muestra una interfaz de fallback',
+        'opcion_c' => 'Un bloque try-catch dentro de la función render',
+        'opcion_d' => 'Un firewall contra inyecciones SQL',
+        'respuesta_correcta' => 'B',
+        'complejidad' => 'Semi-Senior',
+        'explicacion' => 'Los Error Boundaries capturan errores durante el renderizado, métodos de ciclo de vida y constructores de todo el subárbol hijo.'
+    ],
+    [
+        'pregunta' => '¿Por qué un Error Boundary tradicional debe implementarse como componente de clase?',
+        'opcion_a' => 'Porque los componentes funcionales no soportan JSX',
+        'opcion_b' => 'Porque depende de métodos de ciclo de vida específicos (componentDidCatch y static getDerivedStateFromError) que aún no tienen equivalente directo en Hooks',
+        'opcion_c' => 'Porque las clases son más rápidas que las funciones',
+        'opcion_d' => 'Porque React deprecó los componentes funcionales para errores',
+        'respuesta_correcta' => 'B',
+        'complejidad' => 'Semi-Senior',
+        'explicacion' => 'React requiere getDerivedStateFromError() y componentDidCatch() para interceptar errores de render, disponibles solo en clases.'
+    ],
+    [
+        'pregunta' => '¿Qué técnica permite cargar componentes bajo demanda (Lazy Loading) reduciendo el tamaño del bundle inicial?',
+        'opcion_a' => 'React.lazy() en combinación con <Suspense fallback={<Loading />}>',
+        'opcion_b' => 'fetchComponent()',
+        'opcion_c' => 'useAsyncComponent()',
+        'opcion_d' => 'Script tags dinámicos manuales',
+        'respuesta_correcta' => 'A',
+        'complejidad' => 'Semi-Senior',
+        'explicacion' => 'React.lazy(() => import("./Comp")) y Suspense dividen el código (code-splitting) descargando el chunk JS solo cuando el componente se va a renderizar.'
+    ],
+    [
+        'pregunta' => '¿Cuál es el comportamiento de "Batching" automático introducido en React 18?',
+        'opcion_a' => 'React agrupa automáticamente múltiples actualizaciones de estado en un solo re-renderizado, incluso dentro de promesas, setTimeout y event handlers nativos',
+        'opcion_b' => 'React procesa las peticiones de base de datos en paquetes de 100',
+        'opcion_c' => 'React compila los archivos CSS en un solo bloque',
+        'opcion_d' => 'React solo permite una actualización de estado por minuto',
+        'respuesta_correcta' => 'A',
+        'complejidad' => 'Semi-Senior',
+        'explicacion' => 'React 18 introdujo automatic batching universal para evitar re-renders intermedios innecesarios independientemente del origen de la actualización.'
+    ],
+    [
+        'pregunta' => '¿Para qué sirve el hook useLayoutEffect y en qué se diferencia de useEffect?',
+        'opcion_a' => 'useLayoutEffect solo sirve para dibujar en canvas',
+        'opcion_b' => 'useLayoutEffect se ejecuta de forma síncrona inmediatamente después de que React muta el DOM pero ANTES de que el navegador pinte en pantalla (evita parpadeos visuales)',
+        'opcion_c' => 'useLayoutEffect es asíncrono y se ejecuta 10 segundos después',
+        'opcion_d' => 'No hay ninguna diferencia',
+        'respuesta_correcta' => 'B',
+        'complejidad' => 'Semi-Senior',
+        'explicacion' => 'useLayoutEffect bloquea la pintura visual del navegador para medir el layout (dimensiones, scroll) de forma síncrona sin flickering.'
+    ],
+    [
+        'pregunta' => '¿Cómo se pasa una referencia de un componente padre a un nodo DOM dentro de un componente hijo funcional?',
+        'opcion_a' => 'Asignando ref={this}',
+        'opcion_b' => 'Envolviendo el componente hijo con React.forwardRef()',
+        'opcion_c' => 'Usando un evento global de window',
+        'opcion_d' => 'Declarando la ref como variable global',
+        'respuesta_correcta' => 'B',
+        'complejidad' => 'Semi-Senior',
+        'explicacion' => 'React.forwardRef permite que un componente intercepte la prop ref que recibe y la reenvíe a un elemento del DOM hijo.'
+    ],
+    [
+        'pregunta' => '¿Cuál de las siguientes afirmaciones describe mejor a Zustand frente a Redux tradicional?',
+        'opcion_a' => 'Zustand requiere un <Provider> obligatorio en la raíz y docenas de archivos de configuración',
+        'opcion_b' => 'Zustand es un gestor de estado ligero, basado en hooks, con mínimo boilerplate y que no requiere envolver la app en un Context Provider',
+        'opcion_c' => 'Zustand solo funciona con bases de datos MySQL',
+        'opcion_d' => 'Zustand fue creado por el equipo de Angular',
+        'respuesta_correcta' => 'B',
+        'complejidad' => 'Semi-Senior',
+        'explicacion' => 'Zustand ofrece una API concisa basada en closures y hooks, eliminando la necesidad de reducers prolijos y context providers.'
+    ],
+    [
+        'pregunta' => '¿Qué hace la función createPortal de react-dom?',
+        'opcion_a' => 'Abre una nueva ventana emergente (popup) en el navegador',
+        'opcion_b' => 'Renderiza un elemento hijo en un nodo DOM diferente que existe fuera de la jerarquía del DOM del componente padre (ideal para modales y tooltips)',
+        'opcion_c' => 'Comunica dos servidores distintos',
+        'opcion_d' => 'Crea una conexión WebSocket',
+        'respuesta_correcta' => 'B',
+        'complejidad' => 'Semi-Senior',
+        'explicacion' => 'createPortal(child, domNode) inserta visualmente un hijo en cualquier lugar del DOM (ej: document.body) manteniendo eventos en el árbol de React.'
+    ],
+    [
+        'pregunta' => '¿Qué problema puede ocurrir si omites dependencias usadas dentro de useEffect sin agregarlas al array de dependencias?',
+        'opcion_a' => 'El compilador borra el archivo',
+        'opcion_b' => 'El efecto capturará valores viejos o desactualizados de props/estado (Stale Closures), generando comportamientos inconsistentes y bugs silenciosos',
+        'opcion_c' => 'La memoria del servidor se satura',
+        'opcion_d' => 'React no permite iniciar el proyecto',
+        'respuesta_correcta' => 'B',
+        'complejidad' => 'Semi-Senior',
+        'explicacion' => 'Las funciones capturan las variables del render en que se crearon. Omitir dependencias produce cierres obsoletos (stale closures).'
+    ],
+    [
+        'pregunta' => '¿Cómo se cancela una petición fetch en curso al desmontar un componente con useEffect?',
+        'opcion_a' => 'Llamando a fetch.abort()',
+        'opcion_b' => 'Utilizando un AbortController y llamando a controller.abort() en la función de limpieza del efecto',
+        'opcion_c' => 'Cerrando la pestaña del navegador',
+        'opcion_d' => 'Lanzando una excepción con throw',
+        'respuesta_correcta' => 'B',
+        'complejidad' => 'Semi-Senior',
+        'explicacion' => 'const controller = new AbortController(); fetch(url, { signal: controller.signal }); y en cleanup: () => controller.abort().'
+    ],
+    [
+        'pregunta' => '¿Cuál es la diferencia entre un componente no controlado (uncontrolled) y uno controlado?',
+        'opcion_a' => 'El no controlado almacena su propio estado directamente en el DOM y se accede mediante useRef, mientras que el controlado sincroniza su valor en el estado de React',
+        'opcion_b' => 'El controlado no permite escribir texto',
+        'opcion_c' => 'El no controlado solo funciona en navegadores móviles',
+        'opcion_d' => 'Ambos funcionan de forma idéntica sin diferencias técnicas',
+        'respuesta_correcta' => 'A',
+        'complejidad' => 'Semi-Senior',
+        'explicacion' => 'Los componentes no controlados delegan la fuente de la verdad al DOM tradicional accesible por refs (ideal para integración con librerías ajenas).'
+    ],
+    [
+        'pregunta' => '¿Para qué sirve el hook useId() introducido en React 18?',
+        'opcion_a' => 'Generar claves primarias para bases de datos relacionales',
+        'opcion_b' => 'Generar identificadores únicos y consistentes entre cliente y servidor (SSR) para atributos de accesibilidad (aria-describedby, htmlFor)',
+        'opcion_c' => 'Autenticar usuarios en Firebase',
+        'opcion_d' => 'Obtener la dirección MAC del ordenador',
+        'respuesta_correcta' => 'B',
+        'complejidad' => 'Semi-Senior',
+        'explicacion' => 'useId genera IDs estables que no colisionan y previenen discrepancias de hidratación en Server-Side Rendering.'
+    ],
+    [
+        'pregunta' => '¿Qué función cumple Redux Toolkit (RTK) en el ecosistema de Redux moderno?',
+        'opcion_a' => 'Reemplazar a React por completo',
+        'opcion_b' => 'Estandarizar la configuración del store con configureStore, crear reducers mutables aparentes con createSlice (usando Immer) y simplificar async logic',
+        'opcion_c' => 'Permitir escribir Redux en formato XML',
+        'opcion_d' => 'Eliminar la necesidad de tener estado en el frontend',
+        'respuesta_correcta' => 'B',
+        'complejidad' => 'Semi-Senior',
+        'explicacion' => 'RTK es el estándar oficial de Redux que reduce drásticamente el código boilerplate e integra Immer para mutaciones inmutables seguras.'
+    ],
+
+    // ==========================================
+    // NIVEL SENIOR (25 PREGUNTAS)
+    // ==========================================
+    [
+        'pregunta' => '¿En qué consiste el nuevo motor de reconciliación "React Fiber" y cuál fue su objetivo arquitectónico?',
+        'opcion_a' => 'Hacer que React corra sobre cables de fibra óptica',
+        'opcion_b' => 'Reemplazar el algoritmo de pila recursivo síncrono por una estructura basada en listas enlazadas que permite pausar, priorizar y abortar el trabajo de renderizado de forma concurrente',
+        'opcion_c' => 'Un nuevo compilador de CSS en tiempo de ejecución',
+        'opcion_d' => 'Un reemplazo de Node.js en el backend',
+        'respuesta_correcta' => 'B',
+        'complejidad' => 'Senior',
+        'explicacion' => 'Fiber convirtió la reconciliación en un árbol de nodos pausables y reanudables, habilitando el Renderizado Concurrente sin bloquear el hilo principal.'
+    ],
+    [
+        'pregunta' => '¿Qué hace el hook useTransition introducido en React 18?',
+        'opcion_a' => 'Aplica animaciones CSS de transición automáticamente a cualquier etiqueta div',
+        'opcion_b' => 'Permite marcar actualizaciones de estado como "transiciones no urgentes", manteniendo la interfaz responsiva para entradas de alta prioridad (tecleo, clics)',
+        'opcion_c' => 'Navega de una URL a otra sin cambiar la ventana',
+        'opcion_d' => 'Traduce el contenido del componente a varios idiomas',
+        'respuesta_correcta' => 'B',
+        'complejidad' => 'Senior',
+        'explicacion' => 'startTransition marca actualizaciones lentas (filtrado de grandes listas) como interrumpibles si el usuario interactúa con un elemento urgente.'
+    ],
+    [
+        'pregunta' => '¿Qué diferencia a useDeferredValue de una técnica tradicional de debounce o throttle?',
+        'opcion_a' => 'useDeferredValue no espera un tiempo fijo arbitrario (ej: 300ms); se actualiza inmediatamente después de que el renderizado urgente termine, adaptándose a la velocidad del dispositivo',
+        'opcion_b' => 'useDeferredValue solo funciona con promesas de GraphQL',
+        'opcion_c' => 'useDeferredValue cancela todas las peticiones a la base de datos',
+        'opcion_d' => 'No hay diferencia técnica; debounce es siempre superior',
+        'respuesta_correcta' => 'A',
+        'complejidad' => 'Senior',
+        'explicacion' => 'useDeferredValue se integra con el scheduler concurrente de React: no hay lag artificial en computadoras rápidas y no congela equipos lentos.'
+    ],
+    [
+        'pregunta' => '¿Cuál es la diferencia fundamental entre Client-Side Rendering (CSR), Server-Side Rendering (SSR) y Static Site Generation (SSG) en Next.js?',
+        'opcion_a' => 'CSR renderiza HTML vacío y genera la UI en el cliente; SSR genera el HTML en el servidor en cada petición; SSG pre-renderiza el HTML en tiempo de compilación (build)',
+        'opcion_b' => 'CSR solo funciona en móviles, SSR en laptops y SSG en tablets',
+        'opcion_c' => 'SSG no permite contenido dinámico ni imágenes',
+        'opcion_d' => 'Son tres nombres diferentes para la misma arquitectura',
+        'respuesta_correcta' => 'A',
+        'complejidad' => 'Senior',
+        'explicacion' => 'CSR descarga un JS bundle; SSR computa HTML dinámicamente por request; SSG genera archivos estáticos hiper-rápidos en build time.'
+    ],
+    [
+        'pregunta' => '¿En qué consiste el proceso de "Hidratación" (Hydration) en aplicaciones React con Server-Side Rendering?',
+        'opcion_a' => 'Comprimir el código HTML con GZIP en el servidor',
+        'opcion_b' => 'El proceso donde React lee el HTML estático generado por el servidor y acopla los listeners de eventos y el estado en el cliente para hacerlo interactivo',
+        'opcion_c' => 'Limpiar variables no utilizadas de la memoria',
+        'opcion_d' => 'Descargar fuentes tipográficas de Google Fonts',
+        'respuesta_correcta' => 'B',
+        'complejidad' => 'Senior',
+        'explicacion' => 'La hidratación reconcilia el árbol de React en memoria con el DOM existente emitido por el servidor sin recrear los nodos desde cero.'
+    ],
+    [
+        'pregunta' => '¿Qué causa un "Hydration Mismatch Error" en Next.js o React 18 SSR?',
+        'opcion_a' => 'Un fallo en la conexión a la base de datos MySQL',
+        'opcion_b' => 'Una discrepancia entre el HTML renderizado en el servidor y el primer árbol generado por el cliente (ej: usar window, Date.now() o localStorage en el primer render)',
+        'opcion_c' => 'Olvidar instalar el paquete react-dom',
+        'opcion_d' => 'Usar tipos TypeScript incorrectos',
+        'respuesta_correcta' => 'B',
+        'complejidad' => 'Senior',
+        'explicacion' => 'Si el servidor emite un texto o estructura y el cliente produce otra en el montaje inicial, React arroja un error de mismatch de hidratación.'
+    ],
+    [
+        'pregunta' => '¿Qué ventaja tiene la "virtualización de listas" (ej: react-window o react-virtualized) al mostrar 50,000 elementos?',
+        'opcion_a' => 'Renderiza únicamente los nodos DOM visibles en la ventana actual (viewport) más un pequeño buffer, manteniendo el número de nodos DOM constante y bajo',
+        'opcion_b' => 'Comprime los elementos en formato zip antes de enviarlos',
+        'opcion_c' => 'Convierte los elementos en imágenes PNG estáticas',
+        'opcion_d' => 'Descarga los datos usando WebSockets',
+        'respuesta_correcta' => 'A',
+        'complejidad' => 'Senior',
+        'explicacion' => 'Sin virtualización, 50,000 nodos colapsan el árbol de render del navegador. La virtualización solo mantiene ~30 nodos activos en el DOM.'
+    ],
+    [
+        'pregunta' => '¿Por qué definir funciones u objetos anónimos en línea (inline) dentro de JSX puede degradar el rendimiento en componentes envueltos con React.memo?',
+        'opcion_a' => 'Porque provocan fugas de memoria en V8',
+        'opcion_b' => 'Porque en cada renderizado del padre se crea una nueva referencia de objeto/función en memoria, haciendo que la comparación superficial de props siempre falle',
+        'opcion_c' => 'Porque rompen el tipado estricto de TypeScript',
+        'opcion_d' => 'Porque impiden que el navegador descargue archivos CSS',
+        'respuesta_correcta' => 'B',
+        'complejidad' => 'Senior',
+        'explicacion' => '() => {} crea una referencia distinta en cada ciclo. Al comparar prevProp === nextProp, da false y anula la memorización de React.memo.'
+    ],
+    [
+        'pregunta' => '¿Cuál es el propósito del hook useSyncExternalStore introducido en React 18?',
+        'opcion_a' => 'Sincronizar carpetas de archivos locales con Dropbox',
+        'opcion_b' => 'Permitir a librerías de estado externas (Redux, Zustand, Zustand) suscribirse a almacenes no-React evitando el "tearing" (inconsistencias visuales) bajo render concurrente',
+        'opcion_c' => 'Crear réplicas maestras de bases de datos',
+        'opcion_d' => 'Sustituir a los WebSockets',
+        'respuesta_correcta' => 'B',
+        'complejidad' => 'Senior',
+        'explicacion' => 'Garantiza lecturas síncronas de stores externos bajo el motor concurrente de React, impidiendo que partes de la UI muestren datos de diferentes versiones temporales.'
+    ],
+    [
+        'pregunta' => '¿Cómo funciona el patrón Compound Components en React (ej: <Select><Select.Option /></Select>)?',
+        'opcion_a' => 'Compilando múltiples proyectos de React en un solo archivo binario',
+        'opcion_b' => 'Componentes que trabajan juntos compartiendo estado y lógica implícita a través de React Context o React.cloneElement para una API declarativa y flexible',
+        'opcion_c' => 'Uniendo componentes de Vue con componentes de React',
+        'opcion_d' => 'Usando únicamente atributos data-* de HTML',
+        'respuesta_correcta' => 'B',
+        'complejidad' => 'Senior',
+        'explicacion' => 'El patrón Compound Components provee una API intuitiva donde el padre administra el estado y los hijos se comunican sin acoplamiento rígido de props.'
+    ],
+    [
+        'pregunta' => '¿Qué hace el hook useImperativeHandle en conjunto con forwardRef?',
+        'opcion_a' => 'Convierte el componente funcional en imperativo deshabilitando el render declarativo',
+        'opcion_b' => 'Personaliza y expone deliberadamente métodos específicos hacia la referencia del padre, ocultando la instancia DOM interna completa (encapsulamiento)',
+        'opcion_c' => 'Permite llamadas directas a funciones del sistema operativo',
+        'opcion_d' => 'Maneja excepciones de red no controladas',
+        'respuesta_correcta' => 'B',
+        'complejidad' => 'Senior',
+        'explicacion' => 'useImperativeHandle(ref, () => ({ focus, clear })) permite exponer una interfaz controlada al componente padre sin entregar el nodo DOM entero.'
+    ],
+    [
+        'pregunta' => '¿Qué técnica de testing es la recomendada por React Testing Library (RTL)?',
+        'opcion_a' => 'Probar los detalles internos de implementación, nombres de métodos y estado privado',
+        'opcion_b' => 'Probar la aplicación desde la perspectiva del usuario final (interacciones, textos accesibles por roles ARIA, queries por texto visible)',
+        'opcion_c' => 'Verificar únicamente que el código compile sin advertencias en la consola',
+        'opcion_d' => 'Hacer pruebas exclusivas de rendimiento de la CPU',
+        'respuesta_correcta' => 'B',
+        'complejidad' => 'Senior',
+        'explicacion' => 'RTL promueve "The more your tests resemble the way your software is used, the more confidence they can give you", evitando tests frágiles acoplados a la implementación.'
+    ],
+    [
+        'pregunta' => '¿Cuál es el beneficio de las Server Actions en Next.js App Router (React Server Actions)?',
+        'opcion_a' => 'Permiten mutar datos en el servidor invocando funciones asíncronas directamente desde componentes de React sin crear manualmente endpoints API REST dedicados',
+        'opcion_b' => 'Eliminan la necesidad de tener base de datos en el servidor',
+        'opcion_c' => 'Ejecutan código JavaScript directamente en la GPU del cliente',
+        'opcion_d' => 'Convierten el código frontend en ensamblador',
+        'respuesta_correcta' => 'A',
+        'complejidad' => 'Senior',
+        'explicacion' => 'Las Server Actions simplifican mutaciones (formularios o llamadas RPC) ejecutándose de forma segura en el servidor con validación y revalidación de caché.'
+    ],
+    [
+        'pregunta' => '¿Por qué el "prop drilling" excesivo puede convertirse en un problema grave de arquitectura en React?',
+        'opcion_a' => 'Porque el navegador no admite más de 3 niveles de props',
+        'opcion_b' => 'Porque acopla componentes intermedios innecesariamente a datos que no les competen, dificulta el refactor y genera re-renders redundantes en la cadena',
+        'opcion_c' => 'Porque duplica el tamaño del archivo JavaScript final',
+        'opcion_d' => 'Porque desactiva el Garbage Collector',
+        'respuesta_correcta' => 'B',
+        'complejidad' => 'Senior',
+        'explicacion' => 'Rompe el principio de responsabilidad única y complica el mantenimiento. Se soluciona con composición de componentes, Context o stores atómicos.'
+    ],
+    [
+        'pregunta' => '¿Qué hace la herramienta React Profiler en React DevTools?',
+        'opcion_a' => 'Detecta virus y vulnerabilidades de seguridad en el código',
+        'opcion_b' => 'Mide el costo en tiempo de renderizado de cada componente, identifica qué prop o estado provocó cada commit y localiza cuellos de botella de rendimiento',
+        'opcion_c' => 'Calcula el costo en dólares del hosting en la nube',
+        'opcion_d' => 'Traduce la interfaz a código nativo de iOS',
+        'respuesta_correcta' => 'B',
+        'complejidad' => 'Senior',
+        'explicacion' => 'El Profiler registra gráficos de llama (Flamegraph) y vistas clasificadas (Ranked) mostrando exactamente por qué y cuánto tardó en renderizar cada componente.'
+    ],
+    [
+        'pregunta' => '¿Cuál es la diferencia entre useCallback y useEvent (RFC / experimental)?',
+        'opcion_a' => 'useEvent genera una función que siempre tiene una identidad de referencia estable (como un setter) pero siempre lee las props/estado más recientes sin array de dependencias',
+        'opcion_b' => 'useCallback no puede recibir argumentos',
+        'opcion_c' => 'useEvent requiere un servidor Node.js activo',
+        'opcion_d' => 'Son completamente idénticos',
+        'respuesta_correcta' => 'A',
+        'complejidad' => 'Senior',
+        'explicacion' => 'useEvent extrae la lógica no reactiva de un callback, ofreciendo una referencia inmutable sin sufrir el problema de stale closures ni invalidar dependencias.'
+    ],
+    [
+        'pregunta' => '¿Qué diferencia a TanStack Query (React Query) de gestores de estado cliente como Redux o Zustand?',
+        'opcion_a' => 'React Query es un gestor de estado de servidor (Server State: caché, deduplicación de peticiones, revalidación en foco, paginación y mutaciones optimistas)',
+        'opcion_b' => 'React Query solo sirve para diseñar tablas HTML',
+        'opcion_c' => 'React Query reemplaza el motor CSS de React',
+        'opcion_d' => 'React Query solo funciona con bases de datos Oracle',
+        'respuesta_correcta' => 'A',
+        'complejidad' => 'Senior',
+        'explicacion' => 'El estado del servidor es asíncrono, persistido remotamente y requiere políticas de stale-while-revalidate que React Query resuelve de fábrica.'
+    ],
+    [
+        'pregunta' => '¿Qué es y cómo funciona el patrón "Render Props" en React?',
+        'opcion_a' => 'Pasar estilos en una prop llamada renderStyle',
+        'opcion_b' => 'Una técnica para compartir código entre componentes usando una prop cuyo valor es una función que retorna elementos JSX pasándole el estado interno como argumento',
+        'opcion_c' => 'Un plugin para compilar React en el servidor Apache',
+        'opcion_d' => 'Una función que sustituye al hook useState',
+        'respuesta_correcta' => 'B',
+        'complejidad' => 'Senior',
+        'explicacion' => '<DataProvider render={data => <h1>{data.title}</h1>} /> delega el renderizado al consumidor manteniendo la lógica en el componente proveedor.'
+    ],
+    [
+        'pregunta' => '¿Por qué es preferible usar State Colocation (colocación del estado) antes de enviar todo a un Store global?',
+        'opcion_a' => 'Porque el estado global tiene un límite de 10 variables',
+        'opcion_b' => 'Porque mantener el estado lo más cerca posible de donde se consume evita re-renders innecesarios en el resto del árbol y simplifica el mantenimiento',
+        'opcion_c' => 'Porque React no permite usar Redux en proyectos grandes',
+        'opcion_d' => 'Porque mejora el posicionamiento SEO en Google',
+        'respuesta_correcta' => 'B',
+        'complejidad' => 'Senior',
+        'explicacion' => 'Colocar el estado cerca de sus consumidores reduce la superficie de re-renderizado y desacopla componentes independientes.'
+    ],
+    [
+        'pregunta' => '¿Cómo funciona la mutación optimista (Optimistic Updates) en aplicaciones interactivas?',
+        'opcion_a' => 'Actualizar la UI asumiendo que la petición al servidor tendrá éxito antes de recibir respuesta, y revertir los cambios (rollback) solo si la petición falla',
+        'opcion_b' => 'No verificar errores en las peticiones HTTP',
+        'opcion_c' => 'Esperar 5 segundos antes de enviar los datos al servidor',
+        'opcion_d' => 'Enviar los datos por duplicado a dos servidores distintos',
+        'respuesta_correcta' => 'A',
+        'complejidad' => 'Senior',
+        'explicacion' => 'Las actualizaciones optimistas proporcionan una sensación de inmediatez instantánea al usuario (ej: dar "Like") mitigando la latencia de red.'
+    ],
+    [
+        'pregunta' => '¿Qué ventaja tiene usar Web Workers junto con React para tareas computacionales pesadas?',
+        'opcion_a' => 'Permite delegar algoritmos intensivos (ej: procesamiento de audio/imágenes, parsing) a un hilo secundario sin congelar el hilo principal de la UI a 60 FPS',
+        'opcion_b' => 'Duplica la memoria física del dispositivo del usuario',
+        'opcion_c' => 'Permite a React conectarse a bases de datos relacionales directamente',
+        'opcion_d' => 'Elimina la necesidad de usar hooks en los componentes',
+        'respuesta_correcta' => 'A',
+        'complejidad' => 'Senior',
+        'explicacion' => 'JavaScript en el navegador corre en un único hilo; los Web Workers previenen el "jank" y la degradación del frame rate ejecutando cálculos en segundo plano.'
+    ],
+    [
+        'pregunta' => '¿Cómo se mitiga el riesgo de vulnerabilidades XSS al renderizar HTML dinámico con dangerouslySetInnerHTML?',
+        'opcion_a' => 'Reemplazando las etiquetas <div> por <section>',
+        'opcion_b' => 'Sanitizando previamente el string HTML con librerías especializadas probadas como DOMPurify antes de inyectarlo en el DOM',
+        'opcion_c' => 'Cambiando el nombre de las variables de estado a mayúsculas',
+        'opcion_d' => 'React sanitiza dangerouslySetInnerHTML de forma automática',
+        'respuesta_correcta' => 'B',
+        'complejidad' => 'Senior',
+        'explicacion' => 'dangerouslySetInnerHTML no aplica sanitización; sin DOMPurify, scripts maliciosos inyectados por usuarios pueden ejecutarse en la sesión de la víctima.'
+    ],
+    [
+        'pregunta' => '¿Qué principio de diseño se aplica al dividir componentes en "Contenedores" (Lógica/Data) y "Presentacionales" (Dumb/UI)?',
+        'opcion_a' => 'Separation of Concerns (SoC) / Responsabilidad Única',
+        'opcion_b' => 'Over-engineering',
+        'opcion_c' => 'Single-Page Application Pattern',
+        'opcion_d' => 'Test-Driven Development',
+        'respuesta_correcta' => 'A',
+        'complejidad' => 'Senior',
+        'explicacion' => 'Separar componentes que buscan datos de aquellos que solo los muestran mejora la reusabilidad, facilita el diseño en Storybook y agiliza las pruebas.'
+    ],
+    [
+        'pregunta' => '¿Cómo resuelve la técnica de "Tree Shaking" la optimización del tamaño del bundle JavaScript?',
+        'opcion_a' => 'Elimina el código de librerías importadas que nunca se utiliza activamente en la aplicación analizando la sintaxis estática de imports/exports ES6',
+        'opcion_b' => 'Comprime todas las imágenes de la aplicación en formato WebP',
+        'opcion_c' => 'Organiza los archivos en carpetas con nombres cortos',
+        'opcion_d' => 'Desactiva los comentarios de código en GitHub',
+        'respuesta_correcta' => 'A',
+        'complejidad' => 'Senior',
+        'explicacion' => 'Empaquetadores como Rollup, Webpack y Vite eliminan el "código muerto" (dead-code elimination) reduciendo los kilobytes transferidos por red.'
+    ],
+    [
+        'pregunta' => '¿Qué impacto tiene en el rendimiento de React Context actualizar el valor del Provider cuando contiene un objeto con muchas propiedades?',
+        'opcion_a' => 'Ninguno, React solo notifica al componente que use la propiedad modificada',
+        'opcion_b' => 'Todos los componentes consumidores suscritos al contexto se re-renderizarán obligatoriamente, incluso si solo usan una propiedad que no cambió',
+        'opcion_c' => 'React lanza un aviso de advertencia en consola y detiene la app',
+        'opcion_d' => 'El contexto se desconecta automáticamente',
+        'respuesta_correcta' => 'B',
+        'complejidad' => 'Senior',
+        'explicacion' => 'Context no tiene selectores nativos granulares; un cambio en el objeto proveedor re-renderiza a todos los consumidores (se soluciona dividiendo contextos).'
+    ],
+
+    // ==========================================
+    // NIVEL EXPERTO (25 PREGUNTAS)
+    // ==========================================
+    [
+        'pregunta' => '¿En qué se diferencian fundamentalmente los React Server Components (RSC) del Server-Side Rendering (SSR) clásico?',
+        'opcion_a' => 'SSR solo genera HTML en el primer load y descarga todo el JS; los RSC se ejecutan EXCLUSIVAMENTE en el servidor, nunca envían su código JS al bundle del cliente y pueden transmitirse en streaming como formato binario/JSON especial',
+        'opcion_b' => 'RSC solo funciona en teléfonos Android',
+        'opcion_c' => 'RSC no admite conexión a bases de datos',
+        'opcion_d' => 'Son exactamente la misma tecnología con diferente nombre de marketing',
+        'respuesta_correcta' => 'A',
+        'complejidad' => 'Experto',
+        'explicacion' => 'RSC tiene zero-bundle-size en el cliente; sus dependencias pesadas (ej: markdown parser) se quedan en el servidor y se integran sin perder estado en el cliente.'
+    ],
+    [
+        'pregunta' => '¿Qué es el formato de "Wire Format" que emiten los React Server Components durante el streaming?',
+        'opcion_a' => 'Un archivo ejecutable .exe de Windows',
+        'opcion_b' => 'Un flujo serializado en formato texto estructurado (Flight Protocol) que describe el árbol de componentes, props y referencias a Client Components mediante slots $',
+        'opcion_c' => 'Un archivo PDF descargable',
+        'opcion_d' => 'Un script de migración SQL',
+        'respuesta_correcta' => 'B',
+        'complejidad' => 'Experto',
+        'explicacion' => 'El protocolo Flight transmite líneas JSON serializadas con promesas y referencias a chunks de clientes, permitiendo reconciliación progresiva en streaming.'
+    ],
+    [
+        'pregunta' => '¿Cómo gestiona el nuevo React Compiler (React Forget) la memorización automática de componentes y hooks?',
+        'opcion_a' => 'Eliminando el lenguaje TypeScript de la compilación',
+        'opcion_b' => 'Analiza el flujo estático del código (SSA) en tiempo de compilación para inferir inmutabilidad y generar estructuras de caché granulares en el código compilado, eliminando la necesidad manual de useMemo, useCallback y React.memo',
+        'opcion_c' => 'Ejecutando un modelo de inteligencia artificial en cada re-renderizado',
+        'opcion_d' => 'Forzando que todas las variables sean inmutables con Object.freeze en tiempo de ejecución',
+        'respuesta_correcta' => 'B',
+        'complejidad' => 'Experto',
+        'explicacion' => 'React Compiler transforma el código para inyectar slots de memoización automática y reactividad precisa sin carga mental para los desarrolladores.'
+    ],
+    [
+        'pregunta' => '¿Qué problema resuelve "Selective Hydration" introducido con Suspense en React 18 SSR?',
+        'opcion_a' => 'Permite que React comience a hidratar los componentes más interactivos primero (según los clics del usuario) antes de que el resto del HTML o los scripts terminen de descargarse',
+        'opcion_b' => 'Elige qué usuarios deben pagar por el servicio web',
+        'opcion_c' => 'Descarga únicamente los estilos CSS que coincidan con la paleta de colores del monitor',
+        'opcion_d' => 'Evita que el navegador use memoria RAM durante la hidratación',
+        'respuesta_correcta' => 'A',
+        'complejidad' => 'Experto',
+        'explicacion' => 'Rompe el cuello de botella donde la página completa tenía que esperar a que todo el JS se descargara e hidratara de forma monolítica para volverse interactiva.'
+    ],
+    [
+        'pregunta' => '¿Cuál es la diferencia entre "Microfrontends" basados en Module Federation (Webpack 5) versus iframes tradicionales?',
+        'opcion_a' => 'Los iframes permiten compartir memoria RAM directamente entre aplicaciones',
+        'opcion_b' => 'Module Federation permite compartir librerías comunes (como una única instancia de React en tiempo de ejecución), renderizado sin fronteras de estilos ni problemas de accesibilidad propios de los iframes',
+        'opcion_c' => 'Module Federation solo funciona en servidores Apache locales',
+        'opcion_d' => 'Los iframes son la única solución moderna recomendada para microfrontends',
+        'respuesta_correcta' => 'B',
+        'complejidad' => 'Experto',
+        'explicacion' => 'Module Federation carga remotes dinámicamente compartiendo dependencias singletons (React, router) en el mismo contexto de ejecución del DOM.'
+    ],
+    [
+        'pregunta' => '¿Qué riesgo crítico ocurre si dos versiones diferentes de React se cargan accidentalmente en la misma página (Multiple React Instances)?',
+        'opcion_a' => 'Los Hooks fallan estrepitosamente (Invalid Hook Call) porque el dispatcher global compartido de React no coincide entre las instancias',
+        'opcion_b' => 'El servidor web se apaga automáticamente',
+        'opcion_c' => 'Los colores CSS se invierten',
+        'opcion_d' => 'El código se ejecuta al doble de velocidad',
+        'respuesta_correcta' => 'A',
+        'complejidad' => 'Experto',
+        'explicacion' => 'Los hooks dependen de un dispatcher global singleton interno. Múltiples copias de React rompen la referencia del dispatcher activo arrojando error inmediato.'
+    ],
+    [
+        'pregunta' => '¿Cómo implementa el motor de React Fiber la prioridad de trabajo (Lanes Model)?',
+        'opcion_a' => 'Usa máscaras de bits (31 bits de enteros) donde cada bit representa un "lane" con prioridades asignadas (Sync, InputContinuous, Default, Idle) permitiendo operaciones de concurrencia hiper-eficientes',
+        'opcion_b' => 'Crea una cola en Redis para cada usuario',
+        'opcion_c' => 'Ejecuta un thread separado de Node.js por cada componente',
+        'opcion_d' => 'Utiliza consultas SQL para ordenar los componentes por orden alfabético',
+        'respuesta_correcta' => 'A',
+        'complejidad' => 'Experto',
+        'explicacion' => 'El modelo de Lanes usa operaciones binarias a nivel de bits para mezclar, pausar, descartar o acelerar carriles de renderizado concurrentes con mínimo coste computacional.'
+    ],
+    [
+        'pregunta' => '¿Por qué el "Time Slicing" en React Concurrent Mode evita que animaciones complejas pierdan fluidez?',
+        'opcion_a' => 'React divide las tareas de renderizado en fragmentos de tiempo (~5ms) y cede el control al event loop del navegador para responder a interacciones de usuario y repintar a 60-120fps',
+        'opcion_b' => 'Acelera el reloj de la tarjeta madre del ordenador',
+        'opcion_c' => 'Desactiva el recolector de basura del motor V8',
+        'opcion_d' => 'Guarda las animaciones en archivos de video MP4',
+        'respuesta_correcta' => 'A',
+        'complejidad' => 'Experto',
+        'explicacion' => 'Time slicing evita que cálculos pesados de render bloqueen el hilo de eventos de la ventana, manteniendo la UI completamente fluida.'
+    ],
+    [
+        'pregunta' => '¿Cuál es el propósito del hook useInsertionEffect introducido en React 18?',
+        'opcion_a' => 'Hacer inserciones directas en tablas de bases de datos PostgreSQL',
+        'opcion_b' => 'Diseñado exclusivamente para autores de librerías CSS-in-JS (como styled-components o emotion) para inyectar etiquetas <style> antes de que se lean los estilos en useLayoutEffect',
+        'opcion_c' => 'Insertar nuevos nodos de texto en el body',
+        'opcion_d' => 'Añadir elementos al array de dependencias en tiempo de ejecución',
+        'respuesta_correcta' => 'B',
+        'complejidad' => 'Experto',
+        'explicacion' => 'useInsertionEffect se ejecuta antes de cualquier mutación del DOM, evitando que las librerías de CSS-in-JS fuercen recálculos de layout de estilos repetidos.'
+    ],
+    [
+        'pregunta' => '¿En qué consiste el patrón "Islands Architecture" (Arquitectura de Islas) adoptado por frameworks como Astro?',
+        'opcion_a' => 'Tener servidores alojados en islas geográficas remotas para redundancia',
+        'opcion_b' => 'La página se genera como HTML estático puro por defecto, e "islas" aisladas de componentes interactivos de React se hidratan de forma independiente sólo cuando entran al viewport o se interactúa con ellas',
+        'opcion_c' => 'Una arquitectura donde los componentes no pueden usar JavaScript',
+        'opcion_d' => 'Alojar cada componente en una base de datos distribuida',
+        'respuesta_correcta' => 'B',
+        'complejidad' => 'Experto',
+        'explicacion' => 'Reduce drásticamente el JavaScript transmitido e hidratado, convirtiendo el 90% de la página en HTML estático sin sobrecarga.'
+    ],
+    [
+        'pregunta' => '¿Qué es el "Tearing" en aplicaciones de interfaz de usuario con renderizado concurrente?',
+        'opcion_a' => 'Un glitch visual donde diferentes partes de la interfaz muestran datos correspondientes a diferentes estados en el tiempo para la misma fuente de datos durante un mismo ciclo de pintura',
+        'opcion_b' => 'La rotura física del monitor por exceso de brillo',
+        'opcion_c' => 'Un error tipográfico en el archivo package.json',
+        'opcion_d' => 'La desconexión abrupta del cable de red',
+        'respuesta_correcta' => 'A',
+        'complejidad' => 'Experto',
+        'explicacion' => 'Bajo render concurrente interrumpible, si una tienda externa cambia mientras React está pausado, un componente lee el valor viejo y otro el nuevo (tearing).'
+    ],
+    [
+        'pregunta' => '¿Cómo resuelve React la pérdida de estado en la reconciliación cuando cambia el tipo de componente raíz (ej: pasar de <div> a <section>)?',
+        'opcion_a' => 'React reutiliza todos los nodos hijos intactos',
+        'opcion_b' => 'React desmonta por completo todo el subárbol anterior, destruye su estado interno asociado y construye un nuevo árbol desde cero',
+        'opcion_c' => 'React lanza un error fatal y bloquea la navegación',
+        'opcion_d' => 'React guarda el estado en una cookie temporal',
+        'respuesta_correcta' => 'B',
+        'complejidad' => 'Experto',
+        'explicacion' => 'El algoritmo de diffing heurístico asume que dos elementos de diferente tipo producirán árboles diferentes, desechando el estado del subárbol previo.'
+    ],
+    [
+        'pregunta' => '¿Qué mecanismo utiliza TanStack Virtual para calcular el posicionamiento absoluto de elementos con alturas dinámicas desconocidas?',
+        'opcion_a' => 'ResizeObserver en los nodos montados para medir su tamaño real y actualizar un mapa dinámico de offsets acumulados',
+        'opcion_b' => 'Forzar que todas las fuentes tengan un tamaño fijo de 16 píxeles',
+        'opcion_c' => 'Consultar un servidor remoto con las dimensiones de pantalla',
+        'opcion_d' => 'Usar la propiedad CSS height: auto con !important',
+        'respuesta_correcta' => 'A',
+        'complejidad' => 'Experto',
+        'explicacion' => 'TanStack Virtual usa ResizeObserver para medir elementos en tiempo real e indexar alturas variables sin deformar la barra de scroll nativa.'
+    ],
+    [
+        'pregunta' => '¿Cuál es el beneficio de la gestión de estado atómica (ej: Jotai, Recoil) frente a un estado de árbol único (Redux)?',
+        'opcion_a' => 'Los átomos modelan unidades de estado independientes y componibles; los componentes solo se suscriben al átomo específico, eliminando re-renders en cascada de subárboles no afectados',
+        'opcion_b' => 'Los átomos no consumen memoria RAM',
+        'opcion_c' => 'Los átomos se almacenan directamente en la memoria caché del CPU',
+        'opcion_d' => 'No requiere escribir código JavaScript',
+        'respuesta_correcta' => 'A',
+        'complejidad' => 'Experto',
+        'explicacion' => 'El enfoque atómico desacopla grafos de dependencias complejas permitiendo actualizaciones hiper-localizadas y código modular.'
+    ],
+    [
+        'pregunta' => '¿Cómo protege el "Content Security Policy" (CSP) con Nonces a las aplicaciones React que utilizan SSR?',
+        'opcion_a' => 'Permite la ejecución únicamente de aquellos scripts en línea que posean un token criptográfico dinámico de un solo uso (nonce) generado por el servidor en cada petición',
+        'opcion_b' => 'Bloquea el uso de contraseñas cortas',
+        'opcion_c' => 'Elimina las cookies caducadas del navegador',
+        'opcion_d' => 'Evita que los usuarios abran las herramientas de desarrollador',
+        'respuesta_correcta' => 'A',
+        'complejidad' => 'Experto',
+        'explicacion' => 'CSP con nonce impide que atacantes inyecten scripts maliciosos (XSS), ya que cualquier <script> inyectado sin el nonce del servidor será bloqueado por el navegador.'
+    ],
+    [
+        'pregunta' => '¿Qué impacto tiene el "Double Mounting" de componentes en modo estricto (<React.StrictMode>) en desarrollo?',
+        'opcion_a' => 'Duplica el cobro del servidor de desarrollo',
+        'opcion_b' => 'Monta, desmonta y vuelve a montar cada componente para ayudar a los desarrolladores a encontrar efectos secundarios impuros y verificar que las funciones de limpieza de useEffect funcionen',
+        'opcion_c' => 'Causa fugas de memoria permanentes en producción',
+        'opcion_d' => 'Es un bug no resuelto de React 18',
+        'respuesta_correcta' => 'B',
+        'complejidad' => 'Experto',
+        'explicacion' => 'StrictMode simula el ciclo de vida del futuro Offscreen API para asegurar que los componentes sean resilientes al montaje y desmontaje repetido.'
+    ],
+    [
+        'pregunta' => '¿Cómo funciona el hook useOptimistic introducido en React 19?',
+        'opcion_a' => 'Muestra frases motivacionales en la consola de depuración',
+        'opcion_b' => 'Permite definir un estado optimista provisional que se actualiza inmediatamente durante una acción asíncrona y vuelve automáticamente al estado real cuando la acción finaliza',
+        'opcion_c' => 'Acelera la velocidad de descarga de la base de datos',
+        'opcion_d' => 'Fuerza que todas las respuestas HTTP devuelvan código 200',
+        'respuesta_correcta' => 'B',
+        'complejidad' => 'Experto',
+        'explicacion' => 'useOptimistic(actualState, updateFn) simplifica el manejo de UI optimista coordinándose de forma nativa con Server Actions y form submissions.'
+    ],
+    [
+        'pregunta' => '¿Qué ocurre si se llama a una función asíncrona dentro del callback del setter funcional: setValor(async prev => await prev)?',
+        'opcion_a' => 'React resuelve la promesa y actualiza el estado',
+        'opcion_b' => 'El estado se convierte en un objeto Promise [object Promise] en lugar del valor esperado, rompiendo la aplicación',
+        'opcion_c' => 'El compilador arroja una advertencia y lo convierte a síncrono',
+        'opcion_d' => 'La función async se cancela automáticamente',
+        'respuesta_correcta' => 'B',
+        'complejidad' => 'Experto',
+        'explicacion' => 'Los setters de estado deben ser funciones puras síncronas. Si retornan una promesa, React almacena literalmente el objeto Promise en el estado.'
+    ],
+    [
+        'pregunta' => '¿Cuál es la función del "Offscreen API" (Activity component) en desarrollo para React?',
+        'opcion_a' => 'Permite renderizar componentes fuera de pantalla manteniendo su estado y nodos DOM ocultos en memoria (display: none) para restaurarlos de forma instantánea sin re-montar',
+        'opcion_b' => 'Permite mostrar componentes en proyectores externos',
+        'opcion_c' => 'Cierra la ventana del navegador cuando el usuario se ausenta',
+        'opcion_d' => 'Desactiva los gráficos 3D de WebGL',
+        'respuesta_correcta' => 'A',
+        'complejidad' => 'Experto',
+        'explicacion' => 'Similar a keep-alive en Vue, suspende el trabajo de componentes en pestañas secundarias o pantallas previas preservando su estado intacto.'
+    ],
+    [
+        'pregunta' => '¿Por qué el uso de "Barrel Files" (archivos index.ts que re-exportan decenas de componentes) puede arruinar el rendimiento de arranque en proyectos grandes?',
+        'opcion_a' => 'Porque el sistema de archivos de Windows no puede leer más de 10 archivos a la vez',
+        'opcion_b' => 'Porque los bundlers y herramientas de desarrollo (Vite, Next.js) se ven obligados a parsear y cargar cientos de módulos no utilizados, ralentizando el HMR y aumentando el tiempo de compilación',
+        'opcion_c' => 'Porque React prohíbe el uso de la palabra reservada export',
+        'opcion_d' => 'Porque rompe la sintaxis de JSX',
+        'respuesta_correcta' => 'B',
+        'complejidad' => 'Experto',
+        'explicacion' => 'Los barrel files fuerzan a los bundlers a resolver grafos gigantescos de dependencias innecesarias, degradando severamente el tiempo de compilación y HMR.'
+    ],
+    [
+        'pregunta' => '¿Cómo previene el patrón "Signals" (en frameworks modernos o librerías adaptadoras de React) el re-renderizado de componentes?',
+        'opcion_a' => 'Signals utiliza reactividad fina (fine-grained reactivity): al cambiar un valor, actualiza directamente el nodo de texto específico en el DOM sin volver a ejecutar la función del componente',
+        'opcion_b' => 'Signals solo funciona en aplicaciones de consola',
+        'opcion_c' => 'Signals apaga las alertas del navegador',
+        'opcion_d' => 'Signals convierte el código React a PHP nativo',
+        'respuesta_correcta' => 'A',
+        'complejidad' => 'Experto',
+        'explicacion' => 'A diferencia del modelo de componentes de React donde todo el componente se re-ejecuta, Signals se suscribe a nivel de enlace de datos actualizando solo el nodo afectado.'
+    ],
+    [
+        'pregunta' => '¿Qué mecanismo utiliza React 19 para permitir pasar una ref directamente como prop sin envolver con forwardRef?',
+        'opcion_a' => 'Trata la prop "ref" como una prop estándar de primera clase en componentes funcionales, deprecando gradualmente React.forwardRef',
+        'opcion_b' => 'Requiere usar jQuery para vincular las refs',
+        'opcion_c' => 'Guarda las referencias en el objeto global window.refs',
+        'opcion_d' => 'Solo funciona si el componente está escrito en lenguaje C',
+        'respuesta_correcta' => 'A',
+        'complejidad' => 'Experto',
+        'explicacion' => 'React 19 simplificó el modelo: ref se recibe directamente en los argumentos de props del componente funcional como cualquier otra propiedad.'
+    ],
+    [
+        'pregunta' => '¿Cuál es el peligro de utilizar setState sincrónicamente dentro de un cuerpo de componente durante la fase de render (antes del return)?',
+        'opcion_a' => 'Provoca un bucle infinito de re-renderizados (Maximum update depth exceeded) colapsando la aplicación',
+        'opcion_b' => 'El código se ejecuta más rápido',
+        'opcion_c' => 'El navegador limpia las cookies',
+        'opcion_d' => 'React no permite iniciar el servidor de desarrollo',
+        'respuesta_correcta' => 'A',
+        'complejidad' => 'Experto',
+        'explicacion' => 'Llamar al setter en el cuerpo programa inmediatamente un nuevo renderizado antes de terminar el actual, disparando un ciclo infinito fatal.'
+    ],
+    [
+        'pregunta' => '¿Qué técnica permite a Next.js y React realizar "Incremental Static Regeneration" (ISR)?',
+        'opcion_a' => 'Regenerar y regenerar páginas estáticas en segundo plano en el servidor al recibir peticiones después de un intervalo de tiempo (revalidate), sin re-compilar toda la aplicación',
+        'opcion_b' => 'Borrar toda la base de datos cada medianoche',
+        'opcion_c' => 'Crear una copia de seguridad en una memoria USB',
+        'opcion_d' => 'Desactivar el servidor web durante las actualizaciones',
+        'respuesta_correcta' => 'A',
+        'complejidad' => 'Experto',
+        'explicacion' => 'ISR combina la velocidad de los sitios estáticos con la frescura de datos dinámicos actualizando páginas individuales en caché según demanda.'
+    ],
+    [
+        'pregunta' => '¿Qué ocurre bajo el capó cuando un componente invoca use() con una Promesa en React 19?',
+        'opcion_a' => 'use() suspende el componente (lanza internamente la promesa capturada por el boundary <Suspense> más cercano) y lo reanuda automáticamente cuando la promesa se resuelve',
+        'opcion_b' => 'Detiene todo el navegador hasta que la red responda',
+        'opcion_c' => 'Convierte la promesa en una llamada síncrona bloqueante en C++',
+        'opcion_d' => 'Lanza una excepción irrecuperable en producción',
+        'respuesta_correcta' => 'A',
+        'complejidad' => 'Experto',
+        'explicacion' => 'El operador use() estandariza el consumo de promesas y contextos dentro de condicionales y componentes integrándose de lleno con Suspense.'
+    ]
+];
