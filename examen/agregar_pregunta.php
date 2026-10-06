@@ -84,24 +84,24 @@ $res_ultimas = mysqli_query($conecction, $query_ultimas);
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     
-    <!-- Estilos del Módulo -->
+    <!-- Estilos Homogéneos -->
     <link rel="stylesheet" href="css/examen.css">
 </head>
 <body class="examen-body">
 
-    <!-- Barra de Navegación -->
+    <!-- Barra de Navegación Homogénea -->
     <nav class="examen-navbar">
         <div class="container d-flex justify-content-between align-items-center">
             <a href="index.php" class="examen-brand">
                 <img src="../img/aiti.png" alt="Logo AI-TI">
                 <div class="examen-brand-text">
-                    <span>AI-TI</span>
-                    <span class="examen-brand-subtitle">Gestión de Reactivos</span>
+                    <span class="examen-brand-title">AI-TI</span>
+                    <span class="examen-brand-subtitle">Gestión de Reactivos y Retos</span>
                 </div>
             </a>
-            <a href="index.php" class="btn btn-sm btn-light">
+            <a href="index.php" class="btn btn-sm btn-outline-light">
                 <i class="bi bi-play-circle me-1"></i> Ir al Examen
             </a>
         </div>

@@ -1,5 +1,5 @@
 <?php
-// Cuestionario de Examen Dinámico con 20 Preguntas Balanceadas
+// Cuestionario de Examen Dinámico: 18 Preguntas (6 Jr, 6 Mid, 6 Sr) + 1 Reto de Código (2 pts) = 20 Puntos
 require_once __DIR__ . '/../config/database.php';
 
 if ($_SERVER['REQUEST_METHOD'] !== 'POST' || empty($_POST['lenguaje'])) {
@@ -15,26 +15,30 @@ $email_candidato = filter_var($_POST['email_candidato'] ?? '', FILTER_SANITIZE_E
 $stmt_lang = $conecction->prepare("SELECT * FROM lenguajes_examen WHERE clave = ? AND activo = 1 LIMIT 1");
 $stmt_lang->bind_param('s', $lenguaje_clave);
 $stmt_lang->execute();
-$res_lang = $stmt_lang->get_result();
-$info_lenguaje = $res_lang->fetch_assoc();
+$info_lenguaje = $stmt_lang->get_result()->fetch_assoc();
 $stmt_lang->close();
 
 if (!$info_lenguaje) {
     die("La tecnología seleccionada no se encuentra disponible.");
 }
 
-// Extraer 20 preguntas balanceadas: 5 Junior, 5 Semi-Senior, 5 Senior, 5 Experto
-$niveles = ['Junior', 'Semi-Senior', 'Senior', 'Experto'];
+// Extraer 18 preguntas: 6 Junior, 6 Semi-Senior, 6 Senior (1 punto cada una = 18 puntos)
+$niveles_requeridos = [
+    'Junior'      => 6,
+    'Semi-Senior' => 6,
+    'Senior'      => 6
+];
+
 $preguntas_seleccionadas = [];
 
 $stmt_preg = $conecction->prepare("SELECT id, pregunta, opcion_a, opcion_b, opcion_c, opcion_d, complejidad 
     FROM preguntas_examen 
     WHERE lenguaje = ? AND complejidad = ? AND activo = 1 
     ORDER BY RAND() 
-    LIMIT 5");
+    LIMIT ?");
 
-foreach ($niveles as $nivel) {
-    $stmt_preg->bind_param('ss', $lenguaje_clave, $nivel);
+foreach ($niveles_requeridos as $nivel => $limite) {
+    $stmt_preg->bind_param('ssi', $lenguaje_clave, $nivel, $limite);
     $stmt_preg->execute();
     $res_preg = $stmt_preg->get_result();
     while ($row = $res_preg->fetch_assoc()) {
@@ -43,11 +47,11 @@ foreach ($niveles as $nivel) {
 }
 $stmt_preg->close();
 
-// Si por alguna razón no se completaron 20 (banco incompleto), rellenar con aleatorias del lenguaje
-if (count($preguntas_seleccionadas) < 20) {
+// Si por alguna razón no se completaron 18 preguntas, completar con aleatorias
+if (count($preguntas_seleccionadas) < 18) {
     $ids_existentes = array_column($preguntas_seleccionadas, 'id');
     $ids_ignorar = !empty($ids_existentes) ? implode(',', array_map('intval', $ids_existentes)) : '0';
-    $faltantes = 20 - count($preguntas_seleccionadas);
+    $faltantes = 18 - count($preguntas_seleccionadas);
     
     $query_extra = "SELECT id, pregunta, opcion_a, opcion_b, opcion_c, opcion_d, complejidad 
         FROM preguntas_examen 
@@ -59,6 +63,13 @@ if (count($preguntas_seleccionadas) < 20) {
         $preguntas_seleccionadas[] = $row;
     }
 }
+
+// Consultar 1 reto de código para el lenguaje (Valor: 2 puntos)
+$stmt_reto = $conecction->prepare("SELECT id, titulo, codigo FROM retos_codigo_examen WHERE lenguaje = ? AND activo = 1 ORDER BY RAND() LIMIT 1");
+$stmt_reto->bind_param('s', $lenguaje_clave);
+$stmt_reto->execute();
+$reto_codigo = $stmt_reto->get_result()->fetch_assoc();
+$stmt_reto->close();
 ?>
 <!DOCTYPE html>
 <html lang="es">
@@ -73,48 +84,56 @@ if (count($preguntas_seleccionadas) < 20) {
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     
-    <!-- Estilos del Módulo -->
+    <!-- Estilos Homogéneos del Módulo -->
     <link rel="stylesheet" href="css/examen.css">
 </head>
 <body class="examen-body">
 
-    <!-- Barra de Navegación -->
+    <!-- Barra de Navegación Homogénea al Sitio -->
     <nav class="examen-navbar">
         <div class="container d-flex justify-content-between align-items-center">
             <a href="index.php" class="examen-brand">
                 <img src="../img/aiti.png" alt="Logo AI-TI">
                 <div class="examen-brand-text">
-                    <span>AI-TI</span>
-                    <span class="examen-brand-subtitle">Examen en Curso</span>
+                    <span class="examen-brand-title">AI-TI</span>
+                    <span class="examen-brand-subtitle">Evaluación Técnica en Curso</span>
                 </div>
             </a>
-            <div class="d-flex align-items-center gap-2 text-white">
-                <i class="bi bi-person-circle fs-5"></i>
-                <span class="fw-semibold small d-none d-sm-inline"><?= htmlspecialchars($nombre_candidato) ?></span>
+            <div class="d-flex align-items-center gap-3">
+                <span class="text-white small d-none d-md-inline">
+                    <i class="bi bi-person-circle me-1"></i> <?= htmlspecialchars($nombre_candidato) ?>
+                </span>
+                <a href="index.php" class="btn btn-sm btn-outline-light" onclick="return confirm('¿Deseas salir del examen? Las respuestas no guardadas se perderán.');">
+                    <i class="bi bi-x-circle me-1"></i> Cancelar
+                </a>
             </div>
         </div>
     </nav>
 
-    <!-- Barra de Estado y Progreso Fija (Sticky) -->
+    <!-- Barra de Estado y Progreso Fija -->
     <div class="sticky-exam-header">
         <div class="container">
             <div class="d-flex flex-wrap align-items-center justify-content-between gap-2">
                 <div class="d-flex align-items-center gap-2">
-                    <span class="badge px-3 py-2 rounded-pill fw-bold text-white" style="background-color: <?= htmlspecialchars($info_lenguaje['color']) ?>;">
+                    <span class="badge px-3 py-2 rounded-pill fw-bold text-white" style="background-color: var(--aiti-primary);">
                         <i class="bi <?= htmlspecialchars($info_lenguaje['icono']) ?> me-1"></i>
                         <?= htmlspecialchars($info_lenguaje['nombre']) ?>
                     </span>
                     <span class="exam-info-pill">
-                        <i class="bi bi-ui-checks"></i>
-                        <span>Respondidas: <strong id="answeredCount">0</strong> / 20</span>
+                        <i class="bi bi-list-check"></i>
+                        <span>Respondidas: <strong id="answeredCount">0</strong> / 19</span>
+                    </span>
+                    <span class="exam-info-pill d-none d-sm-inline-flex">
+                        <i class="bi bi-award"></i>
+                        <span>Total: <strong>20 Puntos</strong></span>
                     </span>
                 </div>
 
                 <div class="d-flex align-items-center gap-2">
                     <span class="exam-info-pill timer-pill" id="timerPill">
-                        <i class="bi bi-stopwatch-fill"></i>
+                        <i class="bi bi-clock-history"></i>
                         <span id="timerText">30:00</span>
                     </span>
                 </div>
@@ -133,90 +152,153 @@ if (count($preguntas_seleccionadas) < 20) {
             <input type="hidden" name="lenguaje" value="<?= htmlspecialchars($lenguaje_clave) ?>">
             <input type="hidden" name="nombre_candidato" value="<?= htmlspecialchars($nombre_candidato) ?>">
             <input type="hidden" name="email_candidato" value="<?= htmlspecialchars($email_candidato) ?>">
+            <input type="hidden" name="reto_id" value="<?= $reto_codigo ? $reto_codigo['id'] : 0 ?>">
 
             <div class="row">
-                <!-- Columna Principal: Las 20 Preguntas -->
+                <!-- Columna Principal: 18 Preguntas + 1 Reto de Código -->
                 <div class="col-lg-8">
-                    <?php foreach ($preguntas_seleccionadas as $index => $q): 
-                        $num = $index + 1;
-                        $q_id = $q['id'];
-                        $comp_class = match($q['complejidad']) {
-                            'Junior' => 'badge-jr',
-                            'Semi-Senior' => 'badge-mid',
-                            'Senior' => 'badge-sr',
-                            'Experto' => 'badge-exp',
-                            default => 'bg-secondary'
-                        };
-                    ?>
-                        <input type="hidden" name="preguntas_ids[]" value="<?= $q_id ?>">
-                        
-                        <div class="question-card" id="pregunta_<?= $index ?>" data-qid="<?= $q_id ?>">
-                            <div class="question-header">
-                                <div class="d-flex align-items-center gap-2">
-                                    <span class="badge bg-primary rounded-pill px-3 py-2 fw-bold">Pregunta <?= $num ?> de 20</span>
-                                    <span class="badge-complexity <?= $comp_class ?>">Nivel <?= $q['complejidad'] ?></span>
+
+                    <!-- SECCIÓN 1: 18 PREGUNTAS DE OPCIÓN MÚLTIPLE (18 PUNTOS) -->
+                    <div class="mb-3">
+                        <div class="p-3 bg-white rounded-3 border mb-3 d-flex align-items-center justify-content-between">
+                            <div>
+                                <h6 class="fw-bold text-dark mb-0">Parte 1: Preguntas de Opción Múltiple (18 Puntos)</h6>
+                                <span class="text-muted small">6 Junior &bull; 6 Semi-Senior &bull; 6 Senior (1 pt cada una)</span>
+                            </div>
+                            <span class="badge bg-light text-primary border fw-bold">18 reactivos</span>
+                        </div>
+
+                        <?php foreach ($preguntas_seleccionadas as $index => $q): 
+                            $num = $index + 1;
+                            $q_id = $q['id'];
+                            $comp_class = match($q['complejidad']) {
+                                'Junior' => 'badge-jr',
+                                'Semi-Senior' => 'badge-mid',
+                                'Senior' => 'badge-sr',
+                                default => 'bg-secondary'
+                            };
+                        ?>
+                            <input type="hidden" name="preguntas_ids[]" value="<?= $q_id ?>">
+                            
+                            <div class="question-card" id="pregunta_<?= $index ?>" data-qid="<?= $q_id ?>">
+                                <div class="question-header">
+                                    <div class="d-flex align-items-center gap-2">
+                                        <span class="badge bg-primary rounded-pill px-3 py-1 fw-bold">Reactivo <?= $num ?> / 18</span>
+                                        <span class="badge-complexity <?= $comp_class ?>"><?= $q['complejidad'] ?></span>
+                                    </div>
+                                    <span class="text-muted small fw-semibold">Valor: 1 punto</span>
+                                </div>
+
+                                <h5 class="question-text"><?= htmlspecialchars($q['pregunta']) ?></h5>
+
+                                <!-- Opciones A, B, C, D Simétricas -->
+                                <div class="options-container">
+                                    <?php 
+                                    $opciones = [
+                                        'A' => $q['opcion_a'],
+                                        'B' => $q['opcion_b'],
+                                        'C' => $q['opcion_c'],
+                                        'D' => $q['opcion_d']
+                                    ];
+                                    foreach ($opciones as $letra => $texto_opcion): 
+                                        $input_id = "q_{$q_id}_{$letra}";
+                                    ?>
+                                        <div>
+                                            <input type="radio" 
+                                                   name="respuestas[<?= $q_id ?>]" 
+                                                   id="<?= $input_id ?>" 
+                                                   value="<?= $letra ?>" 
+                                                   class="option-input">
+                                            <label for="<?= $input_id ?>" class="option-label">
+                                                <span class="option-key"><?= $letra ?></span>
+                                                <span class="option-content"><?= htmlspecialchars($texto_opcion) ?></span>
+                                            </label>
+                                        </div>
+                                    <?php endforeach; ?>
+                                </div>
+                            </div>
+                        <?php endforeach; ?>
+                    </div>
+
+                    <!-- SECCIÓN 2: RETO DE CÓDIGO (2 PUNTOS) -->
+                    <?php if ($reto_codigo): ?>
+                        <div class="code-challenge-card" id="pregunta_18" data-qid="reto">
+                            <div class="code-challenge-header">
+                                <div>
+                                    <span class="badge-challenge me-2">Parte 2: Análisis Práctico de Código</span>
+                                    <span class="badge bg-light text-dark border fw-bold">Valor: 2 Puntos</span>
                                 </div>
                             </div>
 
-                            <h5 class="question-text"><?= htmlspecialchars($q['pregunta']) ?></h5>
+                            <h5 class="fw-bold text-dark mb-2"><?= htmlspecialchars($reto_codigo['titulo']) ?></h5>
+                            <p class="text-muted small mb-3">
+                                Lee atentamente el siguiente fragmento de código y explica con tus propias palabras qué hace y cuál es su funcionalidad técnica:
+                            </p>
 
-                            <!-- Opciones A, B, C, D -->
-                            <div class="options-container">
-                                <?php 
-                                $opciones = [
-                                    'A' => $q['opcion_a'],
-                                    'B' => $q['opcion_b'],
-                                    'C' => $q['opcion_c'],
-                                    'D' => $q['opcion_d']
-                                ];
-                                foreach ($opciones as $letra => $texto_opcion): 
-                                    $input_id = "q_{$q_id}_{$letra}";
-                                ?>
-                                    <div>
-                                        <input type="radio" 
-                                               name="respuestas[<?= $q_id ?>]" 
-                                               id="<?= $input_id ?>" 
-                                               value="<?= $letra ?>" 
-                                               class="option-input">
-                                        <label for="<?= $input_id ?>" class="option-label">
-                                            <span class="option-key"><?= $letra ?></span>
-                                            <span class="option-content"><?= htmlspecialchars($texto_opcion) ?></span>
-                                        </label>
-                                    </div>
-                                <?php endforeach; ?>
+                            <!-- Bloque de Código con estilo terminal AI-TI -->
+                            <div class="code-box-container">
+                                <div class="code-box-topbar">
+                                    <span class="dot dot-red"></span>
+                                    <span class="dot dot-yellow"></span>
+                                    <span class="dot dot-green"></span>
+                                    <span class="ms-2"><?= htmlspecialchars($info_lenguaje['nombre']) ?> &bull; Código a analizar</span>
+                                </div>
+                                <pre class="code-display"><?= htmlspecialchars($reto_codigo['codigo']) ?></pre>
+                            </div>
+
+                            <!-- Área de Respuesta del Aspirante -->
+                            <div class="mt-3">
+                                <label for="descripcion_codigo" class="form-label fw-bold text-dark d-flex justify-content-between align-items-center">
+                                    <span><i class="bi bi-pencil-square text-primary me-1"></i> Tu Explicación Técnica:</span>
+                                    <span class="text-muted small fw-normal">Máximo 2 puntos</span>
+                                </label>
+                                <textarea class="form-control" 
+                                          name="descripcion_codigo" 
+                                          id="descripcion_codigo" 
+                                          rows="5" 
+                                          placeholder="Describe detalladamente qué hace este código, qué operaciones realiza, qué parámetros recibe y qué retorna o genera..." 
+                                          required></textarea>
+                                <div class="form-text text-muted">
+                                    El sistema evaluará si tu descripción corresponde a la funcionalidad real del código (palabras clave, flujo de ejecución y resultado).
+                                </div>
                             </div>
                         </div>
-                    <?php endforeach; ?>
+                    <?php endif; ?>
+
                 </div>
 
-                <!-- Columna Lateral: Navegador Rápido de Preguntas y Botón de Envío -->
+                <!-- Columna Lateral: Mapa de Navegación y Envío -->
                 <div class="col-lg-4">
                     <div class="sticky-top" style="top: 85px;">
-                        <div class="card border-0 shadow-sm rounded-4 p-4 mb-3">
+                        <div class="card border-0 shadow-sm rounded-4 p-4 mb-3 bg-white">
                             <h6 class="fw-bold mb-3 text-dark d-flex align-items-center gap-2">
                                 <i class="bi bi-grid-3x3-gap-fill text-primary"></i>
-                                Mapa de Preguntas
+                                Mapa de la Prueba (20 Pts)
                             </h6>
-                            <p class="text-muted small mb-3">Haz clic en cualquier número para ir directamente al reactivo:</p>
+                            <p class="text-muted small mb-2">Haz clic para saltar directamente a cualquier sección:</p>
 
+                            <!-- Cuadrícula 18 Reactivos + Reto Código -->
                             <div class="nav-questions-grid">
-                                <?php for ($i = 0; $i < count($preguntas_seleccionadas); $i++): ?>
+                                <?php for ($i = 0; $i < 18; $i++): ?>
                                     <button type="button" class="grid-q-btn" data-target="<?= $i ?>">
                                         <?= $i + 1 ?>
                                     </button>
                                 <?php endfor; ?>
+                                <button type="button" class="grid-q-btn challenge-btn" data-target="18">
+                                    <i class="bi bi-code-slash me-1"></i> Código (2 pts)
+                                </button>
                             </div>
 
                             <div class="d-flex align-items-center justify-content-between small text-muted pt-2 border-top">
-                                <span><i class="bi bi-square-fill text-info me-1"></i> Respondida</span>
-                                <span><i class="bi bi-square text-secondary me-1"></i> Pendiente</span>
+                                <span><i class="bi bi-check-circle-fill text-info me-1"></i> Respondida</span>
+                                <span><i class="bi bi-circle text-secondary me-1"></i> Pendiente</span>
                             </div>
                         </div>
 
-                        <!-- Botón para Concluir Examen -->
-                        <div class="card border-0 shadow-sm rounded-4 p-4 text-center">
-                            <h6 class="fw-bold mb-2">¿Terminaste tu evaluación?</h6>
-                            <p class="text-muted small mb-3">Revisa que hayas respondido las 20 preguntas antes de enviar.</p>
+                        <!-- Botón de Envío -->
+                        <div class="card border-0 shadow-sm rounded-4 p-4 text-center bg-white">
+                            <h6 class="fw-bold mb-2 text-dark">¿Concluiste tu evaluación?</h6>
+                            <p class="text-muted small mb-3">Revisa haber respondido las 18 preguntas y la descripción de código.</p>
                             <button type="submit" class="btn btn-aiti btn-lg w-100 py-3 fw-bold">
                                 <i class="bi bi-check2-circle me-2"></i> Finalizar y Calificar
                             </button>
@@ -227,10 +309,10 @@ if (count($preguntas_seleccionadas) < 20) {
         </form>
     </main>
 
-    <!-- Footer -->
+    <!-- Footer Homogéneo -->
     <footer class="examen-footer text-center">
         <div class="container">
-            <p class="mb-0">&copy; <?= date('Y') ?> AI-TI. Examen Técnico de Programación.</p>
+            <p class="mb-0">&copy; <?= date('Y') ?> AI-TI. Portal de Evaluaciones Técnicas.</p>
         </div>
     </footer>
 

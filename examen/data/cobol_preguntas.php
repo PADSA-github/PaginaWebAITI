@@ -1,1020 +1,1105 @@
 <?php
-// Banco de 100 Preguntas de COBOL (25 Junior, 25 Semi-Senior, 25 Senior, 25 Experto)
+// Banco de 100 Preguntas de COBOL balanceadas
 
-return [
-    // ==========================================
-    // NIVEL JUNIOR (25 PREGUNTAS)
-    // ==========================================
-    [
-        'pregunta' => '¿Cuántas divisiones obligatorias o estándar componen la estructura fundamental de un programa COBOL?',
-        'opcion_a' => '2 divisiones',
-        'opcion_b' => '4 divisiones',
-        'opcion_c' => '6 divisiones',
-        'opcion_d' => '8 divisiones',
-        'respuesta_correcta' => 'B',
-        'complejidad' => 'Junior',
-        'explicacion' => 'Un programa COBOL se estructura en 4 divisiones: IDENTIFICATION, ENVIRONMENT, DATA y PROCEDURE DIVISION.'
-    ],
-    [
-        'pregunta' => '¿Cuál es la primera división obligatoria en cualquier programa COBOL?',
-        'opcion_a' => 'DATA DIVISION',
-        'opcion_b' => 'PROCEDURE DIVISION',
-        'opcion_c' => 'IDENTIFICATION DIVISION',
-        'opcion_d' => 'ENVIRONMENT DIVISION',
-        'respuesta_correcta' => 'C',
-        'complejidad' => 'Junior',
-        'explicacion' => 'IDENTIFICATION DIVISION es siempre la primera división e identifica el nombre del programa (PROGRAM-ID).'
-    ],
-    [
-        'pregunta' => '¿En qué división de un programa COBOL se escribe la lógica de negocio y las instrucciones ejecutables?',
-        'opcion_a' => 'ENVIRONMENT DIVISION',
-        'opcion_b' => 'DATA DIVISION',
-        'opcion_c' => 'PROCEDURE DIVISION',
-        'opcion_d' => 'CONFIGURATION SECTION',
-        'respuesta_correcta' => 'C',
-        'complejidad' => 'Junior',
-        'explicacion' => 'PROCEDURE DIVISION contiene todas las instrucciones ejecutables, párrafos y lógica del algoritmo.'
-    ],
-    [
-        'pregunta' => '¿Qué cláusula se utiliza en COBOL para definir el formato y tipo de dato de una variable elemental?',
-        'opcion_a' => 'TYPE IS',
-        'opcion_b' => 'PICTURE (o PIC)',
-        'opcion_c' => 'FORMAT AS',
-        'opcion_d' => 'DEFINE AS',
-        'respuesta_correcta' => 'B',
-        'complejidad' => 'Junior',
-        'explicacion' => 'La cláusula PICTURE (o abreviada PIC) describe la longitud y naturaleza de los datos (alfanumérico, numérico, etc.).'
-    ],
-    [
-        'pregunta' => '¿Qué tipo de datos representa el carácter "9" en una cláusula PICTURE en COBOL?',
-        'opcion_a' => 'Caracteres alfabéticos exclusivamente',
-        'opcion_b' => 'Dígitos numéricos (0 al 9)',
-        'opcion_c' => 'Cualquier carácter alfanumérico',
-        'opcion_d' => 'Valores booleanos (True/False)',
-        'respuesta_correcta' => 'B',
-        'complejidad' => 'Junior',
-        'explicacion' => 'El símbolo 9 indica un dato numérico que contiene exclusivamente dígitos del 0 al 9.'
-    ],
-    [
-        'pregunta' => '¿Qué tipo de datos representa el carácter "X" en una cláusula PICTURE (ej: PIC X(10))?',
-        'opcion_a' => 'Número entero con signo',
-        'opcion_b' => 'Carácter alfanumérico (letras, números, símbolos y espacios)',
-        'opcion_c' => 'Número decimal flotante',
-        'opcion_d' => 'Puntero de memoria binaria',
-        'respuesta_correcta' => 'B',
-        'complejidad' => 'Junior',
-        'explicacion' => 'X representa cualquier carácter alfanumérico. PIC X(10) reserva 10 posiciones de texto alfanumérico.'
-    ],
-    [
-        'pregunta' => '¿Qué símbolo en una cláusula PIC indica una posición decimal asumida o virtual sin ocupar espacio físico?',
-        'opcion_a' => 'Punto (.)',
-        'opcion_b' => 'Coma (,)',
-        'opcion_c' => 'V',
-        'opcion_d' => 'S',
-        'respuesta_correcta' => 'C',
-        'complejidad' => 'Junior',
-        'explicacion' => 'La letra V indica la posición del punto decimal implícito/asumido para operaciones matemáticas (ej: PIC 9(3)V99).'
-    ],
-    [
-        'pregunta' => '¿Qué símbolo en una cláusula PIC indica que el campo numérico lleva signo operacional?',
-        'opcion_a' => 'S',
-        'opcion_b' => '+',
-        'opcion_c' => '-',
-        'opcion_d' => 'Z',
-        'respuesta_correcta' => 'A',
-        'complejidad' => 'Junior',
-        'explicacion' => 'S se coloca al inicio de una cláusula numérica (ej: PIC S9(4)) para indicar que almacena números positivos o negativos.'
-    ],
-    [
-        'pregunta' => '¿Qué verbo de COBOL se utiliza para imprimir mensajes o valores de variables en la consola o archivo de salida?',
-        'opcion_a' => 'PRINT',
-        'opcion_b' => 'OUTPUT',
-        'opcion_c' => 'DISPLAY',
-        'opcion_d' => 'SHOW',
-        'respuesta_correcta' => 'C',
-        'complejidad' => 'Junior',
-        'explicacion' => 'DISPLAY es el verbo estándar en COBOL para enviar datos al dispositivo de salida predeterminado (SYSOUT).'
-    ],
-    [
-        'pregunta' => '¿Qué verbo se usa para copiar el contenido de una variable a otra en COBOL?',
-        'opcion_a' => 'SET',
-        'opcion_b' => 'COPY',
-        'opcion_c' => 'ASSIGN',
-        'opcion_d' => 'MOVE',
-        'respuesta_correcta' => 'D',
-        'complejidad' => 'Junior',
-        'explicacion' => 'MOVE copia datos de un campo origen a un campo destino (ej: MOVE WS-ORIGEN TO WS-DESTINO).'
-    ],
-    [
-        'pregunta' => '¿Qué instrucción se usa para finalizar formalmente la ejecución de un programa COBOL y devolver el control al sistema operativo?',
-        'opcion_a' => 'EXIT',
-        'opcion_b' => 'FINISH',
-        'opcion_c' => 'STOP RUN',
-        'opcion_d' => 'TERMINATE',
-        'respuesta_correcta' => 'C',
-        'complejidad' => 'Junior',
-        'explicacion' => 'STOP RUN termina la ejecución del programa y cierra todos los recursos devolviendo el control al entorno (SO/JCL).'
-    ],
-    [
-        'pregunta' => 'En el formato fijo tradicional de COBOL (tarjetas de 80 columnas), ¿en qué columnas se ubica el "Área A"?',
-        'opcion_a' => 'Columnas 1 a 6',
-        'opcion_b' => 'Columnas 8 a 11',
-        'opcion_c' => 'Columnas 12 a 72',
-        'opcion_d' => 'Columnas 73 a 80',
-        'respuesta_correcta' => 'B',
-        'complejidad' => 'Junior',
-        'explicacion' => 'El Área A abarca las columnas 8 a 11 (nombres de divisiones, secciones, párrafos y niveles 01 y 77).'
-    ],
-    [
-        'pregunta' => 'En formato fijo de COBOL, ¿qué carácter en la columna 7 indica que toda la línea es un comentario?',
-        'opcion_a' => '# (numeral)',
-        'opcion_b' => '* (asterisco)',
-        'opcion_c' => '/ (barra diagonal)',
-        'opcion_d' => '- (guión)',
-        'respuesta_correcta' => 'B',
-        'complejidad' => 'Junior',
-        'explicacion' => 'Un asterisco (*) en la columna indicador (columna 7) convierte la línea en un comentario.'
-    ],
-    [
-        'pregunta' => '¿En qué sección de la DATA DIVISION se declaran las variables temporales y de trabajo del programa?',
-        'opcion_a' => 'FILE SECTION',
-        'opcion_b' => 'WORKING-STORAGE SECTION',
-        'opcion_c' => 'LINKAGE SECTION',
-        'opcion_d' => 'REPORT SECTION',
-        'respuesta_correcta' => 'B',
-        'complejidad' => 'Junior',
-        'explicacion' => 'WORKING-STORAGE SECTION es donde se declaran variables internas de memoria que persisten durante la ejecución del programa.'
-    ],
-    [
-        'pregunta' => '¿Qué número de nivel se utiliza en COBOL para definir el registro raíz o elemento principal de un grupo de datos?',
-        'opcion_a' => '01',
-        'opcion_b' => '05',
-        'opcion_c' => '77',
-        'opcion_d' => '88',
-        'respuesta_correcta' => 'A',
-        'complejidad' => 'Junior',
-        'explicacion' => 'El nivel 01 identifica el registro principal o elemento de datos superior en la jerarquía.'
-    ],
-    [
-        'pregunta' => '¿Qué verbo se usa para realizar operaciones aritméticas complejas con fórmulas matemáticas en COBOL?',
-        'opcion_a' => 'CALCULATE',
-        'opcion_b' => 'MATH',
-        'opcion_c' => 'COMPUTE',
-        'opcion_d' => 'EVALUATE',
-        'respuesta_correcta' => 'C',
-        'complejidad' => 'Junior',
-        'explicacion' => 'COMPUTE permite expresiones matemáticas como: COMPUTE TOTAL = (PRECIO * CANTIDAD) * 1.16.'
-    ],
-    [
-        'pregunta' => '¿Qué carácter debe colocarse al final de cada sentencia o párrafo en COBOL tradicional para indicar su terminación?',
-        'opcion_a' => 'Punto y coma (;)',
-        'opcion_b' => 'Dos puntos (:)',
-        'opcion_c' => 'Punto (.)',
-        'opcion_d' => 'Llave de cierre (})',
-        'respuesta_correcta' => 'C',
-        'complejidad' => 'Junior',
-        'explicacion' => 'El punto (.) finaliza frases, divisiones, párrafos y sentencias en COBOL.'
-    ],
-    [
-        'pregunta' => '¿Qué verbo aritmético se usa para incrementar el valor de una variable en COBOL?',
-        'opcion_a' => 'SUM',
-        'opcion_b' => 'ADD',
-        'opcion_c' => 'INCREMENT',
-        'opcion_d' => 'PLUS',
-        'respuesta_correcta' => 'B',
-        'complejidad' => 'Junior',
-        'explicacion' => 'ADD valor TO variable incrementa el campo numérico con el valor especificado.'
-    ],
-    [
-        'pregunta' => '¿Cuál es el propósito del párrafo PROGRAM-ID en IDENTIFICATION DIVISION?',
-        'opcion_a' => 'Definir el número de versión de la base de datos',
-        'opcion_b' => 'Especificar el nombre identificador oficial del programa para el compilador y el linker',
-        'opcion_c' => 'Asignar contraseñas al código fuente',
-        'opcion_d' => 'Conectar con la terminal remota',
-        'respuesta_correcta' => 'B',
-        'complejidad' => 'Junior',
-        'explicacion' => 'PROGRAM-ID. NOMBRE-PROG es el único párrafo obligatorio en la IDENTIFICATION DIVISION.'
-    ],
-    [
-        'pregunta' => '¿Qué nivel de datos se utiliza históricamente para variables elementales independientes que no pertenecen a ningún grupo?',
-        'opcion_a' => '01',
-        'opcion_b' => '77',
-        'opcion_c' => '88',
-        'opcion_d' => '66',
-        'respuesta_correcta' => 'B',
-        'complejidad' => 'Junior',
-        'explicacion' => 'El nivel 77 identifica variables independientes (standalone items) que no son registros de grupo ni tienen subdivisiones.'
-    ],
-    [
-        'pregunta' => '¿Qué cláusula inicializa una variable con un valor predeterminado al comenzar el programa en WORKING-STORAGE?',
-        'opcion_a' => 'DEFAULT',
-        'opcion_b' => 'INIT',
-        'opcion_c' => 'VALUE',
-        'opcion_d' => 'ASSIGN',
-        'respuesta_correcta' => 'C',
-        'complejidad' => 'Junior',
-        'explicacion' => 'La cláusula VALUE asigna el valor inicial: ej. 05 WS-CONTADOR PIC 9(3) VALUE 0.'
-    ],
-    [
-        'pregunta' => '¿Qué verbo se usa para leer datos ingresados interactivamente por el usuario desde la terminal?',
-        'opcion_a' => 'INPUT',
-        'opcion_b' => 'SCAN',
-        'opcion_c' => 'ACCEPT',
-        'opcion_d' => 'READ-LINE',
-        'respuesta_correcta' => 'C',
-        'complejidad' => 'Junior',
-        'explicacion' => 'ACCEPT transfiere datos desde el teclado, consola del operador o reloj del sistema hacia una variable.'
-    ],
-    [
-        'pregunta' => '¿Cuál es la longitud máxima habitual del nombre de un identificador/variable en el estándar COBOL-85?',
-        'opcion_a' => '8 caracteres',
-        'opcion_b' => '30 caracteres',
-        'opcion_c' => '64 caracteres',
-        'opcion_d' => '128 caracteres',
-        'respuesta_correcta' => 'B',
-        'complejidad' => 'Junior',
-        'explicacion' => 'En COBOL-85 los identificadores de variables y párrafos pueden tener hasta 30 caracteres (letras, dígitos y guiones).'
-    ],
-    [
-        'pregunta' => '¿Qué sucede si mueves una cadena alfanumérica de 10 caracteres a un campo con PIC X(5)?',
-        'opcion_a' => 'Lanza una excepción de desbordamiento en ejecución',
-        'opcion_b' => 'La cadena se trunca por la derecha, copiando solo los primeros 5 caracteres',
-        'opcion_c' => 'El campo de destino se expande a 10 caracteres',
-        'opcion_d' => 'El programa se congela',
-        'respuesta_correcta' => 'B',
-        'complejidad' => 'Junior',
-        'explicacion' => 'En movimientos alfanuméricos en COBOL, los datos se alinean a la izquierda y se truncan por la derecha si el destino es menor.'
-    ],
-    [
-        'pregunta' => '¿Qué verbo se utiliza para transferir el flujo de control temporalmente a otro párrafo y luego regresar?',
-        'opcion_a' => 'GOTO',
-        'opcion_b' => 'JUMP',
-        'opcion_c' => 'CALL-LOCAL',
-        'opcion_d' => 'PERFORM',
-        'respuesta_correcta' => 'D',
-        'complejidad' => 'Junior',
-        'explicacion' => 'PERFORM ejecuta el párrafo o sección especificado y, al terminar, el control regresa a la siguiente instrucción.'
-    ],
-
-    // ==========================================
-    // NIVEL SEMI-SENIOR (25 PREGUNTAS)
-    // ==========================================
-    [
-        'pregunta' => '¿Para qué sirve el nivel de datos especial 88 (Nivel 88) en COBOL?',
-        'opcion_a' => 'Definir punteros a memoria directa',
-        'opcion_b' => 'Definir nombres de condición (Condition Names) que asocian valores booleanos legibles a los valores de la variable padre',
-        'opcion_c' => 'Marcar campos como constantes encriptadas',
-        'opcion_d' => 'Indicar variables que no consumen espacio en disco',
-        'respuesta_correcta' => 'B',
-        'complejidad' => 'Semi-Senior',
-        'explicacion' => 'El nivel 88 asigna nombres condicionales legibles: ej. 88 ES-FEMENINO VALUE "F". Permite escribir: IF ES-FEMENINO.'
-    ],
-    [
-        'pregunta' => '¿Qué instrucción condicional múltiple introducida en COBOL-85 reemplazó a las complejas cadenas de IF anidados?',
-        'opcion_a' => 'SWITCH',
-        'opcion_b' => 'CASE',
-        'opcion_c' => 'EVALUATE',
-        'opcion_d' => 'CHOOSE',
-        'respuesta_correcta' => 'C',
-        'complejidad' => 'Semi-Senior',
-        'explicacion' => 'EVALUATE es una potente estructura de selección múltiple tipo case, que soporta condiciones compuestas, rangos (THRU) y múltiples sujetos (EVALUATE TRUE ALSO ...).'
-    ],
-    [
-        'pregunta' => '¿Cuál es la función de la cláusula REDEFINES en la DATA DIVISION?',
-        'opcion_a' => 'Renombrar un archivo en el sistema operativo',
-        'opcion_b' => 'Permitir que diferentes descripciones de datos o estructuras compartan y ocupen la misma área de memoria física',
-        'opcion_c' => 'Eliminar una variable para liberar memoria dinámica',
-        'opcion_d' => 'Cambiar el tipo de codificación de ASCII a EBCDIC',
-        'respuesta_correcta' => 'B',
-        'complejidad' => 'Semi-Senior',
-        'explicacion' => 'REDEFINES permite interpretar la misma ubicación de memoria con diferentes tipos y desgloses de variables.'
-    ],
-    [
-        'pregunta' => '¿Qué diferencia existe entre PERFORM ... UNTIL WITH TEST BEFORE y WITH TEST AFTER?',
-        'opcion_a' => 'WITH TEST BEFORE evalúa la condición antes de cada iteración (tipo while); WITH TEST AFTER la evalúa al final (tipo do-while)',
-        'opcion_b' => 'WITH TEST AFTER nunca se ejecuta',
-        'opcion_c' => 'WITH TEST BEFORE solo funciona con números negativos',
-        'opcion_d' => 'Son idénticos en cualquier compilador',
-        'respuesta_correcta' => 'A',
-        'complejidad' => 'Semi-Senior',
-        'explicacion' => 'Por defecto COBOL evalúa TEST BEFORE (puede no ejecutarse ninguna vez si la condición es cierta de inicio). TEST AFTER garantiza al menos 1 ejecución.'
-    ],
-    [
-        'pregunta' => '¿Cómo se recorre un bucle iterativo con contador en COBOL utilizando PERFORM?',
-        'opcion_a' => 'PERFORM FOR I = 1 TO 10',
-        'opcion_b' => 'PERFORM PARRAFO-PROCESO VARYING INDICE FROM 1 BY 1 UNTIL INDICE > 10',
-        'opcion_c' => 'LOOP INDICE IN 1..10 PERFORM PARRAFO',
-        'opcion_d' => 'REPEAT PARRAFO 10 TIMES',
-        'respuesta_correcta' => 'B',
-        'complejidad' => 'Semi-Senior',
-        'explicacion' => 'PERFORM ... VARYING ... FROM ... BY ... UNTIL es la sintaxis formal de bucles con incremento en COBOL.'
-    ],
-    [
-        'pregunta' => '¿En qué sección de la DATA DIVISION se definen los parámetros recibidos por un subprograma llamado mediante CALL?',
-        'opcion_a' => 'WORKING-STORAGE SECTION',
-        'opcion_b' => 'FILE SECTION',
-        'opcion_c' => 'LINKAGE SECTION',
-        'opcion_d' => 'COMMUNICATION SECTION',
-        'respuesta_correcta' => 'C',
-        'complejidad' => 'Semi-Senior',
-        'explicacion' => 'LINKAGE SECTION describe los datos mapeados en memoria que el programa recibe del programa llamador (invocador).'
-    ],
-    [
-        'pregunta' => '¿Cuál es la diferencia entre pasar parámetros CALL ... USING BY REFERENCE y BY CONTENT en COBOL?',
-        'opcion_a' => 'BY REFERENCE pasa la dirección de memoria original (permite modificar el valor); BY CONTENT pasa una copia del valor protegiendo la variable original',
-        'opcion_b' => 'BY CONTENT es solo para archivos y BY REFERENCE para números',
-        'opcion_c' => 'BY CONTENT pasa punteros de 64 bits',
-        'opcion_d' => 'No hay diferencia técnica',
-        'respuesta_correcta' => 'A',
-        'complejidad' => 'Semi-Senior',
-        'explicacion' => 'BY REFERENCE permite mutación en el programa padre; BY CONTENT crea una copia temporal en memoria que previene alteraciones no deseadas.'
-    ],
-    [
-        'pregunta' => '¿Qué instrucción se usa para concatenar múltiples cadenas o variables en una sola variable destino en COBOL?',
-        'opcion_a' => 'CONCAT',
-        'opcion_b' => 'JOIN',
-        'opcion_c' => 'STRING',
-        'opcion_d' => 'MERGE',
-        'respuesta_correcta' => 'C',
-        'complejidad' => 'Semi-Senior',
-        'explicacion' => 'El verbo STRING concatena textos con delimitadores: STRING CAMPO1 DELIMITED BY SPACE CAMPO2 DELIMITED BY SIZE INTO RESULTADO.'
-    ],
-    [
-        'pregunta' => '¿Qué instrucción realiza la operación inversa a STRING, dividiendo una cadena en múltiples campos según delimitadores?',
-        'opcion_a' => 'SPLIT',
-        'opcion_b' => 'UNSTRING',
-        'opcion_c' => 'SEPARATE',
-        'opcion_d' => 'DIVIDE-STRING',
-        'respuesta_correcta' => 'B',
-        'complejidad' => 'Semi-Senior',
-        'explicacion' => 'UNSTRING extrae piezas de texto delimitadas por caracteres (comas, espacios) y las distribuye en variables de destino.'
-    ],
-    [
-        'pregunta' => '¿Para qué sirve el verbo INSPECT en COBOL?',
-        'opcion_a' => 'Para depurar la memoria con un debugger gráfico',
-        'opcion_b' => 'Para contar la ocurrencia de caracteres específicos o reemplazar (REPLACING) ciertos caracteres por otros en una cadena',
-        'opcion_c' => 'Para inspeccionar el disco duro en busca de sectores dañados',
-        'opcion_d' => 'Para verificar la sintaxis antes de compilar',
-        'respuesta_correcta' => 'B',
-        'complejidad' => 'Semi-Senior',
-        'explicacion' => 'INSPECT ... TALLYING cuenta caracteres e INSPECT ... REPLACING sustituye caracteres (ej: cambiar espacios por ceros).'
-    ],
-    [
-        'pregunta' => '¿Qué formato de almacenamiento numérico representa la cláusula USAGE COMP-3 (o PACKED-DECIMAL)?',
-        'opcion_a' => 'Número en formato texto ASCII/EBCDIC sin comprimir',
-        'opcion_b' => 'Decimal empaquetado (Packed Decimal): almacena 2 dígitos por cada byte y el signo en el último medio byte (nibble)',
-        'opcion_c' => 'Número en punto flotante binario IEEE 754 de 64 bits',
-        'opcion_d' => 'Entero binario puro en formato hexadecimal',
-        'respuesta_correcta' => 'B',
-        'complejidad' => 'Semi-Senior',
-        'explicacion' => 'COMP-3 empaqueta dos dígitos por byte aprovechando los 4 bits (nibble) más un nibble final de signo, reduciendo espacio a la mitad en mainframe.'
-    ],
-    [
-        'pregunta' => '¿Qué formato de almacenamiento numérico representa USAGE COMP (o COMPUTATIONAL / BINARY)?',
-        'opcion_a' => 'Almacenamiento en binario puro (enteros de 2, 4 u 8 bytes) ideal para contadores e índices de tablas rápidas',
-        'opcion_b' => 'Texto plano legible por humanos',
-        'opcion_c' => 'Base 64',
-        'opcion_d' => 'Formato XML embebido',
-        'respuesta_correcta' => 'A',
-        'complejidad' => 'Semi-Senior',
-        'explicacion' => 'COMP/COMPUTATIONAL almacena números como enteros binarios de máquina directos, óptimos para operaciones de CPU aritméticas e indexación.'
-    ],
-    [
-        'pregunta' => '¿Qué cláusula se utiliza para declarar arrays o tablas en la DATA DIVISION de COBOL?',
-        'opcion_a' => 'ARRAY',
-        'opcion_b' => 'LIST OF',
-        'opcion_c' => 'OCCURS',
-        'opcion_d' => 'DIMENSION',
-        'respuesta_correcta' => 'C',
-        'complejidad' => 'Semi-Senior',
-        'explicacion' => 'OCCURS especifica el número de repeticiones de un elemento: ej. 05 TABLA-MESES PIC X(10) OCCURS 12 TIMES.'
-    ],
-    [
-        'pregunta' => '¿Cuál es la diferencia entre un Subíndice (Subscript) y un Índice (Index / INDEXED BY) al manipular tablas en COBOL?',
-        'opcion_a' => 'Los subíndices son más rápidos que los índices',
-        'opcion_b' => 'Un subíndice es una variable numérica común que representa la posición ordinal (1, 2, ...); un índice almacena internamente el offset/desplazamiento de memoria y se manipula con SET',
-        'opcion_c' => 'Los índices no se pueden usar en sentencias SEARCH',
-        'opcion_d' => 'Son exactamente la misma entidad sintáctica',
-        'respuesta_correcta' => 'B',
-        'complejidad' => 'Semi-Senior',
-        'explicacion' => 'Los índices se manipulan con el verbo SET (SET IND UP BY 1) y contienen el desplazamiento directo en bytes para máxima velocidad de búsqueda.'
-    ],
-    [
-        'pregunta' => '¿Qué instrucción se usa para buscar secuencialmente un elemento en una tabla OCCURS en COBOL?',
-        'opcion_a' => 'FIND',
-        'opcion_b' => 'LOOKUP',
-        'opcion_c' => 'SEARCH',
-        'opcion_d' => 'QUERY',
-        'respuesta_correcta' => 'C',
-        'complejidad' => 'Semi-Senior',
-        'explicacion' => 'SEARCH realiza una búsqueda secuencial y SEARCH ALL realiza una búsqueda binaria rápida (exige que la tabla esté ordenada).'
-    ],
-    [
-        'pregunta' => '¿Qué requisito obligatorio debe cumplir una tabla para utilizar la instrucción SEARCH ALL (Búsqueda Binaria)?',
-        'opcion_a' => 'Tener menos de 10 elementos',
-        'opcion_b' => 'Tener definida la cláusula ASCENDING/DESCENDING KEY y estar previamente ordenada según dicha clave',
-        'opcion_c' => 'Estar guardada en un disco SSD',
-        'opcion_d' => 'Contener solo datos numéricos positivos',
-        'respuesta_correcta' => 'B',
-        'complejidad' => 'Semi-Senior',
-        'explicacion' => 'La búsqueda binaria requiere orden estricto; de lo contrario el algoritmo descarta mitades incorrectas y produce resultados erróneos.'
-    ],
-    [
-        'pregunta' => '¿Cómo se asocia un nombre de archivo lógico de COBOL con el archivo físico o DDNAME del sistema operativo (JCL)?',
-        'opcion_a' => 'En FILE-CONTROL mediante la cláusula SELECT archivo-logico ASSIGN TO ddname',
-        'opcion_b' => 'Mediante el comando OPEN SYSTEM',
-        'opcion_c' => 'En la IDENTIFICATION DIVISION con FILE-LINK',
-        'opcion_d' => 'Escribiendo la ruta en el archivo de logs',
-        'respuesta_correcta' => 'A',
-        'complejidad' => 'Semi-Senior',
-        'explicacion' => 'ENVIRONMENT DIVISION -> INPUT-OUTPUT SECTION -> FILE-CONTROL mapea SELECT archivo-log ASSIGN TO ddname_jcl.'
-    ],
-    [
-        'pregunta' => '¿Qué variable especial de dos caracteres numéricos captura el código de retorno de operaciones de archivo (File Status)?',
-        'opcion_a' => 'ERR-CODE',
-        'opcion_b' => 'FILE STATUS (declarado en FILE-CONTROL)',
-        'opcion_c' => 'SQLCODE',
-        'opcion_d' => 'RETURN-VALUE',
-        'respuesta_correcta' => 'B',
-        'complejidad' => 'Semi-Senior',
-        'explicacion' => 'FILE STATUS asigna una variable de 2 caracteres alfanuméricos donde el sistema reporta el estado (ej: "00" = Éxito, "10" = End of File, "23" = Registro no encontrado).'
-    ],
-    [
-        'pregunta' => '¿Qué valor en la variable FILE STATUS indica que una operación de archivo (OPEN, READ, WRITE) fue completamente exitosa?',
-        'opcion_a' => '"99"',
-        'opcion_b' => '"00"',
-        'opcion_c' => '"OK"',
-        'opcion_d' => '"10"',
-        'respuesta_correcta' => 'B',
-        'complejidad' => 'Semi-Senior',
-        'explicacion' => 'El código "00" en FILE STATUS representa éxito total de la operación I/O.'
-    ],
-    [
-        'pregunta' => '¿Qué valor en FILE STATUS indica la condición de Fin de Archivo (At End / EOF) al ejecutar un READ secuencial?',
-        'opcion_a' => '"10"',
-        'opcion_b' => '"02"',
-        'opcion_c' => '"35"',
-        'opcion_d' => '"41"',
-        'respuesta_correcta' => 'A',
-        'complejidad' => 'Semi-Senior',
-        'explicacion' => 'El código "10" indica que se alcanzó el final del archivo secuencial durante la lectura.'
-    ],
-    [
-        'pregunta' => '¿Cuál es la diferencia entre el verbo WRITE y el verbo REWRITE al manipular archivos?',
-        'opcion_a' => 'WRITE escribe un nuevo registro en el archivo; REWRITE actualiza y sobreescribe un registro existente previamente leído',
-        'opcion_b' => 'REWRITE borra el disco',
-        'opcion_c' => 'WRITE solo funciona para impresión en papel',
-        'opcion_d' => 'No hay diferencia funcional',
-        'respuesta_correcta' => 'A',
-        'complejidad' => 'Semi-Senior',
-        'explicacion' => 'WRITE inserta un registro nuevo; REWRITE reemplaza en el archivo el último registro obtenido con READ.'
-    ],
-    [
-        'pregunta' => '¿Qué instrucción se usa para incluir el contenido de un archivo de estructuras de datos externo (Copybook) en tiempo de compilación?',
-        'opcion_a' => 'IMPORT copybook-name',
-        'opcion_b' => 'INCLUDE copybook-name',
-        'opcion_c' => 'COPY copybook-name',
-        'opcion_d' => 'REQUIRE copybook-name',
-        'respuesta_correcta' => 'C',
-        'complejidad' => 'Semi-Senior',
-        'explicacion' => 'COPY nombre-copybook inserta el código del copybook (definiciones de registros, variables compartidas) en la posición indicada antes de compilar.'
-    ],
-    [
-        'pregunta' => '¿Qué cláusula previene un error de división por cero o desbordamiento numérico en cálculos de COBOL?',
-        'opcion_a' => 'TRY-CATCH',
-        'opcion_b' => 'ON SIZE ERROR',
-        'opcion_c' => 'EXCEPTION WHEN',
-        'opcion_d' => 'IF OVERFLOW',
-        'respuesta_correcta' => 'B',
-        'complejidad' => 'Semi-Senior',
-        'explicacion' => 'ON SIZE ERROR captura truncamientos por tamaño o divisiones entre cero permitiendo ejecutar lógica correctiva.'
-    ],
-    [
-        'pregunta' => '¿Para qué sirve el delimitador de ámbito explícito END-IF, END-PERFORM, END-EVALUATE en COBOL-85?',
-        'opcion_a' => 'Para cerrar bloques de código estructurado evitando ambigüedades sin necesidad de utilizar el punto (.)',
-        'opcion_b' => 'Para aumentar el tamaño del ejecutable',
-        'opcion_c' => 'Para liberar la memoria asignada a variables',
-        'opcion_d' => 'Para reiniciar el programa',
-        'respuesta_correcta' => 'A',
-        'complejidad' => 'Semi-Senior',
-        'explicacion' => 'Los scope terminators (END-*) permiten programación estructurada limpia eliminando errores causados por puntos inadvertidos.'
-    ],
-    [
-        'pregunta' => '¿Qué registro especial predefinido en COBOL almacena el código de retorno numérico devuelto por un programa o subprograma?',
-        'opcion_a' => 'SYS-STATUS',
-        'opcion_b' => 'RETURN-CODE',
-        'opcion_c' => 'EXIT-CODE',
-        'opcion_d' => 'JOB-RC',
-        'respuesta_correcta' => 'B',
-        'complejidad' => 'Semi-Senior',
-        'explicacion' => 'MOVE 4 TO RETURN-CODE establece el Return Code (RC) que evalúa el paso de JCL (Job Control Language) en el mainframe.'
-    ],
-
-    // ==========================================
-    // NIVEL SENIOR (25 PREGUNTAS)
-    // ==========================================
-    [
-        'pregunta' => '¿Cuáles son los tres tipos principales de archivos VSAM (Virtual Storage Access Method) en entornos z/OS de IBM?',
-        'opcion_a' => 'FAT32, NTFS y EXT4',
-        'opcion_b' => 'KSDS (Key-Sequenced), ESDS (Entry-Sequenced) y RRDS (Relative-Record Dataset)',
-        'opcion_c' => 'JSON, XML y CSV',
-        'opcion_d' => 'B-Tree, Hash-Table y Heap-File',
-        'respuesta_correcta' => 'B',
-        'complejidad' => 'Senior',
-        'explicacion' => 'VSAM en IBM Mainframe se categoriza en KSDS (acceso por clave indexada), ESDS (secuencial por orden de llegada) y RRDS (acceso por número relativo de slot).'
-    ],
-    [
-        'pregunta' => '¿Cómo se estructuran internamente los archivos VSAM KSDS en disco?',
-        'opcion_a' => 'En un archivo plano sin ordenación',
-        'opcion_b' => 'En dos componentes físicos: un Componente de Índice (Index Component) en árbol B+ y un Componente de Datos (Data Component) organizados en Control Intervals (CI) y Control Areas (CA)',
-        'opcion_c' => 'En una tabla de base de datos MySQL',
-        'opcion_d' => 'En bloques magnéticos no formateados',
-        'respuesta_correcta' => 'B',
-        'complejidad' => 'Senior',
-        'explicacion' => 'KSDS organiza los registros en Control Intervals (CI) dentro de Control Areas (CA) gobernados por un componente de índice multinivel.'
-    ],
-    [
-        'pregunta' => '¿Qué causa un "CI Split" (División de Intervalo de Control) en un archivo VSAM KSDS y qué impacto tiene?',
-        'opcion_a' => 'Un fallo en la controladora de disco',
-        'opcion_b' => 'Ocurre cuando se inserta un registro en un CI que no tiene suficiente espacio libre; la mitad de los registros se mueven a un nuevo CI, generando degradación de rendimiento I/O',
-        'opcion_c' => 'La eliminación de registros duplicados',
-        'opcion_d' => 'El cambio de codificación de caracteres',
-        'respuesta_correcta' => 'B',
-        'complejidad' => 'Senior',
-        'explicacion' => 'Los CI y CA splits generan fragmentación y lecturas indirectas; se monitorean con LISTCAT y se resuelven reorganizando el dataset (REPRO).'
-    ],
-    [
-        'pregunta' => '¿Cómo se embeben sentencias de base de datos relacional DB2 SQL dentro de un programa COBOL?',
-        'opcion_a' => 'Llamando a la función db2_query()',
-        'opcion_b' => 'Delimitando las sentencias entre las directivas EXEC SQL y END-EXEC',
-        'opcion_c' => 'Escribiendo consultas en un archivo .sql externo',
-        'opcion_d' => 'Mediante el verbo QUERY DB2',
-        'respuesta_correcta' => 'B',
-        'complejidad' => 'Senior',
-        'explicacion' => 'EXEC SQL ... END-EXEC es la sintaxis estándar para SQL estático embebido procesado por el precompilador de DB2.'
-    ],
-    [
-        'pregunta' => '¿Qué variable especial de comunicación de DB2 se inspecciona tras cada sentencia SQL embebida?',
-        'opcion_a' => 'DB2-STATUS',
-        'opcion_b' => 'SQLCODE (dentro de la estructura SQLCA)',
-        'opcion_c' => 'FILE-STATUS',
-        'opcion_d' => 'ERR-NUM',
-        'respuesta_correcta' => 'B',
-        'complejidad' => 'Senior',
-        'explicacion' => 'SQLCODE = 0 indica éxito; +100 indica fila no encontrada o fin de cursor; valores negativos indican errores graves.'
-    ],
-    [
-        'pregunta' => '¿Qué significa un SQLCODE = +100 en DB2 embebido tras ejecutar una sentencia SELECT INTO o FETCH?',
-        'opcion_a' => 'Error de sintaxis en la consulta',
-        'opcion_b' => 'Fila no encontrada (No row found) o se alcanzó el final de las filas del Cursor',
-        'opcion_c' => 'La base de datos se encuentra bloqueada por otro usuario',
-        'opcion_d' => 'Operación completada con advertencia de desbordamiento',
-        'respuesta_correcta' => 'B',
-        'complejidad' => 'Senior',
-        'explicacion' => '+100 indica condición normal de no coincidencia o cursor agotado (análogo a EOF).'
-    ],
-    [
-        'pregunta' => '¿Para qué sirve declarar variables anfitrionas (Host Variables) con dos puntos precedentes (:VARIABLE) en DB2 SQL embebido?',
-        'opcion_a' => 'Para que el motor de DB2 distinga las variables del programa COBOL de los nombres de columnas de las tablas de la base de datos',
-        'opcion_b' => 'Para encriptar el valor de la variable',
-        'opcion_c' => 'Para indicar que la variable es una constante global',
-        'opcion_d' => 'Es un requerimiento estético sin función práctica',
-        'respuesta_correcta' => 'A',
-        'complejidad' => 'Senior',
-        'explicacion' => 'Los dos puntos (ej: WHERE ID = :WS-ID) señalan al precompilador que se trata de una variable definida en la sección de datos de COBOL.'
-    ],
-    [
-        'pregunta' => '¿Cuál es el ciclo de vida completo para procesar un conjunto de filas con un Cursor en DB2 COBOL?',
-        'opcion_a' => 'DECLARE CURSOR -> OPEN -> bucle con FETCH -> CLOSE',
-        'opcion_b' => 'OPEN -> READ -> WRITE -> CLOSE',
-        'opcion_c' => 'SELECT -> LOOP -> END',
-        'opcion_d' => 'INIT CURSOR -> POPULATE -> DESTROY',
-        'respuesta_correcta' => 'A',
-        'complejidad' => 'Senior',
-        'explicacion' => 'Se declara el cursor con DECLARE, se abre con OPEN para materializar el result set, se itera con FETCH y se libera con CLOSE.'
-    ],
-    [
-        'pregunta' => '¿Qué es y para qué sirve una Variable Indicadora (Indicator Variable) en DB2 SQL embebido?',
-        'opcion_a' => 'Una variable de tipo PIC S9(4) COMP asociada a una variable host para identificar o asignar valores NULOS (NULL)',
-        'opcion_b' => 'Un semáforo para controlar hilos',
-        'opcion_c' => 'Una bandera para saber si la base de datos está en línea',
-        'opcion_d' => 'Un contador de transacciones por segundo',
-        'respuesta_correcta' => 'A',
-        'complejidad' => 'Senior',
-        'explicacion' => 'Si el indicador contiene -1, el valor en la columna de la base de datos es NULL; si es 0, no es nulo.'
-    ],
-    [
-        'pregunta' => '¿En qué consiste el sistema transaccional en línea CICS (Customer Information Control System) de IBM?',
-        'opcion_a' => 'Un sistema operativo para computadoras portátiles',
-        'opcion_b' => 'Un monitor de teleproceso y servidor de aplicaciones de alto rendimiento que gestiona millones de transacciones OLTP en tiempo real en mainframes',
-        'opcion_c' => 'Un compilador de código ensamblador',
-        'opcion_d' => 'Un protocolo de correo electrónico',
-        'respuesta_correcta' => 'B',
-        'complejidad' => 'Senior',
-        'explicacion' => 'CICS es el servidor transaccional líder en la banca y grandes corporaciones, procesando miles de transacciones concurrentes por segundo con latencia mínima.'
-    ],
-    [
-        'pregunta' => '¿Cómo se delimitan las órdenes de CICS dentro de un programa COBOL?',
-        'opcion_a' => 'EXEC CICS orden END-EXEC',
-        'opcion_b' => 'CALL "CICS" USING orden',
-        'opcion_c' => 'CICS: orden ;',
-        'opcion_d' => 'DO CICS orden END-DO',
-        'respuesta_correcta' => 'A',
-        'complejidad' => 'Senior',
-        'explicacion' => 'Las llamadas a la API de CICS se envuelven en sentencias EXEC CICS ... END-EXEC procesadas por el preprocesador/traductor de CICS.'
-    ],
-    [
-        'pregunta' => '¿Qué instrucción de CICS se utiliza para enviar una pantalla formateada (BMS Map) a la terminal del usuario 3270?',
-        'opcion_a' => 'EXEC CICS DISPLAY SCREEN END-EXEC',
-        'opcion_b' => 'EXEC CICS SEND MAP(map-name) MAPSET(mapset-name) END-EXEC',
-        'opcion_c' => 'EXEC CICS SHOW UI END-EXEC',
-        'opcion_d' => 'EXEC CICS WRITE TERMINAL END-EXEC',
-        'respuesta_correcta' => 'B',
-        'complejidad' => 'Senior',
-        'explicacion' => 'SEND MAP envía el mapa BMS formateado (campos protegidos, atributos de color, datos) a la terminal 3270.'
-    ],
-    [
-        'pregunta' => '¿Qué instrucción de CICS se utiliza para leer los datos capturados y teclas de función (AID) presionadas por el usuario?',
-        'opcion_a' => 'EXEC CICS RECEIVE MAP(map-name) MAPSET(mapset-name) END-EXEC',
-        'opcion_b' => 'EXEC CICS GET INPUT END-EXEC',
-        'opcion_c' => 'EXEC CICS READ TERMINAL END-EXEC',
-        'opcion_d' => 'EXEC CICS ACCEPT MAP END-EXEC',
-        'respuesta_correcta' => 'A',
-        'complejidad' => 'Senior',
-        'explicacion' => 'RECEIVE MAP lee los campos ingresados o modificados por el operador y evalúa qué tecla (ENTER, PF1-PF24, CLEAR) presionó.'
-    ],
-    [
-        'pregunta' => '¿Cuál es la función del registro de comunicación DFHCOMMAREA en programas CICS?',
-        'opcion_a' => 'Almacenar la contraseña del administrador del sistema',
-        'opcion_b' => 'Un área de memoria especial en LINKAGE SECTION para pasar datos y conservar el estado entre ejecuciones transaccionales consecutivas',
-        'opcion_c' => 'Controlar la velocidad del procesador',
-        'opcion_d' => 'Guardar los errores en un archivo de texto',
-        'respuesta_correcta' => 'B',
-        'complejidad' => 'Senior',
-        'explicacion' => 'DFHCOMMAREA pasa el contexto y variables de una transacción a la siguiente en el modelo pseudo-conversacional de CICS.'
-    ],
-    [
-        'pregunta' => '¿Qué diferencia existe entre EXEC CICS LINK y EXEC CICS XCTL?',
-        'opcion_a' => 'LINK transfiere el control a otro programa esperando que este regrese (tipo subrutina/CALL); XCTL transfiere el control definitivamente sin esperar retorno al llamador',
-        'opcion_b' => 'XCTL solo funciona en entornos de prueba',
-        'opcion_c' => 'LINK solo sirve para bases de datos',
-        'opcion_d' => 'Son idénticos',
-        'respuesta_correcta' => 'A',
-        'complejidad' => 'Senior',
-        'explicacion' => 'LINK apila la dirección de retorno; XCTL reemplaza el programa en el nivel actual sin conservar punto de retorno.'
-    ],
-    [
-        'pregunta' => '¿Cómo se manejan errores y condiciones excepcionales en CICS moderno?',
-        'opcion_a' => 'Con la opción RESP(variable) en cada comando EXEC CICS y verificando valores de DFHRESP(NORMAL)',
-        'opcion_b' => 'Usando únicamente bloques try-catch',
-        'opcion_c' => 'Revisando los correos del sistema',
-        'opcion_d' => 'Apagando la terminal',
-        'respuesta_correcta' => 'A',
-        'complejidad' => 'Senior',
-        'explicacion' => 'El uso de RESP(ws-resp) y DFHRESP(NORMAL) es la práctica recomendada moderna, reemplazando la instrucción antigua HANDLE CONDITION.'
-    ],
-    [
-        'pregunta' => '¿Para qué sirve el comando EXEC CICS SYNCPOINT en una transacción distribuida o compleja?',
-        'opcion_a' => 'Sincronizar el reloj del servidor',
-        'opcion_b' => 'Comprometer (commit) todas las actualizaciones de bases de datos y colas realizadas hasta el momento, liberando locks y recursos retenidos',
-        'opcion_c' => 'Cerrar la sesión del usuario',
-        'opcion_d' => 'Generar un archivo PDF',
-        'respuesta_correcta' => 'B',
-        'complejidad' => 'Senior',
-        'explicacion' => 'SYNCPOINT confirma los cambios en todos los Resource Managers coordinados (DB2, VSAM, MQ); SYNCPOINT ROLLBACK los revierte.'
-    ],
-    [
-        'pregunta' => '¿Cuál es el propósito del compilador y precompilador al generar el ejecutable de un programa COBOL con DB2 y CICS?',
-        'opcion_a' => 'El precompilador traduce EXEC SQL y EXEC CICS a llamadas CALL nativas de COBOL y genera DBRMs; luego el compilador COBOL compila el código fuente resultante a código objeto',
-        'opcion_b' => 'Comprimir el código en formato ZIP',
-        'opcion_c' => 'Enviar el código por FTP al servidor',
-        'opcion_d' => 'Verificar que no haya faltas de ortografía en los comentarios',
-        'respuesta_correcta' => 'A',
-        'complejidad' => 'Senior',
-        'explicacion' => 'El precompilador convierte las directivas propietarias a estructuras de datos y llamadas CALL estándar antes del paso de compilación.'
-    ],
-    [
-        'pregunta' => '¿En qué consiste el proceso de "BIND" en DB2 para programas COBOL?',
-        'opcion_a' => 'Unir cables de fibra óptica en el centro de datos',
-        'opcion_b' => 'Tomar el Database Request Module (DBRM) generado en la precompilación y construir los planes/paquetes optimizados (Plans/Packages) con las rutas de acceso validadas en el catálogo de DB2',
-        'opcion_c' => 'Copiar el archivo ejecutable al disco C:',
-        'opcion_d' => 'Encriptar la base de datos completa',
-        'respuesta_correcta' => 'B',
-        'complejidad' => 'Senior',
-        'explicacion' => 'BIND optimiza y valida las sentencias SQL estáticas contra el catálogo de DB2, fijando los planes de ejecución para máximo rendimiento.'
-    ],
-    [
-        'pregunta' => '¿Qué es un "Deadlock" (Abrazo Mortal) entre dos programas COBOL que acceden a recursos concurrentes y cómo se mitiga?',
-        'opcion_a' => 'Dos programas esperan mutuamente por recursos bloqueados por el otro (ej: Programa 1 bloquea A y espera B; Programa 2 bloquea B y espera A); se mitiga accediendo a los recursos en el mismo orden secuencial estricto',
-        'opcion_b' => 'La desconexión física de la red eléctrica',
-        'opcion_c' => 'Un fallo en el ventilador del mainframe',
-        'opcion_d' => 'Un bucle infinito en un bucle PERFORM',
-        'respuesta_correcta' => 'A',
-        'complejidad' => 'Senior',
-        'explicacion' => 'Estandarizar el orden de adquisición de locks y mantener transacciones cortas previene bloqueos mutuos que obligan al gestor a hacer rollback.'
-    ],
-    [
-        'pregunta' => '¿Qué significa el concepto de "Idempotencia" en el diseño de programas Batch en COBOL?',
-        'opcion_a' => 'Que el programa solo puede ejecutarse de noche',
-        'opcion_b' => 'Que si el proceso se interrumpe y se reinicia (Restart/Rerun) con los mismos datos, produce exactamente el mismo resultado final sin duplicar transacciones ni saldos',
-        'opcion_c' => 'Que el programa no utiliza variables numéricas',
-        'opcion_d' => 'Que el programa se ejecuta en menos de 1 segundo',
-        'respuesta_correcta' => 'B',
-        'complejidad' => 'Senior',
-        'explicacion' => 'Los procesos Batch robustos implementan puntos de control (Checkpoints) y lógica idempotente para permitir reejecuciones seguras ante fallos.'
-    ],
-    [
-        'pregunta' => '¿Cuál es la función del utility DFSORT / SyncSort en los flujos de trabajo Batch de mainframe?',
-        'opcion_a' => 'Crear interfaces gráficas web',
-        'opcion_b' => 'Ordenar, fusionar (MERGE), filtrar (INCLUDE/OMIT) y re-formatear datasets gigantescos de millones de registros con rendimiento optimizado a nivel de canal de hardware',
-        'opcion_c' => 'Traducir código COBOL a Java',
-        'opcion_d' => 'Gestionar la seguridad de usuarios',
-        'respuesta_correcta' => 'B',
-        'complejidad' => 'Senior',
-        'explicacion' => 'DFSORT es la utilidad estándar de alto rendimiento en mainframe para procesamiento y clasificación masiva de datos en disco/cinta.'
-    ],
-    [
-        'pregunta' => '¿Para qué sirve la cláusula INITIALIZE en COBOL?',
-        'opcion_a' => 'Para reiniciar la máquina virtual de z/OS',
-        'opcion_b' => 'Para limpiar y resetear todos los campos de una estructura de datos: pone ceros en los campos numéricos y espacios en los campos alfanuméricos automáticamente',
-        'opcion_c' => 'Para abrir todos los archivos a la vez',
-        'opcion_d' => 'Para compilar el programa',
-        'respuesta_correcta' => 'B',
-        'complejidad' => 'Senior',
-        'explicacion' => 'INITIALIZE REGISTRO limpia masivamente jerarquías de campos sin necesidad de hacer múltiples sentencias MOVE individuales.'
-    ],
-    [
-        'pregunta' => '¿Qué instrucción se usa para invocar un subprograma dinámicamente en tiempo de ejecución cargándolo por nombre de variable?',
-        'opcion_a' => 'CALL variable-nombre USING ...',
-        'opcion_b' => 'EXEC DYNAMIC-PROGRAM variable',
-        'opcion_c' => 'LOAD PROGRAM variable',
-        'opcion_d' => 'RUN DYNAMIC variable',
-        'respuesta_correcta' => 'A',
-        'complejidad' => 'Senior',
-        'explicacion' => 'Si el identificador es una variable que contiene el nombre del módulo compilado, la opción de compilación DYNAM carga el módulo dinámicamente en memoria.'
-    ],
-    [
-        'pregunta' => '¿Cómo se manejan errores con el mecanismo EVALUATE TRUE en COBOL?',
-        'opcion_a' => 'Permite evaluar múltiples expresiones booleanas complejas independientes en cada rama WHEN sin necesidad de anidar sentencias IF',
-        'opcion_b' => 'Fuerza que todos los cálculos matemáticos sean correctos',
-        'opcion_c' => 'Ignora los errores del sistema',
-        'opcion_d' => 'Solo funciona para variables de tipo texto',
-        'respuesta_correcta' => 'A',
-        'complejidad' => 'Senior',
-        'explicacion' => 'EVALUATE TRUE evalúa expresiones lógicas (ej: WHEN SALDO < 0 AND DIAS > 30) de forma limpia y altamente legible.'
-    ],
-
-    // ==========================================
-    // NIVEL EXPERTO (25 PREGUNTAS)
-    // ==========================================
-    [
-        'pregunta' => '¿En qué consiste la técnica de programación "Pseudo-Conversacional" en CICS y por qué es vital para el rendimiento?',
-        'opcion_a' => 'Mantener el programa activo en memoria esperando que el usuario escriba en la pantalla',
-        'opcion_b' => 'Enviar la pantalla (SEND MAP), guardar el estado en DFHCOMMAREA y TERMINAR la tarea (RETURN TRANSID), liberando hilos y memoria de CICS mientras el operador piensa y teclea',
-        'opcion_c' => 'Simular una conversación de audio con el usuario',
-        'opcion_d' => 'Ejecutar dos transacciones en paralelo sin sincronización',
-        'respuesta_correcta' => 'B',
-        'complejidad' => 'Experto',
-        'explicacion' => 'Una aplicación conversacional pura retendría recursos de CICS durante minutos; la técnica pseudo-conversacional libera memoria en cada interacción humana.'
-    ],
-    [
-        'pregunta' => '¿Qué es el costo MIPS (Million Instructions Per Second) y MSU en mainframes y cómo impacta la optimización de código COBOL?',
-        'opcion_a' => 'Es el costo del consumo eléctrico del centro de datos',
-        'opcion_b' => 'Es la métrica de capacidad de cómputo sobre la cual IBM factura las licencias de software mensual (Rolling 4-Hour Average); optimizar ciclos de CPU en COBOL ahorra millones de dólares a la empresa',
-        'opcion_c' => 'La velocidad de la conexión de red',
-        'opcion_d' => 'El número de pantallas conectadas simultáneamente',
-        'respuesta_correcta' => 'B',
-        'complejidad' => 'Experto',
-        'explicacion' => 'El software de mainframe se factura según el pico de consumo de CPU de 4 horas (R4HA). Código COBOL ineficiente incrementa directamente los costos de licencias IBM.'
-    ],
-    [
-        'pregunta' => '¿Por qué la alineación de palabras (SYNCHRONIZED / SYNC) en variables COMP en COBOL optimiza el rendimiento a nivel de hardware del procesador z/Architecture?',
-        'opcion_a' => 'Evita que la CPU deba realizar dos lecturas de memoria y desplazamientos binarios para acceder a un entero que cruza una frontera de palabra (Halfword, Fullword, Doubleword)',
-        'opcion_b' => 'Sincroniza los programas con el huso horario UTC',
-        'opcion_c' => 'Comprime los datos en memoria en un 50%',
-        'opcion_d' => 'Evita que el código fuente se borre',
-        'respuesta_correcta' => 'A',
-        'complejidad' => 'Experto',
-        'explicacion' => 'Los procesadores z/Architecture leen palabras alineadas de 2, 4 u 8 bytes de forma nativa. Datos desalineados causan dobles lecturas de bus penalizando la CPU.'
-    ],
-    [
-        'pregunta' => '¿Cómo moderniza z/OS Connect Enterprise Edition aplicaciones COBOL tradicionales?',
-        'opcion_a' => 'Reescribiendo automáticamente todo el código COBOL en Python',
-        'opcion_b' => 'Exponiendo programas COBOL (CICS, IMS, DB2) como APIs RESTful JSON estándar sin necesidad de modificar la lógica de negocio subyacente',
-        'opcion_c' => 'Moviendo el mainframe físicamente a la nube pública de Amazon',
-        'opcion_d' => 'Eliminando la necesidad de usar compiladores',
-        'respuesta_correcta' => 'B',
-        'complejidad' => 'Experto',
-        'explicacion' => 'z/OS Connect transforma payloads JSON HTTP en copybooks binarios de COBOL bidireccionalmente con latencia sub-milisegundo.'
-    ],
-    [
-        'pregunta' => '¿Qué ocurre durante un ABEND (Abnormal End) SOC4 en un entorno z/OS?',
-        'opcion_a' => 'Error de división por cero',
-        'opcion_b' => 'Violación de protección de memoria (Protection Exception / Address Translation Fault): el programa intentó leer o escribir en una dirección de memoria no asignada o protegida',
-        'opcion_c' => 'Archivo no encontrado en el catálogo',
-        'opcion_d' => 'Espacio insuficiente en el disco de almacenamiento',
-        'respuesta_correcta' => 'B',
-        'complejidad' => 'Experto',
-        'explicacion' => 'SOC4 (System 0C4) es el fallo de segmentación del mainframe, habitualmente causado por desreferenciar un puntero nulo o invocar un subprograma con Linkage desalineada.'
-    ],
-    [
-        'pregunta' => '¿Qué significa un ABEND SOC7 en COBOL y cuál es su causa raíz más frecuente?',
-        'opcion_a' => 'Fallo de timeout en la conexión TCP',
-        'opcion_b' => 'Data Exception: el procesador intentó ejecutar una instrucción matemática decimal empaquetada (PACK/UNPK) sobre un campo que contiene caracteres no numéricos o espacios',
-        'opcion_c' => 'Contraseña de usuario expirada',
-        'opcion_d' => 'Archivo cerrado inesperadamente',
-        'respuesta_correcta' => 'B',
-        'complejidad' => 'Experto',
-        'explicacion' => 'SOC7 ocurre al operar aritméticamente campos COMP-3 que contienen espacios en blanco (hex 40 en EBCDIC) en lugar de nibbles de dígitos (hex 0-9) y signo (C, D, F).'
-    ],
-    [
-        'pregunta' => '¿Cómo ayuda la opción de compilación OPT(1), OPT(2) u OPT(3) del compilador Enterprise COBOL for z/OS?',
-        'opcion_a' => 'Permite que el compilador aplique optimizaciones de vanguardia específicas para los últimos chips z15/z16 (vectorización SIMD, inlining, eliminación de código muerto, predicción de saltos)',
-        'opcion_b' => 'Reduce el sueldo del programador',
-        'opcion_c' => 'Hace que el código fuente sea secreto',
-        'opcion_d' => 'Elimina las divisiones del programa',
-        'respuesta_correcta' => 'A',
-        'complejidad' => 'Experto',
-        'explicacion' => 'Las versiones recientes de IBM Enterprise COBOL (v5/v6) con optimización avanzada explotan las instrucciones de hardware z/Architecture reduciendo hasta un 20-30% de CPU.'
-    ],
-    [
-        'pregunta' => '¿En qué consiste el estándar Language Environment (LE) en IBM z/OS?',
-        'opcion_a' => 'Un traductor de idiomas para usuarios internacionales',
-        'opcion_b' => 'Una infraestructura de tiempo de ejecución (runtime) unificada que gestiona memoria, pilas (stack/heap), manejo de condiciones y comunicación entre COBOL, C/C++, PL/I y Java',
-        'opcion_c' => 'Un editor de texto en línea',
-        'opcion_d' => 'Un sistema de control de versiones git',
-        'respuesta_correcta' => 'B',
-        'complejidad' => 'Experto',
-        'explicacion' => 'LE unificó los runtimes dispares del mainframe proveyendo un modelo común para llamadas inter-lenguaje, gestión de memoria (HEAPPOLS) y gestión de ABENDs (CEE).'
-    ],
-    [
-        'pregunta' => '¿Cuál es la función del parámetro HEAPPOLS en la configuración de Language Environment para aplicaciones CICS con COBOL?',
-        'opcion_a' => 'Crea piscinas de natación virtuales para los servidores',
-        'opcion_b' => 'Administra pools de almacenamiento dinámico de tamaño fijo para reducir drásticamente las llamadas al kernel del sistema operativo (GETMAIN/FREEMAIN) durante asignaciones frecuentes',
-        'opcion_c' => 'Apaga el servidor si sube la temperatura',
-        'opcion_d' => 'Gestiona las colas de impresión de documentos',
-        'respuesta_correcta' => 'B',
-        'complejidad' => 'Experto',
-        'explicacion' => 'HEAPPOLS optimiza la asignación de memoria preasignando celdas de tamaño común, eliminando contención de locks en tareas concurrentes de CICS.'
-    ],
-    [
-        'pregunta' => '¿Cómo gestiona IBM MQ la mensajería asíncrona de misión crítica en programas COBOL?',
-        'opcion_a' => 'Mediante peticiones HTTP GET cada 5 segundos',
-        'opcion_b' => 'Mediante llamadas a la API MQI (MQCONN, MQOPEN, MQPUT, MQGET, MQCLOSE, MQDISC) garantizando entrega "once-and-only-once" bajo control transaccional de dos fases',
-        'opcion_c' => 'Escribiendo archivos en una carpeta compartida de Windows',
-        'opcion_d' => 'Usando sockets UDP sin confirmación',
-        'respuesta_correcta' => 'B',
-        'complejidad' => 'Experto',
-        'explicacion' => 'MQI en COBOL permite mensajería persistente garantizada y desacoplada integrada con transacciones de CICS y DB2.'
-    ],
-    [
-        'pregunta' => '¿Qué es un "Checkpoint" en procesamiento Batch masivo en mainframe (ej: IMS o DB2) y cómo se implementa?',
-        'opcion_a' => 'Puntos periódicos donde el programa graba su posición actual y hace COMMIT a la base de datos para liberar locks y permitir recuperación (Restart) ante una caída sin reprocesar millones de filas',
-        'opcion_b' => 'Una parada física del disco duro',
-        'opcion_c' => 'Una verificación de la firma digital del programador',
-        'opcion_d' => 'Un archivo temporal que se borra al minuto',
-        'respuesta_correcta' => 'A',
-        'complejidad' => 'Experto',
-        'explicacion' => 'Hacer commit cada N registros (ej: 5,000) evita desbordar los buffers de log de DB2, previene escalamiento de locks de tabla y agiliza el reinicio.'
-    ],
-    [
-        'pregunta' => '¿Cuál es la función de CICS Dynamic Transaction Routing (DTR) en un entorno de alta disponibilidad (CICSPlex SM)?',
-        'opcion_a' => 'Balancear dinámicamente la carga de trabajo transaccional entre múltiples regiones de procesamiento (AORs) en función de la salud, disponibilidad y carga de los sistemas',
-        'opcion_b' => 'Cambiar las rutas de red TCP/IP en los switches físicos',
-        'opcion_c' => 'Desviar las peticiones a servidores de desarrollo',
-        'opcion_d' => 'Enviar las transacciones por correo electrónico',
-        'respuesta_correcta' => 'A',
-        'complejidad' => 'Experto',
-        'explicacion' => 'DTR separa terminales (TORs) de la lógica de aplicación (AORs) permitiendo enrutar transacciones inteligentemente sin interrupción del servicio.'
-    ],
-    [
-        'pregunta' => '¿En qué se diferencian las instrucciones de serialización CS (Compare and Swap) y CDS (Compare Double and Swap) en Assembler/COBOL bajo z/Architecture?',
-        'opcion_a' => 'Permiten sincronización atómica no bloqueante a nivel de hardware multiprocesador sin suspender la tarea en el dispatcher del sistema operativo',
-        'opcion_b' => 'Comparan cadenas de texto para comprobar si son iguales alfabéticamente',
-        'opcion_c' => 'Solo funcionan con unidades de cinta magnética',
-        'opcion_d' => 'Son instrucciones para apagar procesadores secundarios',
-        'respuesta_correcta' => 'A',
-        'complejidad' => 'Experto',
-        'explicacion' => 'CS/CDS son primitivas atómicas nativas esenciales de hardware para implementar colas lock-free y sincronización de alta velocidad en mainframes.'
-    ],
-    [
-        'pregunta' => '¿Qué función cumple la herramienta IBM Fault Analyzer en el diagnóstico de incidentes en producción?',
-        'opcion_a' => 'Repara automáticamente el disco duro',
-        'opcion_b' => 'Intercepta ABENDs, analiza el volcado de memoria (Dump), correlaciona el código objeto con el código fuente y copybooks e identifica con precisión la línea COBOL y el contenido de las variables causantes',
-        'opcion_c' => 'Genera facturas a los clientes morosos',
-        'opcion_d' => 'Bloquea el acceso a internet a los empleados',
-        'respuesta_correcta' => 'B',
-        'complejidad' => 'Experto',
-        'explicacion' => 'Fault Analyzer agiliza el análisis de causa raíz convirtiendo crípticos dumps hexadecimales en reportes comprensibles con líneas fuente exactas.'
-    ],
-    [
-        'pregunta' => '¿Qué ventajas ofrece el soporte nativo de JSON (JSON GENERATE y JSON PARSE) introducido en Enterprise COBOL v6?',
-        'opcion_a' => 'Permite transformar jerarquías de variables de COBOL a cadenas JSON y viceversa directamente en el compilador sin librerías externas complejas de terceros',
-        'opcion_b' => 'Convierte los archivos COBOL en páginas web estáticas',
-        'opcion_c' => 'Reemplaza a las bases de datos relacionales',
-        'opcion_d' => 'Hace que COBOL sea interpretado en lugar de compilado',
-        'respuesta_correcta' => 'A',
-        'complejidad' => 'Experto',
-        'explicacion' => 'JSON GENERATE/PARSE facilita la integración de programas centrales de mainframe con microservicios web y arquitecturas cloud modernas.'
-    ],
-    [
-        'pregunta' => '¿Por qué la directiva de compilación NOSSRANGE es obligatoria en entornos de producción de misión crítica de alta demanda?',
-        'opcion_a' => 'Porque SSRANGE agrega código de verificación de límites de arrays en cada acceso a tablas en ejecución, penalizando sensiblemente el tiempo de CPU y el costo MIPS',
-        'opcion_b' => 'Porque SSRANGE borra el código ejecutable',
-        'opcion_c' => 'Porque desactiva la conexión a la base de datos',
-        'opcion_d' => 'Porque no es compatible con el sistema operativo z/OS',
-        'respuesta_correcta' => 'A',
-        'complejidad' => 'Experto',
-        'explicacion' => 'SSRANGE es ideal para desarrollo y pruebas, pero en producción genera una sobrecarga inaceptable de verificaciones de rango redundantes.'
-    ],
-    [
-        'pregunta' => '¿Cómo funciona la técnica de "Buffer Tuning" en archivos VSAM mediante el parámetro BUFND y BUFNI en el JCL?',
-        'opcion_a' => 'Aumentar BUFND acelera el procesamiento secuencial cargando múltiples intervalos de control de datos a la vez; aumentar BUFNI mantiene los índices en memoria RAM para acelerar búsquedas aleatorias',
-        'opcion_b' => 'Cambia el color de la pantalla en la terminal',
-        'opcion_c' => 'Desactiva los archivos temporales de disco',
-        'opcion_d' => 'Borra los registros antiguos automáticamente',
-        'respuesta_correcta' => 'A',
-        'complejidad' => 'Experto',
-        'explicacion' => 'Optimizar buffers (LSR o NSR) reduce drásticamente las esperas de I/O físico pasando de minutos a segundos en jobs de procesamiento batch.'
-    ],
-    [
-        'pregunta' => '¿Qué es el "Dual-Logging" en DB2 para z/OS y cómo protege la integridad de los datos?',
-        'opcion_a' => 'Escribir simultáneamente los registros de log transaccional activo en dos datasets físicos separados en diferentes discos para garantizar recuperación ante fallos de hardware',
-        'opcion_b' => 'Registrar el log en la pantalla del operador y en papel',
-        'opcion_c' => 'Obligar al usuario a ingresar su clave dos veces',
-        'opcion_d' => 'Guardar los logs en dos idiomas distintos',
-        'respuesta_correcta' => 'A',
-        'complejidad' => 'Experto',
-        'explicacion' => 'El logging dual previene la pérdida de transacciones y permite el recovery continuo de base de datos aun si un disco físico sufre avería catastrófica.'
-    ],
-    [
-        'pregunta' => '¿Cuál es la función del catálogo maestro (Master Catalog) y los catálogos de usuario en IBM z/OS (ICF Catalogs)?',
-        'opcion_a' => 'Mantener el inventario de software y el mapeo de nombres de datasets lógicos hacia los volúmenes físicos de disco (DASD) y direcciones de celda',
-        'opcion_b' => 'Vender productos en línea',
-        'opcion_c' => 'Organizar los correos electrónicos de los empleados',
-        'opcion_d' => 'Controlar el aire acondicionado de la sala de máquinas',
-        'respuesta_correcta' => 'A',
-        'complejidad' => 'Experto',
-        'explicacion' => 'El catálogo ICF es la base de datos estructural del sistema que permite a z/OS localizar cualquier archivo por nombre sin especificar su ubicación física.'
-    ],
-    [
-        'pregunta' => '¿Qué problema introduce el uso de variables globales no reentrantes en programas COBOL compartidos en regiones multiproceso de CICS?',
-        'opcion_a' => 'Corrupción cruzada de datos entre transacciones simultáneas de diferentes usuarios si el programa se carga como RESIDENT/REUSABLE',
-        'opcion_b' => 'El compilador se detiene con error de sintaxis',
-        'opcion_c' => 'La terminal se bloquea temporalmente',
-        'opcion_d' => 'El programa se borra del disco duro',
-        'respuesta_correcta' => 'A',
-        'complejidad' => 'Experto',
-        'explicacion' => 'La reentrancia (opción RENT) garantiza que cada tarea opere sobre su propia copia de datos en memoria dinámica sin sobreescribir la sesión de otros usuarios.'
-    ],
-    [
-        'pregunta' => '¿Qué función cumple la instrucción XML PARSE en COBOL?',
-        'opcion_a' => 'Un parser basado en eventos (similar a SAX) que procesa documentos XML de cualquier tamaño emitiendo eventos al procedimiento de procesamiento sin cargar todo el árbol DOM en memoria',
-        'opcion_b' => 'Convierte archivos XML en imágenes',
-        'opcion_c' => 'Elimina todas las etiquetas XML de un archivo',
-        'opcion_d' => 'Crea una base de datos NoSQL',
-        'respuesta_correcta' => 'A',
-        'complejidad' => 'Experto',
-        'explicacion' => 'El parser XML optimizado por hardware de z/OS analiza streams XML de alta velocidad emitiendo eventos estructurados al handler de COBOL.'
-    ],
-    [
-        'pregunta' => '¿Cómo se garantiza la interoperabilidad y ordenación adecuada entre sistemas EBCDIC (Mainframe) y ASCII/UTF-8 (Sistemas Abiertos / Cloud)?',
-        'opcion_a' => 'No es posible comunicar sistemas EBCDIC con sistemas ASCII',
-        'opcion_b' => 'Mediante tablas de conversión de páginas de códigos (Code Pages como IBM-037 a ISO-8859-1 o UTF-8) y consideración del orden colateral (collating sequence) diferente entre letras y números',
-        'opcion_c' => 'Cambiando el teclado de la computadora',
-        'opcion_d' => 'Reiniciando el mainframe en modo ASCII',
-        'respuesta_correcta' => 'B',
-        'complejidad' => 'Experto',
-        'explicacion' => 'En EBCDIC los números van después de las letras (A-Z luego 0-9), mientras que en ASCII van antes (0-9 luego A-Z), lo que afecta ordenamientos y conversiones binarias.'
-    ],
-    [
-        'pregunta' => '¿Qué impacto tiene el flag de enlace AMODE(31) vs AMODE(64) en programas COBOL modernos?',
-        'opcion_a' => 'AMODE(31) limita el direccionamiento virtual a 2 Gigabytes (Below the Bar), mientras que AMODE(64) permite direccionar terabytes de memoria virtual (Above the Bar de 64 bits)',
-        'opcion_b' => 'AMODE solo sirve para cambiar la resolución de pantalla',
-        'opcion_c' => 'AMODE(64) solo funciona en computadoras portátiles',
-        'opcion_d' => 'No existe AMODE(64) en entornos de mainframe',
-        'respuesta_correcta' => 'A',
-        'complejidad' => 'Experto',
-        'explicacion' => 'Enterprise COBOL v6 soporta direccionamiento de 64 bits permitiendo manipular buffers gigantescos en memoria por encima de la barra de 2GB.'
-    ],
-    [
-        'pregunta' => '¿Qué es y para qué se utiliza el componente Coupling Facility en un clúster Parallel Sysplex de IBM?',
-        'opcion_a' => 'Un microprocesador especializado con memoria compartida ultrarrápida que coordina bloqueos globales (Global Lock Manager), listas de trabajo y cachés compartidas entre múltiples mainframes',
-        'opcion_b' => 'Un cable para conectar impresoras en red',
-        'opcion_c' => 'Un emulador de terminales 3270',
-        'opcion_d' => 'Un software para reproducir música en el centro de cómputo',
-        'respuesta_correcta' => 'A',
-        'complejidad' => 'Experto',
-        'explicacion' => 'Parallel Sysplex logra disponibilidad continua 99.999% coordinando múltiples imágenes z/OS mediante la memoria compartida del Coupling Facility.'
-    ],
-    [
-        'pregunta' => '¿Por qué las estrategias de modernización "Strangler Fig Pattern" son preferidas sobre el enfoque "Big Bang" para sistemas COBOL bancarios centrales?',
-        'opcion_a' => 'Porque el enfoque Big Bang es más barato',
-        'opcion_b' => 'Porque reemplazar gradualmente microservicios individuales alrededor del núcleo COBOL reduce drásticamente el riesgo de interrupciones catastróficas del negocio y permite validación continua en paralelo',
-        'opcion_c' => 'Porque COBOL dejará de funcionar el próximo año',
-        'opcion_d' => 'Porque los reguladores bancarios prohíben cambiar código',
-        'respuesta_correcta' => 'B',
-        'complejidad' => 'Experto',
-        'explicacion' => 'Migrar sistemas bancarios de billones de transacciones de golpe suele fracasar; el patrón Strangler migra capacidades específicas con coexistencia segura.'
-    ]
-];
+return array (
+  0 => 
+  array (
+    'pregunta' => '¿Cuántas divisiones obligatorias o estándar componen la estructura fundamental de un programa COBOL?',
+    'opcion_a' => '2 divisiones',
+    'opcion_b' => '4 divisiones',
+    'opcion_c' => '6 divisiones',
+    'opcion_d' => '8 divisiones',
+    'respuesta_correcta' => 'B',
+    'complejidad' => 'Junior',
+    'explicacion' => 'Un programa COBOL se estructura en 4 divisiones: IDENTIFICATION, ENVIRONMENT, DATA y PROCEDURE DIVISION.',
+  ),
+  1 => 
+  array (
+    'pregunta' => '¿Cuál es la primera división obligatoria en cualquier programa COBOL?',
+    'opcion_a' => 'DATA DIVISION',
+    'opcion_b' => 'PROCEDURE DIVISION',
+    'opcion_c' => 'IDENTIFICATION DIVISION',
+    'opcion_d' => 'ENVIRONMENT DIVISION',
+    'respuesta_correcta' => 'C',
+    'complejidad' => 'Junior',
+    'explicacion' => 'IDENTIFICATION DIVISION es siempre la primera división e identifica el nombre del programa (PROGRAM-ID).',
+  ),
+  2 => 
+  array (
+    'pregunta' => '¿En qué división de un programa COBOL se escribe la lógica de negocio y las instrucciones ejecutables?',
+    'opcion_a' => 'ENVIRONMENT DIVISION',
+    'opcion_b' => 'DATA DIVISION',
+    'opcion_c' => 'PROCEDURE DIVISION',
+    'opcion_d' => 'CONFIGURATION SECTION',
+    'respuesta_correcta' => 'C',
+    'complejidad' => 'Junior',
+    'explicacion' => 'PROCEDURE DIVISION contiene todas las instrucciones ejecutables, párrafos y lógica del algoritmo.',
+  ),
+  3 => 
+  array (
+    'pregunta' => '¿Qué cláusula se utiliza en COBOL para definir el formato y tipo de dato de una variable elemental?',
+    'opcion_a' => 'TYPE IS',
+    'opcion_b' => 'PICTURE (o PIC)',
+    'opcion_c' => 'FORMAT AS',
+    'opcion_d' => 'DEFINE AS',
+    'respuesta_correcta' => 'B',
+    'complejidad' => 'Junior',
+    'explicacion' => 'La cláusula PICTURE (o abreviada PIC) describe la longitud y naturaleza de los datos (alfanumérico, numérico, etc.).',
+  ),
+  4 => 
+  array (
+    'pregunta' => '¿Qué tipo de datos representa el carácter "9" en una cláusula PICTURE en COBOL?',
+    'opcion_a' => 'Caracteres alfabéticos exclusivamente',
+    'opcion_b' => 'Dígitos numéricos (0 al 9)',
+    'opcion_c' => 'Cualquier carácter alfanumérico',
+    'opcion_d' => 'Valores booleanos (True/False)',
+    'respuesta_correcta' => 'B',
+    'complejidad' => 'Junior',
+    'explicacion' => 'El símbolo 9 indica un dato numérico que contiene exclusivamente dígitos del 0 al 9.',
+  ),
+  5 => 
+  array (
+    'pregunta' => '¿Qué tipo de datos representa el carácter "X" en una cláusula PICTURE (ej: PIC X(10))?',
+    'opcion_a' => 'Número entero con signo en tiempo de ejecución',
+    'opcion_b' => 'Carácter alfanumérico (letras, números, símbolos y espacios)',
+    'opcion_c' => 'Número decimal flotante en tiempo de ejecución',
+    'opcion_d' => 'Puntero de memoria binaria',
+    'respuesta_correcta' => 'B',
+    'complejidad' => 'Junior',
+    'explicacion' => 'X representa cualquier carácter alfanumérico. PIC X(10) reserva 10 posiciones de texto alfanumérico.',
+  ),
+  6 => 
+  array (
+    'pregunta' => '¿Qué símbolo en una cláusula PIC indica una posición decimal asumida o virtual sin ocupar espacio físico?',
+    'opcion_a' => 'Punto (.)',
+    'opcion_b' => 'Coma (,)',
+    'opcion_c' => 'V',
+    'opcion_d' => 'S',
+    'respuesta_correcta' => 'C',
+    'complejidad' => 'Junior',
+    'explicacion' => 'La letra V indica la posición del punto decimal implícito/asumido para operaciones matemáticas (ej: PIC 9(3)V99).',
+  ),
+  7 => 
+  array (
+    'pregunta' => '¿Qué símbolo en una cláusula PIC indica que el campo numérico lleva signo operacional?',
+    'opcion_a' => 'S',
+    'opcion_b' => '+',
+    'opcion_c' => '-',
+    'opcion_d' => 'Z',
+    'respuesta_correcta' => 'A',
+    'complejidad' => 'Junior',
+    'explicacion' => 'S se coloca al inicio de una cláusula numérica (ej: PIC S9(4)) para indicar que almacena números positivos o negativos.',
+  ),
+  8 => 
+  array (
+    'pregunta' => '¿Qué verbo de COBOL se utiliza para imprimir mensajes o valores de variables en la consola o archivo de salida?',
+    'opcion_a' => 'PRINT',
+    'opcion_b' => 'OUTPUT',
+    'opcion_c' => 'DISPLAY',
+    'opcion_d' => 'SHOW',
+    'respuesta_correcta' => 'C',
+    'complejidad' => 'Junior',
+    'explicacion' => 'DISPLAY es el verbo estándar en COBOL para enviar datos al dispositivo de salida predeterminado (SYSOUT).',
+  ),
+  9 => 
+  array (
+    'pregunta' => '¿Qué verbo se usa para copiar el contenido de una variable a otra en COBOL?',
+    'opcion_a' => 'SET',
+    'opcion_b' => 'COPY',
+    'opcion_c' => 'ASSIGN',
+    'opcion_d' => 'MOVE',
+    'respuesta_correcta' => 'D',
+    'complejidad' => 'Junior',
+    'explicacion' => 'MOVE copia datos de un campo origen a un campo destino (ej: MOVE WS-ORIGEN TO WS-DESTINO).',
+  ),
+  10 => 
+  array (
+    'pregunta' => '¿Qué instrucción se usa para finalizar formalmente la ejecución de un programa COBOL y devolver el control al sistema operativo?',
+    'opcion_a' => 'EXIT',
+    'opcion_b' => 'FINISH',
+    'opcion_c' => 'STOP RUN',
+    'opcion_d' => 'TERMINATE',
+    'respuesta_correcta' => 'C',
+    'complejidad' => 'Junior',
+    'explicacion' => 'STOP RUN termina la ejecución del programa y cierra todos los recursos devolviendo el control al entorno (SO/JCL).',
+  ),
+  11 => 
+  array (
+    'pregunta' => 'En el formato fijo tradicional de COBOL (tarjetas de 80 columnas), ¿en qué columnas se ubica el "Área A"?',
+    'opcion_a' => 'Columnas 1 a 6',
+    'opcion_b' => 'Columnas 8 a 11',
+    'opcion_c' => 'Columnas 12 a 72',
+    'opcion_d' => 'Columnas 73 a 80',
+    'respuesta_correcta' => 'B',
+    'complejidad' => 'Junior',
+    'explicacion' => 'El Área A abarca las columnas 8 a 11 (nombres de divisiones, secciones, párrafos y niveles 01 y 77).',
+  ),
+  12 => 
+  array (
+    'pregunta' => 'En formato fijo de COBOL, ¿qué carácter en la columna 7 indica que toda la línea es un comentario?',
+    'opcion_a' => '# (numeral)',
+    'opcion_b' => '* (asterisco)',
+    'opcion_c' => '/ (barra diagonal)',
+    'opcion_d' => '- (guión)',
+    'respuesta_correcta' => 'B',
+    'complejidad' => 'Junior',
+    'explicacion' => 'Un asterisco (*) en la columna indicador (columna 7) convierte la línea en un comentario.',
+  ),
+  13 => 
+  array (
+    'pregunta' => '¿En qué sección de la DATA DIVISION se declaran las variables temporales y de trabajo del programa?',
+    'opcion_a' => 'FILE SECTION',
+    'opcion_b' => 'WORKING-STORAGE SECTION',
+    'opcion_c' => 'LINKAGE SECTION',
+    'opcion_d' => 'REPORT SECTION',
+    'respuesta_correcta' => 'B',
+    'complejidad' => 'Junior',
+    'explicacion' => 'WORKING-STORAGE SECTION es donde se declaran variables internas de memoria que persisten durante la ejecución del programa.',
+  ),
+  14 => 
+  array (
+    'pregunta' => '¿Qué número de nivel se utiliza en COBOL para definir el registro raíz o elemento principal de un grupo de datos?',
+    'opcion_a' => '01',
+    'opcion_b' => '05',
+    'opcion_c' => '77',
+    'opcion_d' => '88',
+    'respuesta_correcta' => 'A',
+    'complejidad' => 'Junior',
+    'explicacion' => 'El nivel 01 identifica el registro principal o elemento de datos superior en la jerarquía.',
+  ),
+  15 => 
+  array (
+    'pregunta' => '¿Qué verbo se usa para realizar operaciones aritméticas complejas con fórmulas matemáticas en COBOL?',
+    'opcion_a' => 'CALCULATE',
+    'opcion_b' => 'MATH',
+    'opcion_c' => 'COMPUTE',
+    'opcion_d' => 'EVALUATE',
+    'respuesta_correcta' => 'C',
+    'complejidad' => 'Junior',
+    'explicacion' => 'COMPUTE permite expresiones matemáticas como: COMPUTE TOTAL = (PRECIO * CANTIDAD) * 1.16.',
+  ),
+  16 => 
+  array (
+    'pregunta' => '¿Qué carácter debe colocarse al final de cada sentencia o párrafo en COBOL tradicional para indicar su terminación?',
+    'opcion_a' => 'Punto y coma (;)',
+    'opcion_b' => 'Dos puntos (:)',
+    'opcion_c' => 'Punto (.)',
+    'opcion_d' => 'Llave de cierre (})',
+    'respuesta_correcta' => 'C',
+    'complejidad' => 'Junior',
+    'explicacion' => 'El punto (.) finaliza frases, divisiones, párrafos y sentencias en COBOL.',
+  ),
+  17 => 
+  array (
+    'pregunta' => '¿Qué verbo aritmético se usa para incrementar el valor de una variable en COBOL?',
+    'opcion_a' => 'SUM',
+    'opcion_b' => 'ADD',
+    'opcion_c' => 'INCREMENT',
+    'opcion_d' => 'PLUS',
+    'respuesta_correcta' => 'B',
+    'complejidad' => 'Junior',
+    'explicacion' => 'ADD valor TO variable incrementa el campo numérico con el valor especificado.',
+  ),
+  18 => 
+  array (
+    'pregunta' => '¿Cuál es el propósito del párrafo PROGRAM-ID en IDENTIFICATION DIVISION?',
+    'opcion_a' => 'Definir el número de versión de la base de datos',
+    'opcion_b' => 'Especificar el nombre identificador oficial del programa para el compilador y el linker',
+    'opcion_c' => 'Asignar contraseñas al código fuente',
+    'opcion_d' => 'Conectar con la terminal remota',
+    'respuesta_correcta' => 'B',
+    'complejidad' => 'Junior',
+    'explicacion' => 'PROGRAM-ID. NOMBRE-PROG es el único párrafo obligatorio en la IDENTIFICATION DIVISION.',
+  ),
+  19 => 
+  array (
+    'pregunta' => '¿Qué nivel de datos se utiliza históricamente para variables elementales independientes que no pertenecen a ningún grupo?',
+    'opcion_a' => '01',
+    'opcion_b' => '77',
+    'opcion_c' => '88',
+    'opcion_d' => '66',
+    'respuesta_correcta' => 'B',
+    'complejidad' => 'Junior',
+    'explicacion' => 'El nivel 77 identifica variables independientes (standalone items) que no son registros de grupo ni tienen subdivisiones.',
+  ),
+  20 => 
+  array (
+    'pregunta' => '¿Qué cláusula inicializa una variable con un valor predeterminado al comenzar el programa en WORKING-STORAGE?',
+    'opcion_a' => 'DEFAULT',
+    'opcion_b' => 'INIT',
+    'opcion_c' => 'VALUE',
+    'opcion_d' => 'ASSIGN',
+    'respuesta_correcta' => 'C',
+    'complejidad' => 'Junior',
+    'explicacion' => 'La cláusula VALUE asigna el valor inicial: ej. 05 WS-CONTADOR PIC 9(3) VALUE 0.',
+  ),
+  21 => 
+  array (
+    'pregunta' => '¿Qué verbo se usa para leer datos ingresados interactivamente por el usuario desde la terminal?',
+    'opcion_a' => 'INPUT',
+    'opcion_b' => 'SCAN',
+    'opcion_c' => 'ACCEPT',
+    'opcion_d' => 'READ-LINE',
+    'respuesta_correcta' => 'C',
+    'complejidad' => 'Junior',
+    'explicacion' => 'ACCEPT transfiere datos desde el teclado, consola del operador o reloj del sistema hacia una variable.',
+  ),
+  22 => 
+  array (
+    'pregunta' => '¿Cuál es la longitud máxima habitual del nombre de un identificador/variable en el estándar COBOL-85?',
+    'opcion_a' => '8 caracteres',
+    'opcion_b' => '30 caracteres',
+    'opcion_c' => '64 caracteres',
+    'opcion_d' => '128 caracteres',
+    'respuesta_correcta' => 'B',
+    'complejidad' => 'Junior',
+    'explicacion' => 'En COBOL-85 los identificadores de variables y párrafos pueden tener hasta 30 caracteres (letras, dígitos y guiones).',
+  ),
+  23 => 
+  array (
+    'pregunta' => '¿Qué sucede si mueves una cadena alfanumérica de 10 caracteres a un campo con PIC X(5)?',
+    'opcion_a' => 'Lanza una excepción de desbordamiento en ejecución',
+    'opcion_b' => 'La cadena se trunca por la derecha, copiando solo los primeros 5 caracteres',
+    'opcion_c' => 'El campo de destino se expande a 10 caracteres',
+    'opcion_d' => 'El programa se congela en tiempo de ejecución',
+    'respuesta_correcta' => 'B',
+    'complejidad' => 'Junior',
+    'explicacion' => 'En movimientos alfanuméricos en COBOL, los datos se alinean a la izquierda y se truncan por la derecha si el destino es menor.',
+  ),
+  24 => 
+  array (
+    'pregunta' => '¿Qué verbo se utiliza para transferir el flujo de control temporalmente a otro párrafo y luego regresar?',
+    'opcion_a' => 'GOTO',
+    'opcion_b' => 'JUMP',
+    'opcion_c' => 'CALL-LOCAL',
+    'opcion_d' => 'PERFORM',
+    'respuesta_correcta' => 'D',
+    'complejidad' => 'Junior',
+    'explicacion' => 'PERFORM ejecuta el párrafo o sección especificado y, al terminar, el control regresa a la siguiente instrucción.',
+  ),
+  25 => 
+  array (
+    'pregunta' => '¿Para qué sirve el nivel de datos especial 88 (Nivel 88) en COBOL?',
+    'opcion_a' => 'Definir punteros a memoria directa',
+    'opcion_b' => 'Definir nombres de condición',
+    'opcion_c' => 'Marcar campos como constantes encriptadas',
+    'opcion_d' => 'Indicar variables que no consumen espacio en disco',
+    'respuesta_correcta' => 'B',
+    'complejidad' => 'Semi-Senior',
+    'explicacion' => 'El nivel 88 asigna nombres condicionales legibles: ej. 88 ES-FEMENINO VALUE "F". Permite escribir: IF ES-FEMENINO.',
+  ),
+  26 => 
+  array (
+    'pregunta' => '¿Qué instrucción condicional múltiple introducida en COBOL-85 reemplazó a las complejas cadenas de IF anidados?',
+    'opcion_a' => 'SWITCH',
+    'opcion_b' => 'CASE',
+    'opcion_c' => 'EVALUATE',
+    'opcion_d' => 'CHOOSE',
+    'respuesta_correcta' => 'C',
+    'complejidad' => 'Semi-Senior',
+    'explicacion' => 'EVALUATE es una potente estructura de selección múltiple tipo case, que soporta condiciones compuestas, rangos (THRU) y múltiples sujetos (EVALUATE TRUE ALSO ...).',
+  ),
+  27 => 
+  array (
+    'pregunta' => '¿Cuál es la función de la cláusula REDEFINES en la DATA DIVISION?',
+    'opcion_a' => 'Renombrar un archivo en el sistema operativo',
+    'opcion_b' => 'Permitir que diferentes descripciones de datos o estructuras compartan y ocupen la misma área de memoria física',
+    'opcion_c' => 'Eliminar una variable para liberar memoria dinámica',
+    'opcion_d' => 'Cambiar el tipo de codificación de ASCII a EBCDIC',
+    'respuesta_correcta' => 'B',
+    'complejidad' => 'Semi-Senior',
+    'explicacion' => 'REDEFINES permite interpretar la misma ubicación de memoria con diferentes tipos y desgloses de variables.',
+  ),
+  28 => 
+  array (
+    'pregunta' => '¿Qué diferencia existe entre PERFORM ... UNTIL WITH TEST BEFORE y WITH TEST AFTER?',
+    'opcion_a' => 'WITH TEST BEFORE evalúa la condición antes de cada iteración',
+    'opcion_b' => 'WITH TEST AFTER nunca se ejecuta',
+    'opcion_c' => 'WITH TEST BEFORE solo funciona con números negativos',
+    'opcion_d' => 'Son idénticos en cualquier compilador',
+    'respuesta_correcta' => 'A',
+    'complejidad' => 'Semi-Senior',
+    'explicacion' => 'Por defecto COBOL evalúa TEST BEFORE (puede no ejecutarse ninguna vez si la condición es cierta de inicio). TEST AFTER garantiza al menos 1 ejecución.',
+  ),
+  29 => 
+  array (
+    'pregunta' => '¿Cómo se recorre un bucle iterativo con contador en COBOL utilizando PERFORM?',
+    'opcion_a' => 'PERFORM FOR I = 1 TO 10 en tiempo de ejecución',
+    'opcion_b' => 'PERFORM PARRAFO-PROCESO VARYING INDICE FROM 1 BY 1 UNTIL INDICE > 10',
+    'opcion_c' => 'LOOP INDICE IN 1..10 PERFORM PARRAFO',
+    'opcion_d' => 'REPEAT PARRAFO 10 TIMES en tiempo de ejecución',
+    'respuesta_correcta' => 'B',
+    'complejidad' => 'Semi-Senior',
+    'explicacion' => 'PERFORM ... VARYING ... FROM ... BY ... UNTIL es la sintaxis formal de bucles con incremento en COBOL.',
+  ),
+  30 => 
+  array (
+    'pregunta' => '¿En qué sección de la DATA DIVISION se definen los parámetros recibidos por un subprograma llamado mediante CALL?',
+    'opcion_a' => 'WORKING-STORAGE SECTION',
+    'opcion_b' => 'FILE SECTION',
+    'opcion_c' => 'LINKAGE SECTION',
+    'opcion_d' => 'COMMUNICATION SECTION',
+    'respuesta_correcta' => 'C',
+    'complejidad' => 'Semi-Senior',
+    'explicacion' => 'LINKAGE SECTION describe los datos mapeados en memoria que el programa recibe del programa llamador (invocador).',
+  ),
+  31 => 
+  array (
+    'pregunta' => '¿Cuál es la diferencia entre pasar parámetros CALL ... USING BY REFERENCE y BY CONTENT en COBOL?',
+    'opcion_a' => 'BY REFERENCE pasa la dirección de memoria original',
+    'opcion_b' => 'BY CONTENT es solo para archivos y BY REFERENCE para números',
+    'opcion_c' => 'BY CONTENT pasa punteros de 64 bits',
+    'opcion_d' => 'No hay diferencia técnica',
+    'respuesta_correcta' => 'A',
+    'complejidad' => 'Semi-Senior',
+    'explicacion' => 'BY REFERENCE permite mutación en el programa padre; BY CONTENT crea una copia temporal en memoria que previene alteraciones no deseadas.',
+  ),
+  32 => 
+  array (
+    'pregunta' => '¿Qué instrucción se usa para concatenar múltiples cadenas o variables en una sola variable destino en COBOL?',
+    'opcion_a' => 'CONCAT',
+    'opcion_b' => 'JOIN',
+    'opcion_c' => 'STRING',
+    'opcion_d' => 'MERGE',
+    'respuesta_correcta' => 'C',
+    'complejidad' => 'Semi-Senior',
+    'explicacion' => 'El verbo STRING concatena textos con delimitadores: STRING CAMPO1 DELIMITED BY SPACE CAMPO2 DELIMITED BY SIZE INTO RESULTADO.',
+  ),
+  33 => 
+  array (
+    'pregunta' => '¿Qué instrucción realiza la operación inversa a STRING, dividiendo una cadena en múltiples campos según delimitadores?',
+    'opcion_a' => 'SPLIT',
+    'opcion_b' => 'UNSTRING',
+    'opcion_c' => 'SEPARATE',
+    'opcion_d' => 'DIVIDE-STRING',
+    'respuesta_correcta' => 'B',
+    'complejidad' => 'Semi-Senior',
+    'explicacion' => 'UNSTRING extrae piezas de texto delimitadas por caracteres (comas, espacios) y las distribuye en variables de destino.',
+  ),
+  34 => 
+  array (
+    'pregunta' => '¿Para qué sirve el verbo INSPECT en COBOL?',
+    'opcion_a' => 'Para depurar la memoria con un debugger gráfico',
+    'opcion_b' => 'Para contar la ocurrencia de caracteres específicos o reemplazar',
+    'opcion_c' => 'Para inspeccionar el disco duro en busca de sectores dañados',
+    'opcion_d' => 'Para verificar la sintaxis antes de compilar',
+    'respuesta_correcta' => 'B',
+    'complejidad' => 'Semi-Senior',
+    'explicacion' => 'INSPECT ... TALLYING cuenta caracteres e INSPECT ... REPLACING sustituye caracteres (ej: cambiar espacios por ceros).',
+  ),
+  35 => 
+  array (
+    'pregunta' => '¿Qué formato de almacenamiento numérico representa la cláusula USAGE COMP-3 (o PACKED-DECIMAL)?',
+    'opcion_a' => 'Número en formato texto ASCII/EBCDIC sin comprimir',
+    'opcion_b' => 'Decimal empaquetado',
+    'opcion_c' => 'Número en punto flotante binario IEEE 754 de 64 bits',
+    'opcion_d' => 'Entero binario puro en formato hexadecimal',
+    'respuesta_correcta' => 'B',
+    'complejidad' => 'Semi-Senior',
+    'explicacion' => 'COMP-3 empaqueta dos dígitos por byte aprovechando los 4 bits (nibble) más un nibble final de signo, reduciendo espacio a la mitad en mainframe.',
+  ),
+  36 => 
+  array (
+    'pregunta' => '¿Qué formato de almacenamiento numérico representa USAGE COMP (o COMPUTATIONAL / BINARY)?',
+    'opcion_a' => 'Almacenamiento en binario puro',
+    'opcion_b' => 'Texto plano legible por humanos',
+    'opcion_c' => 'Base 64',
+    'opcion_d' => 'Formato XML embebido',
+    'respuesta_correcta' => 'A',
+    'complejidad' => 'Semi-Senior',
+    'explicacion' => 'COMP/COMPUTATIONAL almacena números como enteros binarios de máquina directos, óptimos para operaciones de CPU aritméticas e indexación.',
+  ),
+  37 => 
+  array (
+    'pregunta' => '¿Qué cláusula se utiliza para declarar arrays o tablas en la DATA DIVISION de COBOL?',
+    'opcion_a' => 'ARRAY',
+    'opcion_b' => 'LIST OF',
+    'opcion_c' => 'OCCURS',
+    'opcion_d' => 'DIMENSION',
+    'respuesta_correcta' => 'C',
+    'complejidad' => 'Semi-Senior',
+    'explicacion' => 'OCCURS especifica el número de repeticiones de un elemento: ej. 05 TABLA-MESES PIC X(10) OCCURS 12 TIMES.',
+  ),
+  38 => 
+  array (
+    'pregunta' => '¿Cuál es la diferencia entre un Subíndice (Subscript) y un Índice (Index / INDEXED BY) al manipular tablas en COBOL?',
+    'opcion_a' => 'Los subíndices son más rápidos que los índices',
+    'opcion_b' => 'Un subíndice es una variable numérica común que representa la posición ordinal (1, 2, ...); un índice almacena internamente el offset/desplazamiento de memoria y se manipula con SET',
+    'opcion_c' => 'Los índices no se pueden usar en sentencias SEARCH',
+    'opcion_d' => 'Son exactamente la misma entidad sintáctica',
+    'respuesta_correcta' => 'B',
+    'complejidad' => 'Semi-Senior',
+    'explicacion' => 'Los índices se manipulan con el verbo SET (SET IND UP BY 1) y contienen el desplazamiento directo en bytes para máxima velocidad de búsqueda.',
+  ),
+  39 => 
+  array (
+    'pregunta' => '¿Qué instrucción se usa para buscar secuencialmente un elemento en una tabla OCCURS en COBOL?',
+    'opcion_a' => 'FIND',
+    'opcion_b' => 'LOOKUP',
+    'opcion_c' => 'SEARCH',
+    'opcion_d' => 'QUERY',
+    'respuesta_correcta' => 'C',
+    'complejidad' => 'Semi-Senior',
+    'explicacion' => 'SEARCH realiza una búsqueda secuencial y SEARCH ALL realiza una búsqueda binaria rápida (exige que la tabla esté ordenada).',
+  ),
+  40 => 
+  array (
+    'pregunta' => '¿Qué requisito obligatorio debe cumplir una tabla para utilizar la instrucción SEARCH ALL (Búsqueda Binaria)?',
+    'opcion_a' => 'Tener menos de 10 elementos',
+    'opcion_b' => 'Tener definida la cláusula ASCENDING/DESCENDING KEY y estar previamente ordenada según dicha clave',
+    'opcion_c' => 'Estar guardada en un disco SSD',
+    'opcion_d' => 'Contener solo datos numéricos positivos',
+    'respuesta_correcta' => 'B',
+    'complejidad' => 'Semi-Senior',
+    'explicacion' => 'La búsqueda binaria requiere orden estricto; de lo contrario el algoritmo descarta mitades incorrectas y produce resultados erróneos.',
+  ),
+  41 => 
+  array (
+    'pregunta' => '¿Cómo se asocia un nombre de archivo lógico de COBOL con el archivo físico o DDNAME del sistema operativo (JCL)?',
+    'opcion_a' => 'En FILE-CONTROL mediante la cláusula SELECT archivo-logico ASSIGN TO ddname',
+    'opcion_b' => 'Mediante el comando OPEN SYSTEM',
+    'opcion_c' => 'En la IDENTIFICATION DIVISION con FILE-LINK',
+    'opcion_d' => 'Escribiendo la ruta en el archivo de logs',
+    'respuesta_correcta' => 'A',
+    'complejidad' => 'Semi-Senior',
+    'explicacion' => 'ENVIRONMENT DIVISION -> INPUT-OUTPUT SECTION -> FILE-CONTROL mapea SELECT archivo-log ASSIGN TO ddname_jcl.',
+  ),
+  42 => 
+  array (
+    'pregunta' => '¿Qué variable especial de dos caracteres numéricos captura el código de retorno de operaciones de archivo (File Status)?',
+    'opcion_a' => 'ERR-CODE',
+    'opcion_b' => 'FILE STATUS (declarado en FILE-CONTROL)',
+    'opcion_c' => 'SQLCODE',
+    'opcion_d' => 'RETURN-VALUE',
+    'respuesta_correcta' => 'B',
+    'complejidad' => 'Semi-Senior',
+    'explicacion' => 'FILE STATUS asigna una variable de 2 caracteres alfanuméricos donde el sistema reporta el estado (ej: "00" = Éxito, "10" = End of File, "23" = Registro no encontrado).',
+  ),
+  43 => 
+  array (
+    'pregunta' => '¿Qué valor en la variable FILE STATUS indica que una operación de archivo (OPEN, READ, WRITE) fue completamente exitosa?',
+    'opcion_a' => '"99"',
+    'opcion_b' => '"00"',
+    'opcion_c' => '"OK"',
+    'opcion_d' => '"10"',
+    'respuesta_correcta' => 'B',
+    'complejidad' => 'Semi-Senior',
+    'explicacion' => 'El código "00" en FILE STATUS representa éxito total de la operación I/O.',
+  ),
+  44 => 
+  array (
+    'pregunta' => '¿Qué valor en FILE STATUS indica la condición de Fin de Archivo (At End / EOF) al ejecutar un READ secuencial?',
+    'opcion_a' => '"10"',
+    'opcion_b' => '"02"',
+    'opcion_c' => '"35"',
+    'opcion_d' => '"41"',
+    'respuesta_correcta' => 'A',
+    'complejidad' => 'Semi-Senior',
+    'explicacion' => 'El código "10" indica que se alcanzó el final del archivo secuencial durante la lectura.',
+  ),
+  45 => 
+  array (
+    'pregunta' => '¿Cuál es la diferencia entre el verbo WRITE y el verbo REWRITE al manipular archivos?',
+    'opcion_a' => 'WRITE escribe un nuevo registro en el archivo',
+    'opcion_b' => 'REWRITE borra el disco',
+    'opcion_c' => 'WRITE solo funciona para impresión en papel',
+    'opcion_d' => 'No hay diferencia funcional',
+    'respuesta_correcta' => 'A',
+    'complejidad' => 'Semi-Senior',
+    'explicacion' => 'WRITE inserta un registro nuevo; REWRITE reemplaza en el archivo el último registro obtenido con READ.',
+  ),
+  46 => 
+  array (
+    'pregunta' => '¿Qué instrucción se usa para incluir el contenido de un archivo de estructuras de datos externo (Copybook) en tiempo de compilación?',
+    'opcion_a' => 'IMPORT copybook-name',
+    'opcion_b' => 'INCLUDE copybook-name',
+    'opcion_c' => 'COPY copybook-name',
+    'opcion_d' => 'REQUIRE copybook-name',
+    'respuesta_correcta' => 'C',
+    'complejidad' => 'Semi-Senior',
+    'explicacion' => 'COPY nombre-copybook inserta el código del copybook (definiciones de registros, variables compartidas) en la posición indicada antes de compilar.',
+  ),
+  47 => 
+  array (
+    'pregunta' => '¿Qué cláusula previene un error de división por cero o desbordamiento numérico en cálculos de COBOL?',
+    'opcion_a' => 'TRY-CATCH',
+    'opcion_b' => 'ON SIZE ERROR',
+    'opcion_c' => 'EXCEPTION WHEN',
+    'opcion_d' => 'IF OVERFLOW',
+    'respuesta_correcta' => 'B',
+    'complejidad' => 'Semi-Senior',
+    'explicacion' => 'ON SIZE ERROR captura truncamientos por tamaño o divisiones entre cero permitiendo ejecutar lógica correctiva.',
+  ),
+  48 => 
+  array (
+    'pregunta' => '¿Para qué sirve el delimitador de ámbito explícito END-IF, END-PERFORM, END-EVALUATE en COBOL-85?',
+    'opcion_a' => 'Para cerrar bloques de código estructurado evitando ambigüedades sin necesidad de utilizar el punto (.)',
+    'opcion_b' => 'Para aumentar el tamaño del ejecutable',
+    'opcion_c' => 'Para liberar la memoria asignada a variables',
+    'opcion_d' => 'Para reiniciar el programa',
+    'respuesta_correcta' => 'A',
+    'complejidad' => 'Semi-Senior',
+    'explicacion' => 'Los scope terminators (END-*) permiten programación estructurada limpia eliminando errores causados por puntos inadvertidos.',
+  ),
+  49 => 
+  array (
+    'pregunta' => '¿Qué registro especial predefinido en COBOL almacena el código de retorno numérico devuelto por un programa o subprograma?',
+    'opcion_a' => 'SYS-STATUS',
+    'opcion_b' => 'RETURN-CODE',
+    'opcion_c' => 'EXIT-CODE',
+    'opcion_d' => 'JOB-RC',
+    'respuesta_correcta' => 'B',
+    'complejidad' => 'Semi-Senior',
+    'explicacion' => 'MOVE 4 TO RETURN-CODE establece el Return Code (RC) que evalúa el paso de JCL (Job Control Language) en el mainframe.',
+  ),
+  50 => 
+  array (
+    'pregunta' => '¿Cuáles son los tres tipos principales de archivos VSAM (Virtual Storage Access Method) en entornos z/OS de IBM?',
+    'opcion_a' => 'FAT32, NTFS y EXT4 en tiempo de ejecución',
+    'opcion_b' => 'KSDS (Key-Sequenced), ESDS (Entry-Sequenced) y RRDS (Relative-Record Dataset)',
+    'opcion_c' => 'JSON, XML y CSV en tiempo de ejecución',
+    'opcion_d' => 'B-Tree, Hash-Table y Heap-File',
+    'respuesta_correcta' => 'B',
+    'complejidad' => 'Senior',
+    'explicacion' => 'VSAM en IBM Mainframe se categoriza en KSDS (acceso por clave indexada), ESDS (secuencial por orden de llegada) y RRDS (acceso por número relativo de slot).',
+  ),
+  51 => 
+  array (
+    'pregunta' => '¿Cómo se estructuran internamente los archivos VSAM KSDS en disco?',
+    'opcion_a' => 'En un archivo plano sin ordenación',
+    'opcion_b' => 'En dos componentes físicos: un Componente de Índice',
+    'opcion_c' => 'En una tabla de base de datos MySQL',
+    'opcion_d' => 'En bloques magnéticos no formateados',
+    'respuesta_correcta' => 'B',
+    'complejidad' => 'Senior',
+    'explicacion' => 'KSDS organiza los registros en Control Intervals (CI) dentro de Control Areas (CA) gobernados por un componente de índice multinivel.',
+  ),
+  52 => 
+  array (
+    'pregunta' => '¿Qué causa un "CI Split" (División de Intervalo de Control) en un archivo VSAM KSDS y qué impacto tiene?',
+    'opcion_a' => 'Un fallo en la controladora de disco',
+    'opcion_b' => 'Ocurre cuando se inserta un registro en un CI que no tiene suficiente espacio libre; la mitad de los registros se mueven a un nuevo CI, generando degradación de rendimiento I/O',
+    'opcion_c' => 'La eliminación de registros duplicados',
+    'opcion_d' => 'El cambio de codificación de caracteres',
+    'respuesta_correcta' => 'B',
+    'complejidad' => 'Senior',
+    'explicacion' => 'Los CI y CA splits generan fragmentación y lecturas indirectas; se monitorean con LISTCAT y se resuelven reorganizando el dataset (REPRO).',
+  ),
+  53 => 
+  array (
+    'pregunta' => '¿Cómo se embeben sentencias de base de datos relacional DB2 SQL dentro de un programa COBOL?',
+    'opcion_a' => 'Llamando a la función db2_query()',
+    'opcion_b' => 'Delimitando las sentencias entre las directivas EXEC SQL y END-EXEC',
+    'opcion_c' => 'Escribiendo consultas en un archivo .sql externo',
+    'opcion_d' => 'Mediante el verbo QUERY DB2',
+    'respuesta_correcta' => 'B',
+    'complejidad' => 'Senior',
+    'explicacion' => 'EXEC SQL ... END-EXEC es la sintaxis estándar para SQL estático embebido procesado por el precompilador de DB2.',
+  ),
+  54 => 
+  array (
+    'pregunta' => '¿Qué variable especial de comunicación de DB2 se inspecciona tras cada sentencia SQL embebida?',
+    'opcion_a' => 'DB2-STATUS',
+    'opcion_b' => 'SQLCODE (dentro de la estructura SQLCA)',
+    'opcion_c' => 'FILE-STATUS',
+    'opcion_d' => 'ERR-NUM',
+    'respuesta_correcta' => 'B',
+    'complejidad' => 'Senior',
+    'explicacion' => 'SQLCODE = 0 indica éxito; +100 indica fila no encontrada o fin de cursor; valores negativos indican errores graves.',
+  ),
+  55 => 
+  array (
+    'pregunta' => '¿Qué significa un SQLCODE = +100 en DB2 embebido tras ejecutar una sentencia SELECT INTO o FETCH?',
+    'opcion_a' => 'Error de sintaxis en la consulta',
+    'opcion_b' => 'Fila no encontrada (No row found) o se alcanzó el final de las filas del Cursor',
+    'opcion_c' => 'La base de datos se encuentra bloqueada por otro usuario',
+    'opcion_d' => 'Operación completada con advertencia de desbordamiento',
+    'respuesta_correcta' => 'B',
+    'complejidad' => 'Senior',
+    'explicacion' => '+100 indica condición normal de no coincidencia o cursor agotado (análogo a EOF).',
+  ),
+  56 => 
+  array (
+    'pregunta' => '¿Para qué sirve declarar variables anfitrionas (Host Variables) con dos puntos precedentes (:VARIABLE) en DB2 SQL embebido?',
+    'opcion_a' => 'Para que el motor de DB2 distinga las variables del programa COBOL de los nombres de columnas de las tablas de la base de datos',
+    'opcion_b' => 'Para encriptar el valor de la variable',
+    'opcion_c' => 'Para indicar que la variable es una constante global',
+    'opcion_d' => 'Es un requerimiento estético sin función práctica',
+    'respuesta_correcta' => 'A',
+    'complejidad' => 'Senior',
+    'explicacion' => 'Los dos puntos (ej: WHERE ID = :WS-ID) señalan al precompilador que se trata de una variable definida en la sección de datos de COBOL.',
+  ),
+  57 => 
+  array (
+    'pregunta' => '¿Cuál es el ciclo de vida completo para procesar un conjunto de filas con un Cursor en DB2 COBOL?',
+    'opcion_a' => 'DECLARE CURSOR -> OPEN -> bucle con FETCH -> CLOSE',
+    'opcion_b' => 'OPEN -> READ -> WRITE -> CLOSE',
+    'opcion_c' => 'SELECT -> LOOP -> END en tiempo de ejecución',
+    'opcion_d' => 'INIT CURSOR -> POPULATE -> DESTROY',
+    'respuesta_correcta' => 'A',
+    'complejidad' => 'Senior',
+    'explicacion' => 'Se declara el cursor con DECLARE, se abre con OPEN para materializar el result set, se itera con FETCH y se libera con CLOSE.',
+  ),
+  58 => 
+  array (
+    'pregunta' => '¿Qué es y para qué sirve una Variable Indicadora (Indicator Variable) en DB2 SQL embebido?',
+    'opcion_a' => 'Una variable de tipo PIC S9',
+    'opcion_b' => 'Un semáforo para controlar hilos',
+    'opcion_c' => 'Una bandera para saber si la base de datos está en línea',
+    'opcion_d' => 'Un contador de transacciones por segundo',
+    'respuesta_correcta' => 'A',
+    'complejidad' => 'Senior',
+    'explicacion' => 'Si el indicador contiene -1, el valor en la columna de la base de datos es NULL; si es 0, no es nulo.',
+  ),
+  59 => 
+  array (
+    'pregunta' => '¿En qué consiste el sistema transaccional en línea CICS (Customer Information Control System) de IBM?',
+    'opcion_a' => 'Un sistema operativo para computadoras portátiles',
+    'opcion_b' => 'Un monitor de teleproceso y servidor de aplicaciones de alto rendimiento que gestiona millones de transacciones OLTP en tiempo real en mainframes',
+    'opcion_c' => 'Un compilador de código ensamblador',
+    'opcion_d' => 'Un protocolo de correo electrónico',
+    'respuesta_correcta' => 'B',
+    'complejidad' => 'Senior',
+    'explicacion' => 'CICS es el servidor transaccional líder en la banca y grandes corporaciones, procesando miles de transacciones concurrentes por segundo con latencia mínima.',
+  ),
+  60 => 
+  array (
+    'pregunta' => '¿Cómo se delimitan las órdenes de CICS dentro de un programa COBOL?',
+    'opcion_a' => 'EXEC CICS orden END-EXEC',
+    'opcion_b' => 'CALL "CICS" USING orden',
+    'opcion_c' => 'CICS: orden ;',
+    'opcion_d' => 'DO CICS orden END-DO',
+    'respuesta_correcta' => 'A',
+    'complejidad' => 'Senior',
+    'explicacion' => 'Las llamadas a la API de CICS se envuelven en sentencias EXEC CICS ... END-EXEC procesadas por el preprocesador/traductor de CICS.',
+  ),
+  61 => 
+  array (
+    'pregunta' => '¿Qué instrucción de CICS se utiliza para enviar una pantalla formateada (BMS Map) a la terminal del usuario 3270?',
+    'opcion_a' => 'EXEC CICS DISPLAY SCREEN END-EXEC',
+    'opcion_b' => 'EXEC CICS SEND MAP(map-name) MAPSET(mapset-name) END-EXEC',
+    'opcion_c' => 'EXEC CICS SHOW UI END-EXEC',
+    'opcion_d' => 'EXEC CICS WRITE TERMINAL END-EXEC',
+    'respuesta_correcta' => 'B',
+    'complejidad' => 'Senior',
+    'explicacion' => 'SEND MAP envía el mapa BMS formateado (campos protegidos, atributos de color, datos) a la terminal 3270.',
+  ),
+  62 => 
+  array (
+    'pregunta' => '¿Qué instrucción de CICS se utiliza para leer los datos capturados y teclas de función (AID) presionadas por el usuario?',
+    'opcion_a' => 'EXEC CICS RECEIVE MAP(map-name) MAPSET(mapset-name) END-EXEC',
+    'opcion_b' => 'EXEC CICS GET INPUT END-EXEC',
+    'opcion_c' => 'EXEC CICS READ TERMINAL END-EXEC',
+    'opcion_d' => 'EXEC CICS ACCEPT MAP END-EXEC',
+    'respuesta_correcta' => 'A',
+    'complejidad' => 'Senior',
+    'explicacion' => 'RECEIVE MAP lee los campos ingresados o modificados por el operador y evalúa qué tecla (ENTER, PF1-PF24, CLEAR) presionó.',
+  ),
+  63 => 
+  array (
+    'pregunta' => '¿Cuál es la función del registro de comunicación DFHCOMMAREA en programas CICS?',
+    'opcion_a' => 'Almacenar la contraseña del administrador del sistema',
+    'opcion_b' => 'Un área de memoria especial en LINKAGE SECTION para pasar datos y conservar el estado entre ejecuciones transaccionales consecutivas',
+    'opcion_c' => 'Controlar la velocidad del procesador',
+    'opcion_d' => 'Guardar los errores en un archivo de texto',
+    'respuesta_correcta' => 'B',
+    'complejidad' => 'Senior',
+    'explicacion' => 'DFHCOMMAREA pasa el contexto y variables de una transacción a la siguiente en el modelo pseudo-conversacional de CICS.',
+  ),
+  64 => 
+  array (
+    'pregunta' => '¿Qué diferencia existe entre EXEC CICS LINK y EXEC CICS XCTL?',
+    'opcion_a' => 'LINK transfiere el control a otro programa esperando que este regrese',
+    'opcion_b' => 'XCTL solo funciona en entornos de prueba',
+    'opcion_c' => 'LINK solo sirve para bases de datos',
+    'opcion_d' => 'Son idénticos en tiempo de ejecución',
+    'respuesta_correcta' => 'A',
+    'complejidad' => 'Senior',
+    'explicacion' => 'LINK apila la dirección de retorno; XCTL reemplaza el programa en el nivel actual sin conservar punto de retorno.',
+  ),
+  65 => 
+  array (
+    'pregunta' => '¿Cómo se manejan errores y condiciones excepcionales en CICS moderno?',
+    'opcion_a' => 'Con la opción RESP(variable) en cada comando EXEC CICS y verificando valores de DFHRESP(NORMAL)',
+    'opcion_b' => 'Usando únicamente bloques try-catch',
+    'opcion_c' => 'Revisando los correos del sistema',
+    'opcion_d' => 'Apagando la terminal en tiempo de ejecución',
+    'respuesta_correcta' => 'A',
+    'complejidad' => 'Senior',
+    'explicacion' => 'El uso de RESP(ws-resp) y DFHRESP(NORMAL) es la práctica recomendada moderna, reemplazando la instrucción antigua HANDLE CONDITION.',
+  ),
+  66 => 
+  array (
+    'pregunta' => '¿Para qué sirve el comando EXEC CICS SYNCPOINT en una transacción distribuida o compleja?',
+    'opcion_a' => 'Sincronizar el reloj del servidor',
+    'opcion_b' => 'Comprometer (commit) todas las actualizaciones de bases de datos y colas realizadas hasta el momento, liberando locks y recursos retenidos',
+    'opcion_c' => 'Cerrar la sesión del usuario',
+    'opcion_d' => 'Generar un archivo PDF en tiempo de ejecución',
+    'respuesta_correcta' => 'B',
+    'complejidad' => 'Senior',
+    'explicacion' => 'SYNCPOINT confirma los cambios en todos los Resource Managers coordinados (DB2, VSAM, MQ); SYNCPOINT ROLLBACK los revierte.',
+  ),
+  67 => 
+  array (
+    'pregunta' => '¿Cuál es el propósito del compilador y precompilador al generar el ejecutable de un programa COBOL con DB2 y CICS?',
+    'opcion_a' => 'El precompilador traduce EXEC SQL y EXEC CICS a llamadas CALL nativas de COBOL y genera DBRMs; luego el compilador COBOL compila el código fuente resultante a código objeto',
+    'opcion_b' => 'Comprimir el código en formato ZIP',
+    'opcion_c' => 'Enviar el código por FTP al servidor',
+    'opcion_d' => 'Verificar que no haya faltas de ortografía en los comentarios',
+    'respuesta_correcta' => 'A',
+    'complejidad' => 'Senior',
+    'explicacion' => 'El precompilador convierte las directivas propietarias a estructuras de datos y llamadas CALL estándar antes del paso de compilación.',
+  ),
+  68 => 
+  array (
+    'pregunta' => '¿En qué consiste el proceso de "BIND" en DB2 para programas COBOL?',
+    'opcion_a' => 'Unir cables de fibra óptica en el centro de datos',
+    'opcion_b' => 'Tomar el Database Request Module',
+    'opcion_c' => 'Copiar el archivo ejecutable al disco C:',
+    'opcion_d' => 'Encriptar la base de datos completa',
+    'respuesta_correcta' => 'B',
+    'complejidad' => 'Senior',
+    'explicacion' => 'BIND optimiza y valida las sentencias SQL estáticas contra el catálogo de DB2, fijando los planes de ejecución para máximo rendimiento.',
+  ),
+  69 => 
+  array (
+    'pregunta' => '¿Qué es un "Deadlock" (Abrazo Mortal) entre dos programas COBOL que acceden a recursos concurrentes y cómo se mitiga?',
+    'opcion_a' => 'Dos programas esperan mutuamente por recursos bloqueados por el otro',
+    'opcion_b' => 'La desconexión física de la red eléctrica',
+    'opcion_c' => 'Un fallo en el ventilador del mainframe',
+    'opcion_d' => 'Un bucle infinito en un bucle PERFORM',
+    'respuesta_correcta' => 'A',
+    'complejidad' => 'Senior',
+    'explicacion' => 'Estandarizar el orden de adquisición de locks y mantener transacciones cortas previene bloqueos mutuos que obligan al gestor a hacer rollback.',
+  ),
+  70 => 
+  array (
+    'pregunta' => '¿Qué significa el concepto de "Idempotencia" en el diseño de programas Batch en COBOL?',
+    'opcion_a' => 'Que el programa solo puede ejecutarse de noche',
+    'opcion_b' => 'Que si el proceso se interrumpe y se reinicia',
+    'opcion_c' => 'Que el programa no utiliza variables numéricas',
+    'opcion_d' => 'Que el programa se ejecuta en menos de 1 segundo',
+    'respuesta_correcta' => 'B',
+    'complejidad' => 'Senior',
+    'explicacion' => 'Los procesos Batch robustos implementan puntos de control (Checkpoints) y lógica idempotente para permitir reejecuciones seguras ante fallos.',
+  ),
+  71 => 
+  array (
+    'pregunta' => '¿Cuál es la función del utility DFSORT / SyncSort en los flujos de trabajo Batch de mainframe?',
+    'opcion_a' => 'Crear interfaces gráficas web',
+    'opcion_b' => 'Ordenar, fusionar (MERGE), filtrar (INCLUDE/OMIT) y re-formatear datasets gigantescos de millones de registros con rendimiento optimizado a nivel de canal de hardware',
+    'opcion_c' => 'Traducir código COBOL a Java',
+    'opcion_d' => 'Gestionar la seguridad de usuarios',
+    'respuesta_correcta' => 'B',
+    'complejidad' => 'Senior',
+    'explicacion' => 'DFSORT es la utilidad estándar de alto rendimiento en mainframe para procesamiento y clasificación masiva de datos en disco/cinta.',
+  ),
+  72 => 
+  array (
+    'pregunta' => '¿Para qué sirve la cláusula INITIALIZE en COBOL?',
+    'opcion_a' => 'Para reiniciar la máquina virtual de z/OS',
+    'opcion_b' => 'Para limpiar y resetear todos los campos de una estructura de datos: pone ceros en los campos numéricos y espacios en los campos alfanuméricos automáticamente',
+    'opcion_c' => 'Para abrir todos los archivos a la vez',
+    'opcion_d' => 'Para compilar el programa',
+    'respuesta_correcta' => 'B',
+    'complejidad' => 'Senior',
+    'explicacion' => 'INITIALIZE REGISTRO limpia masivamente jerarquías de campos sin necesidad de hacer múltiples sentencias MOVE individuales.',
+  ),
+  73 => 
+  array (
+    'pregunta' => '¿Qué instrucción se usa para invocar un subprograma dinámicamente en tiempo de ejecución cargándolo por nombre de variable?',
+    'opcion_a' => 'CALL variable-nombre USING ...',
+    'opcion_b' => 'EXEC DYNAMIC-PROGRAM variable',
+    'opcion_c' => 'LOAD PROGRAM variable',
+    'opcion_d' => 'RUN DYNAMIC variable',
+    'respuesta_correcta' => 'A',
+    'complejidad' => 'Senior',
+    'explicacion' => 'Si el identificador es una variable que contiene el nombre del módulo compilado, la opción de compilación DYNAM carga el módulo dinámicamente en memoria.',
+  ),
+  74 => 
+  array (
+    'pregunta' => '¿Cómo se manejan errores con el mecanismo EVALUATE TRUE en COBOL?',
+    'opcion_a' => 'Permite evaluar múltiples expresiones booleanas complejas independientes en cada rama WHEN sin necesidad de anidar sentencias IF',
+    'opcion_b' => 'Fuerza que todos los cálculos matemáticos sean correctos',
+    'opcion_c' => 'Ignora los errores del sistema',
+    'opcion_d' => 'Solo funciona para variables de tipo texto',
+    'respuesta_correcta' => 'A',
+    'complejidad' => 'Senior',
+    'explicacion' => 'EVALUATE TRUE evalúa expresiones lógicas (ej: WHEN SALDO < 0 AND DIAS > 30) de forma limpia y altamente legible.',
+  ),
+  75 => 
+  array (
+    'pregunta' => '¿En qué consiste la técnica de programación "Pseudo-Conversacional" en CICS y por qué es vital para el rendimiento?',
+    'opcion_a' => 'Mantener el programa activo en memoria esperando que el usuario escriba en la pantalla',
+    'opcion_b' => 'Enviar la pantalla (SEND MAP), guardar el estado en DFHCOMMAREA y TERMINAR la tarea (RETURN TRANSID), liberando hilos y memoria de CICS mientras el operador piensa y teclea',
+    'opcion_c' => 'Simular una conversación de audio con el usuario',
+    'opcion_d' => 'Ejecutar dos transacciones en paralelo sin sincronización',
+    'respuesta_correcta' => 'B',
+    'complejidad' => 'Experto',
+    'explicacion' => 'Una aplicación conversacional pura retendría recursos de CICS durante minutos; la técnica pseudo-conversacional libera memoria en cada interacción humana.',
+  ),
+  76 => 
+  array (
+    'pregunta' => '¿Qué es el costo MIPS (Million Instructions Per Second) y MSU en mainframes y cómo impacta la optimización de código COBOL?',
+    'opcion_a' => 'Es el costo del consumo eléctrico del centro de datos',
+    'opcion_b' => 'Es la métrica de capacidad de cómputo sobre la cual IBM factura las licencias de software mensual (Rolling 4-Hour Average); optimizar ciclos de CPU en COBOL ahorra millones de dólares a la empresa',
+    'opcion_c' => 'La velocidad de la conexión de red',
+    'opcion_d' => 'El número de pantallas conectadas simultáneamente',
+    'respuesta_correcta' => 'B',
+    'complejidad' => 'Experto',
+    'explicacion' => 'El software de mainframe se factura según el pico de consumo de CPU de 4 horas (R4HA). Código COBOL ineficiente incrementa directamente los costos de licencias IBM.',
+  ),
+  77 => 
+  array (
+    'pregunta' => '¿Por qué la alineación de palabras (SYNCHRONIZED / SYNC) en variables COMP en COBOL optimiza el rendimiento a nivel de hardware del procesador z/Architecture?',
+    'opcion_a' => 'Evita que la CPU deba realizar dos lecturas de memoria y desplazamientos binarios para acceder a un entero que cruza una frontera de palabra (Halfword, Fullword, Doubleword)',
+    'opcion_b' => 'Sincroniza los programas con el huso horario UTC',
+    'opcion_c' => 'Comprime los datos en memoria en un 50%',
+    'opcion_d' => 'Evita que el código fuente se borre',
+    'respuesta_correcta' => 'A',
+    'complejidad' => 'Experto',
+    'explicacion' => 'Los procesadores z/Architecture leen palabras alineadas de 2, 4 u 8 bytes de forma nativa. Datos desalineados causan dobles lecturas de bus penalizando la CPU.',
+  ),
+  78 => 
+  array (
+    'pregunta' => '¿Cómo moderniza z/OS Connect Enterprise Edition aplicaciones COBOL tradicionales?',
+    'opcion_a' => 'Reescribiendo automáticamente todo el código COBOL en Python',
+    'opcion_b' => 'Exponiendo programas COBOL',
+    'opcion_c' => 'Moviendo el mainframe físicamente a la nube pública de Amazon',
+    'opcion_d' => 'Eliminando la necesidad de usar compiladores',
+    'respuesta_correcta' => 'B',
+    'complejidad' => 'Experto',
+    'explicacion' => 'z/OS Connect transforma payloads JSON HTTP en copybooks binarios de COBOL bidireccionalmente con latencia sub-milisegundo.',
+  ),
+  79 => 
+  array (
+    'pregunta' => '¿Qué ocurre durante un ABEND (Abnormal End) SOC4 en un entorno z/OS?',
+    'opcion_a' => 'Error de división por cero',
+    'opcion_b' => 'Violación de protección de memoria',
+    'opcion_c' => 'Archivo no encontrado en el catálogo',
+    'opcion_d' => 'Espacio insuficiente en el disco de almacenamiento',
+    'respuesta_correcta' => 'B',
+    'complejidad' => 'Experto',
+    'explicacion' => 'SOC4 (System 0C4) es el fallo de segmentación del mainframe, habitualmente causado por desreferenciar un puntero nulo o invocar un subprograma con Linkage desalineada.',
+  ),
+  80 => 
+  array (
+    'pregunta' => '¿Qué significa un ABEND SOC7 en COBOL y cuál es su causa raíz más frecuente?',
+    'opcion_a' => 'Fallo de timeout en la conexión TCP',
+    'opcion_b' => 'Data Exception: el procesador intentó ejecutar una instrucción matemática decimal empaquetada (PACK/UNPK) sobre un campo que contiene caracteres no numéricos o espacios',
+    'opcion_c' => 'Contraseña de usuario expirada',
+    'opcion_d' => 'Archivo cerrado inesperadamente',
+    'respuesta_correcta' => 'B',
+    'complejidad' => 'Experto',
+    'explicacion' => 'SOC7 ocurre al operar aritméticamente campos COMP-3 que contienen espacios en blanco (hex 40 en EBCDIC) en lugar de nibbles de dígitos (hex 0-9) y signo (C, D, F).',
+  ),
+  81 => 
+  array (
+    'pregunta' => '¿Cómo ayuda la opción de compilación OPT(1), OPT(2) u OPT(3) del compilador Enterprise COBOL for z/OS?',
+    'opcion_a' => 'Permite que el compilador aplique optimizaciones de vanguardia específicas para los últimos chips z15/z16 (vectorización SIMD, inlining, eliminación de código muerto, predicción de saltos)',
+    'opcion_b' => 'Reduce el sueldo del programador',
+    'opcion_c' => 'Hace que el código fuente sea secreto',
+    'opcion_d' => 'Elimina las divisiones del programa',
+    'respuesta_correcta' => 'A',
+    'complejidad' => 'Experto',
+    'explicacion' => 'Las versiones recientes de IBM Enterprise COBOL (v5/v6) con optimización avanzada explotan las instrucciones de hardware z/Architecture reduciendo hasta un 20-30% de CPU.',
+  ),
+  82 => 
+  array (
+    'pregunta' => '¿En qué consiste el estándar Language Environment (LE) en IBM z/OS?',
+    'opcion_a' => 'Un traductor de idiomas para usuarios internacionales',
+    'opcion_b' => 'Una infraestructura de tiempo de ejecución',
+    'opcion_c' => 'Un editor de texto en línea',
+    'opcion_d' => 'Un sistema de control de versiones git',
+    'respuesta_correcta' => 'B',
+    'complejidad' => 'Experto',
+    'explicacion' => 'LE unificó los runtimes dispares del mainframe proveyendo un modelo común para llamadas inter-lenguaje, gestión de memoria (HEAPPOLS) y gestión de ABENDs (CEE).',
+  ),
+  83 => 
+  array (
+    'pregunta' => '¿Cuál es la función del parámetro HEAPPOLS en la configuración de Language Environment para aplicaciones CICS con COBOL?',
+    'opcion_a' => 'Crea piscinas de natación virtuales para los servidores',
+    'opcion_b' => 'Administra pools de almacenamiento dinámico de tamaño fijo para reducir drásticamente las llamadas al kernel del sistema operativo (GETMAIN/FREEMAIN) durante asignaciones frecuentes',
+    'opcion_c' => 'Apaga el servidor si sube la temperatura',
+    'opcion_d' => 'Gestiona las colas de impresión de documentos',
+    'respuesta_correcta' => 'B',
+    'complejidad' => 'Experto',
+    'explicacion' => 'HEAPPOLS optimiza la asignación de memoria preasignando celdas de tamaño común, eliminando contención de locks en tareas concurrentes de CICS.',
+  ),
+  84 => 
+  array (
+    'pregunta' => '¿Cómo gestiona IBM MQ la mensajería asíncrona de misión crítica en programas COBOL?',
+    'opcion_a' => 'Mediante peticiones HTTP GET cada 5 segundos',
+    'opcion_b' => 'Mediante llamadas a la API MQI',
+    'opcion_c' => 'Escribiendo archivos en una carpeta compartida de Windows',
+    'opcion_d' => 'Usando sockets UDP sin confirmación',
+    'respuesta_correcta' => 'B',
+    'complejidad' => 'Experto',
+    'explicacion' => 'MQI en COBOL permite mensajería persistente garantizada y desacoplada integrada con transacciones de CICS y DB2.',
+  ),
+  85 => 
+  array (
+    'pregunta' => '¿Qué es un "Checkpoint" en procesamiento Batch masivo en mainframe (ej: IMS o DB2) y cómo se implementa?',
+    'opcion_a' => 'Puntos periódicos donde el programa graba su posición actual y hace COMMIT a la base de datos para liberar locks y permitir recuperación (Restart) ante una caída sin reprocesar millones de filas',
+    'opcion_b' => 'Una parada física del disco duro',
+    'opcion_c' => 'Una verificación de la firma digital del programador',
+    'opcion_d' => 'Un archivo temporal que se borra al minuto',
+    'respuesta_correcta' => 'A',
+    'complejidad' => 'Experto',
+    'explicacion' => 'Hacer commit cada N registros (ej: 5,000) evita desbordar los buffers de log de DB2, previene escalamiento de locks de tabla y agiliza el reinicio.',
+  ),
+  86 => 
+  array (
+    'pregunta' => '¿Cuál es la función de CICS Dynamic Transaction Routing (DTR) en un entorno de alta disponibilidad (CICSPlex SM)?',
+    'opcion_a' => 'Balancear dinámicamente la carga de trabajo transaccional entre múltiples regiones de procesamiento (AORs) en función de la salud, disponibilidad y carga de los sistemas',
+    'opcion_b' => 'Cambiar las rutas de red TCP/IP en los switches físicos',
+    'opcion_c' => 'Desviar las peticiones a servidores de desarrollo',
+    'opcion_d' => 'Enviar las transacciones por correo electrónico',
+    'respuesta_correcta' => 'A',
+    'complejidad' => 'Experto',
+    'explicacion' => 'DTR separa terminales (TORs) de la lógica de aplicación (AORs) permitiendo enrutar transacciones inteligentemente sin interrupción del servicio.',
+  ),
+  87 => 
+  array (
+    'pregunta' => '¿En qué se diferencian las instrucciones de serialización CS (Compare and Swap) y CDS (Compare Double and Swap) en Assembler/COBOL bajo z/Architecture?',
+    'opcion_a' => 'Permiten sincronización atómica no bloqueante a nivel de hardware multiprocesador sin suspender la tarea en el dispatcher del sistema operativo',
+    'opcion_b' => 'Comparan cadenas de texto para comprobar si son iguales alfabéticamente',
+    'opcion_c' => 'Solo funcionan con unidades de cinta magnética',
+    'opcion_d' => 'Son instrucciones para apagar procesadores secundarios',
+    'respuesta_correcta' => 'A',
+    'complejidad' => 'Experto',
+    'explicacion' => 'CS/CDS son primitivas atómicas nativas esenciales de hardware para implementar colas lock-free y sincronización de alta velocidad en mainframes.',
+  ),
+  88 => 
+  array (
+    'pregunta' => '¿Qué función cumple la herramienta IBM Fault Analyzer en el diagnóstico de incidentes en producción?',
+    'opcion_a' => 'Repara automáticamente el disco duro',
+    'opcion_b' => 'Intercepta ABENDs, analiza el volcado de memoria (Dump), correlaciona el código objeto con el código fuente y copybooks e identifica con precisión la línea COBOL y el contenido de las variables causantes',
+    'opcion_c' => 'Genera facturas a los clientes morosos',
+    'opcion_d' => 'Bloquea el acceso a internet a los empleados',
+    'respuesta_correcta' => 'B',
+    'complejidad' => 'Experto',
+    'explicacion' => 'Fault Analyzer agiliza el análisis de causa raíz convirtiendo crípticos dumps hexadecimales en reportes comprensibles con líneas fuente exactas.',
+  ),
+  89 => 
+  array (
+    'pregunta' => '¿Qué ventajas ofrece el soporte nativo de JSON (JSON GENERATE y JSON PARSE) introducido en Enterprise COBOL v6?',
+    'opcion_a' => 'Permite transformar jerarquías de variables de COBOL a cadenas JSON y viceversa directamente en el compilador sin librerías externas complejas de terceros',
+    'opcion_b' => 'Convierte los archivos COBOL en páginas web estáticas',
+    'opcion_c' => 'Reemplaza a las bases de datos relacionales',
+    'opcion_d' => 'Hace que COBOL sea interpretado en lugar de compilado',
+    'respuesta_correcta' => 'A',
+    'complejidad' => 'Experto',
+    'explicacion' => 'JSON GENERATE/PARSE facilita la integración de programas centrales de mainframe con microservicios web y arquitecturas cloud modernas.',
+  ),
+  90 => 
+  array (
+    'pregunta' => '¿Por qué la directiva de compilación NOSSRANGE es obligatoria en entornos de producción de misión crítica de alta demanda?',
+    'opcion_a' => 'Porque SSRANGE agrega código de verificación de límites de arrays en cada acceso a tablas en ejecución, penalizando sensiblemente el tiempo de CPU y el costo MIPS',
+    'opcion_b' => 'Porque SSRANGE borra el código ejecutable',
+    'opcion_c' => 'Porque desactiva la conexión a la base de datos',
+    'opcion_d' => 'Porque no es compatible con el sistema operativo z/OS',
+    'respuesta_correcta' => 'A',
+    'complejidad' => 'Experto',
+    'explicacion' => 'SSRANGE es ideal para desarrollo y pruebas, pero en producción genera una sobrecarga inaceptable de verificaciones de rango redundantes.',
+  ),
+  91 => 
+  array (
+    'pregunta' => '¿Cómo funciona la técnica de "Buffer Tuning" en archivos VSAM mediante el parámetro BUFND y BUFNI en el JCL?',
+    'opcion_a' => 'Aumentar BUFND acelera el procesamiento secuencial cargando múltiples intervalos de control de datos a la vez; aumentar BUFNI mantiene los índices en memoria RAM para acelerar búsquedas aleatorias',
+    'opcion_b' => 'Cambia el color de la pantalla en la terminal',
+    'opcion_c' => 'Desactiva los archivos temporales de disco',
+    'opcion_d' => 'Borra los registros antiguos automáticamente',
+    'respuesta_correcta' => 'A',
+    'complejidad' => 'Experto',
+    'explicacion' => 'Optimizar buffers (LSR o NSR) reduce drásticamente las esperas de I/O físico pasando de minutos a segundos en jobs de procesamiento batch.',
+  ),
+  92 => 
+  array (
+    'pregunta' => '¿Qué es el "Dual-Logging" en DB2 para z/OS y cómo protege la integridad de los datos?',
+    'opcion_a' => 'Escribir simultáneamente los registros de log transaccional activo en dos datasets físicos separados en diferentes discos para garantizar recuperación ante fallos de hardware',
+    'opcion_b' => 'Registrar el log en la pantalla del operador y en papel',
+    'opcion_c' => 'Obligar al usuario a ingresar su clave dos veces',
+    'opcion_d' => 'Guardar los logs en dos idiomas distintos',
+    'respuesta_correcta' => 'A',
+    'complejidad' => 'Experto',
+    'explicacion' => 'El logging dual previene la pérdida de transacciones y permite el recovery continuo de base de datos aun si un disco físico sufre avería catastrófica.',
+  ),
+  93 => 
+  array (
+    'pregunta' => '¿Cuál es la función del catálogo maestro (Master Catalog) y los catálogos de usuario en IBM z/OS (ICF Catalogs)?',
+    'opcion_a' => 'Mantener el inventario de software y el mapeo de nombres de datasets lógicos hacia los volúmenes físicos de disco (DASD) y direcciones de celda',
+    'opcion_b' => 'Vender productos en línea',
+    'opcion_c' => 'Organizar los correos electrónicos de los empleados',
+    'opcion_d' => 'Controlar el aire acondicionado de la sala de máquinas',
+    'respuesta_correcta' => 'A',
+    'complejidad' => 'Experto',
+    'explicacion' => 'El catálogo ICF es la base de datos estructural del sistema que permite a z/OS localizar cualquier archivo por nombre sin especificar su ubicación física.',
+  ),
+  94 => 
+  array (
+    'pregunta' => '¿Qué problema introduce el uso de variables globales no reentrantes en programas COBOL compartidos en regiones multiproceso de CICS?',
+    'opcion_a' => 'Corrupción cruzada de datos entre transacciones simultáneas de diferentes usuarios si el programa se carga como RESIDENT/REUSABLE',
+    'opcion_b' => 'El compilador se detiene con error de sintaxis',
+    'opcion_c' => 'La terminal se bloquea temporalmente',
+    'opcion_d' => 'El programa se borra del disco duro',
+    'respuesta_correcta' => 'A',
+    'complejidad' => 'Experto',
+    'explicacion' => 'La reentrancia (opción RENT) garantiza que cada tarea opere sobre su propia copia de datos en memoria dinámica sin sobreescribir la sesión de otros usuarios.',
+  ),
+  95 => 
+  array (
+    'pregunta' => '¿Qué función cumple la instrucción XML PARSE en COBOL?',
+    'opcion_a' => 'Un parser basado en eventos',
+    'opcion_b' => 'Convierte archivos XML en imágenes',
+    'opcion_c' => 'Elimina todas las etiquetas XML de un archivo',
+    'opcion_d' => 'Crea una base de datos NoSQL',
+    'respuesta_correcta' => 'A',
+    'complejidad' => 'Experto',
+    'explicacion' => 'El parser XML optimizado por hardware de z/OS analiza streams XML de alta velocidad emitiendo eventos estructurados al handler de COBOL.',
+  ),
+  96 => 
+  array (
+    'pregunta' => '¿Cómo se garantiza la interoperabilidad y ordenación adecuada entre sistemas EBCDIC (Mainframe) y ASCII/UTF-8 (Sistemas Abiertos / Cloud)?',
+    'opcion_a' => 'No es posible comunicar sistemas EBCDIC con sistemas ASCII',
+    'opcion_b' => 'Mediante tablas de conversión de páginas de códigos',
+    'opcion_c' => 'Cambiando el teclado de la computadora',
+    'opcion_d' => 'Reiniciando el mainframe en modo ASCII',
+    'respuesta_correcta' => 'B',
+    'complejidad' => 'Experto',
+    'explicacion' => 'En EBCDIC los números van después de las letras (A-Z luego 0-9), mientras que en ASCII van antes (0-9 luego A-Z), lo que afecta ordenamientos y conversiones binarias.',
+  ),
+  97 => 
+  array (
+    'pregunta' => '¿Qué impacto tiene el flag de enlace AMODE(31) vs AMODE(64) en programas COBOL modernos?',
+    'opcion_a' => 'AMODE(31) limita el direccionamiento virtual a 2 Gigabytes (Below the Bar), mientras que AMODE(64) permite direccionar terabytes de memoria virtual (Above the Bar de 64 bits)',
+    'opcion_b' => 'AMODE solo sirve para cambiar la resolución de pantalla',
+    'opcion_c' => 'AMODE(64) solo funciona en computadoras portátiles',
+    'opcion_d' => 'No existe AMODE(64) en entornos de mainframe',
+    'respuesta_correcta' => 'A',
+    'complejidad' => 'Experto',
+    'explicacion' => 'Enterprise COBOL v6 soporta direccionamiento de 64 bits permitiendo manipular buffers gigantescos en memoria por encima de la barra de 2GB.',
+  ),
+  98 => 
+  array (
+    'pregunta' => '¿Qué es y para qué se utiliza el componente Coupling Facility en un clúster Parallel Sysplex de IBM?',
+    'opcion_a' => 'Un microprocesador especializado con memoria compartida ultrarrápida que coordina bloqueos globales (Global Lock Manager), listas de trabajo y cachés compartidas entre múltiples mainframes',
+    'opcion_b' => 'Un cable para conectar impresoras en red',
+    'opcion_c' => 'Un emulador de terminales 3270',
+    'opcion_d' => 'Un software para reproducir música en el centro de cómputo',
+    'respuesta_correcta' => 'A',
+    'complejidad' => 'Experto',
+    'explicacion' => 'Parallel Sysplex logra disponibilidad continua 99.999% coordinando múltiples imágenes z/OS mediante la memoria compartida del Coupling Facility.',
+  ),
+  99 => 
+  array (
+    'pregunta' => '¿Por qué las estrategias de modernización "Strangler Fig Pattern" son preferidas sobre el enfoque "Big Bang" para sistemas COBOL bancarios centrales?',
+    'opcion_a' => 'Porque el enfoque Big Bang es más barato',
+    'opcion_b' => 'Porque reemplazar gradualmente microservicios individuales alrededor del núcleo COBOL reduce drásticamente el riesgo de interrupciones catastróficas del negocio y permite validación continua en paralelo',
+    'opcion_c' => 'Porque COBOL dejará de funcionar el próximo año',
+    'opcion_d' => 'Porque los reguladores bancarios prohíben cambiar código',
+    'respuesta_correcta' => 'B',
+    'complejidad' => 'Experto',
+    'explicacion' => 'Migrar sistemas bancarios de billones de transacciones de golpe suele fracasar; el patrón Strangler migra capacidades específicas con coexistencia segura.',
+  ),
+);

@@ -22,13 +22,13 @@ CREATE TABLE IF NOT EXISTS `lenguajes_examen` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 INSERT INTO `lenguajes_examen` (`clave`, `nombre`, `descripcion`, `icono`, `color`, `badge`, `activo`) VALUES
-('java', 'Java (Core, JVM & Spring)', 'Evaluación de Core Java, Programación Orientada a Objetos, Colecciones, Concurrencia, Memoria JVM y Arquitectura.', 'bi-cup-hot-fill', '#E76F00', 'Backend & Enterprise', 1),
-('react', 'React.js & Modern Frontend', 'Evaluación técnica de Hooks, Reconciliación Virtual DOM, Gestión de Estado, Server Components y Performance.', 'bi-atom', '#087ea4', 'Frontend & Web', 1),
-('cobol', 'COBOL & Mainframe Systems', 'Evaluación de Divisiones, Cláusulas PIC, Manejo de Archivos VSAM, Monitores CICS, DB2 SQL y Optimización MIPS.', 'bi-terminal-fill', '#073E63', 'Mainframe & Legacy', 1)
-ON DUPLICATE KEY UPDATE nombre=VALUES(nombre), descripcion=VALUES(descripcion);
+('java', 'Java (Core, JVM & Spring)', 'Evaluación de Core Java, Programación Orientada a Objetos, Colecciones, Concurrencia y Arquitectura.', 'bi-cup-hot-fill', '#073E63', 'Backend & Enterprise', 1),
+('react', 'React.js & Modern Frontend', 'Evaluación técnica de Hooks, Reconciliación Virtual DOM, Gestión de Estado y Arquitectura Web.', 'bi-atom', '#289CC7', 'Frontend & Web', 1),
+('cobol', 'COBOL & Mainframe Systems', 'Evaluación de Divisiones, Cláusulas PIC, Manejo de Archivos VSAM, Monitores CICS y DB2 SQL.', 'bi-terminal-fill', '#04253c', 'Mainframe & Legacy', 1)
+ON DUPLICATE KEY UPDATE nombre=VALUES(nombre), descripcion=VALUES(descripcion), color=VALUES(color);
 
 -- ----------------------------------------------------------
--- 2. TABLA: preguntas_examen
+-- 2. TABLA: preguntas_examen (18 preguntas en examen: 6 Jr, 6 Mid, 6 Sr)
 -- ----------------------------------------------------------
 CREATE TABLE IF NOT EXISTS `preguntas_examen` (
   `id` INT AUTO_INCREMENT PRIMARY KEY,
@@ -46,6 +46,21 @@ CREATE TABLE IF NOT EXISTS `preguntas_examen` (
   INDEX `idx_lenguaje_complejidad` (`lenguaje`, `complejidad`, `activo`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
--- Nota: Para poblar o regenerar las 300 preguntas automáticamente con codificación limpia UTF-8,
--- ejecutar directamente en el navegador o consola: php examen/instalar_db.php
+-- ----------------------------------------------------------
+-- 3. TABLA: retos_codigo_examen (Valor: 2 Puntos)
+-- ----------------------------------------------------------
+CREATE TABLE IF NOT EXISTS `retos_codigo_examen` (
+  `id` INT AUTO_INCREMENT PRIMARY KEY,
+  `lenguaje` VARCHAR(50) NOT NULL,
+  `titulo` VARCHAR(150) NOT NULL,
+  `codigo` TEXT NOT NULL,
+  `funcionalidad_esperada` TEXT NOT NULL,
+  `conceptos_clave` TEXT NOT NULL,
+  `activo` TINYINT(1) DEFAULT 1,
+  `fecha_creacion` TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+  INDEX `idx_reto_lenguaje` (`lenguaje`, `activo`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- Nota: Para poblar o regenerar las 300 preguntas balanceadas y los retos de código automáticamente:
+-- ejecutar directamente: php examen/instalar_db.php
 SET FOREIGN_KEY_CHECKS = 1;

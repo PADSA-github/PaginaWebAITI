@@ -38,30 +38,30 @@ if ($conecction->query($sql_lenguajes)) {
     echo "[ERROR] Creando tabla 'lenguajes_examen': " . $conecction->error . "\n";
 }
 
-// 2. Insertar o actualizar lenguajes iniciales
+// 2. Insertar o actualizar lenguajes iniciales con colores armónicos AI-TI
 $lenguajes_iniciales = [
     [
         'clave' => 'java',
         'nombre' => 'Java (Core, JVM & Spring)',
-        'descripcion' => 'Evaluación de Core Java, Programación Orientada a Objetos, Colecciones, Concurrencia, Memoria JVM y Arquitectura.',
+        'descripcion' => 'Evaluación de Core Java, Programación Orientada a Objetos, Colecciones, Concurrencia y Arquitectura.',
         'icono' => 'bi-cup-hot-fill',
-        'color' => '#E76F00',
+        'color' => '#073E63',
         'badge' => 'Backend & Enterprise'
     ],
     [
         'clave' => 'react',
         'nombre' => 'React.js & Modern Frontend',
-        'descripcion' => 'Evaluación técnica de Hooks, Reconciliación Virtual DOM, Gestión de Estado, Server Components y Performance.',
+        'descripcion' => 'Evaluación técnica de Hooks, Reconciliación Virtual DOM, Gestión de Estado y Arquitectura Web.',
         'icono' => 'bi-atom',
-        'color' => '#087ea4',
+        'color' => '#289CC7',
         'badge' => 'Frontend & Web'
     ],
     [
         'clave' => 'cobol',
         'nombre' => 'COBOL & Mainframe Systems',
-        'descripcion' => 'Evaluación de Divisiones, Cláusulas PIC, Manejo de Archivos VSAM, Monitores CICS, DB2 SQL y Optimización MIPS.',
+        'descripcion' => 'Evaluación de Divisiones, Cláusulas PIC, Manejo de Archivos VSAM, Monitores CICS y DB2 SQL.',
         'icono' => 'bi-terminal-fill',
-        'color' => '#073E63',
+        'color' => '#04253c',
         'badge' => 'Mainframe & Legacy'
     ]
 ];
@@ -101,7 +101,46 @@ if ($conecction->query($sql_preguntas)) {
     echo "[ERROR] Creando tabla 'preguntas_examen': " . $conecction->error . "\n";
 }
 
-// 4. Cargar e insertar preguntas de los tres archivos de datos
+// 4. Crear tabla de retos de código
+$sql_retos = "CREATE TABLE IF NOT EXISTS `retos_codigo_examen` (
+  `id` INT AUTO_INCREMENT PRIMARY KEY,
+  `lenguaje` VARCHAR(50) NOT NULL,
+  `titulo` VARCHAR(150) NOT NULL,
+  `codigo` TEXT NOT NULL,
+  `funcionalidad_esperada` TEXT NOT NULL,
+  `conceptos_clave` TEXT NOT NULL,
+  `activo` TINYINT(1) DEFAULT 1,
+  `fecha_creacion` TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+  INDEX `idx_reto_lenguaje` (`lenguaje`, `activo`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;";
+
+if ($conecction->query($sql_retos)) {
+    echo "[OK] Tabla 'retos_codigo_examen' verificada/creada correctamente.\n";
+} else {
+    echo "[ERROR] Creando tabla 'retos_codigo_examen': " . $conecction->error . "\n";
+}
+
+// 5. Cargar e insertar retos de código
+$retos_file = __DIR__ . '/data/retos_codigo.php';
+if (file_exists($retos_file)) {
+    $conecction->query("TRUNCATE TABLE `retos_codigo_examen`");
+    $retos_data = include $retos_file;
+    $stmt_reto = $conecction->prepare("INSERT INTO `retos_codigo_examen` (lenguaje, titulo, codigo, funcionalidad_esperada, conceptos_clave, activo) VALUES (?, ?, ?, ?, ?, 1)");
+    
+    $total_retos = 0;
+    foreach ($retos_data as $clave_lang => $lista_retos) {
+        foreach ($lista_retos as $reto) {
+            $conceptos_json = json_encode($reto['conceptos_clave'], JSON_UNESCAPED_UNICODE);
+            $stmt_reto->bind_param('sssss', $clave_lang, $reto['titulo'], $reto['codigo'], $reto['funcionalidad_esperada'], $conceptos_json);
+            $stmt_reto->execute();
+            $total_retos++;
+        }
+    }
+    $stmt_reto->close();
+    echo "[OK] $total_retos retos de código insertados en 'retos_codigo_examen'.\n";
+}
+
+// 6. Cargar e insertar preguntas de los tres archivos de datos
 $archivos_datos = [
     'java' => __DIR__ . '/data/java_preguntas.php',
     'react' => __DIR__ . '/data/react_preguntas.php',
@@ -150,7 +189,7 @@ foreach ($archivos_datos as $clave_lenguaje => $ruta_archivo) {
             echo "[ERROR] Error al insertar pregunta: " . $stmt_preg->error . "\n";
         }
     }
-    echo "[OK] $count_lang preguntas insertadas exitosamente para '$clave_lenguaje'.\n";
+    echo "[OK] $count_lang preguntas balanceadas insertadas exitosamente para '$clave_lenguaje'.\n";
 }
 
 $stmt_preg->close();

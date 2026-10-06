@@ -1,5 +1,5 @@
 // ==========================================================
-// CONTROLADOR JAVASCRIPT DEL EXAMEN TÉCNICO AITI
+// CONTROLADOR JAVASCRIPT DEL EXAMEN TÉCNICO AITI (18 + 1)
 // ==========================================================
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -36,21 +36,23 @@ function initLanguageSelector() {
 }
 
 /**
- * 2. Cuestionario de Examen: navegación, temporizador y progreso
+ * 2. Cuestionario de Examen: 18 reactivos + 1 reto de código (Total 19 ítems)
  */
 function initExamQuestionnaire() {
     const examForm = document.getElementById('examForm');
     if (!examForm) return;
 
     const questionCards = document.querySelectorAll('.question-card');
-    const totalQuestions = questionCards.length;
+    const codeCard = document.querySelector('.code-challenge-card');
+    const totalItems = questionCards.length + (codeCard ? 1 : 0); // 18 + 1 = 19
     const answeredCountEl = document.getElementById('answeredCount');
     const progressFill = document.getElementById('examProgressFill');
     const gridButtons = document.querySelectorAll('.grid-q-btn');
     const timerDisplay = document.getElementById('timerText');
     const timerContainer = document.getElementById('timerPill');
+    const codeTextarea = document.getElementById('descripcion_codigo');
 
-    // Manejo de selección de opciones
+    // Manejo de selección de opciones de radio
     const radioInputs = examForm.querySelectorAll('.option-input');
     radioInputs.forEach(input => {
         input.addEventListener('change', () => {
@@ -58,30 +60,44 @@ function initExamQuestionnaire() {
         });
     });
 
-    // Clic en los botones de la cuadrícula de preguntas para saltar directamente
+    // Manejo del textarea del reto de código
+    if (codeTextarea) {
+        codeTextarea.addEventListener('input', () => {
+            updateProgress();
+        });
+    }
+
+    // Navegación rápida por mapa de preguntas
     gridButtons.forEach(btn => {
         btn.addEventListener('click', () => {
             const targetIdx = btn.getAttribute('data-target');
-            const targetCard = document.getElementById(`pregunta_${targetIdx}`);
-            if (targetCard) {
-                targetCard.scrollIntoView({ behavior: 'smooth', block: 'center' });
-                highlightCard(targetCard);
+            let targetElement = null;
+            if (targetIdx === '18') {
+                targetElement = document.getElementById('pregunta_18');
+            } else {
+                targetElement = document.getElementById(`pregunta_${targetIdx}`);
+            }
+
+            if (targetElement) {
+                targetElement.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                highlightElement(targetElement);
             }
         });
     });
 
-    function highlightCard(card) {
-        card.style.transform = 'scale(1.01)';
-        card.style.borderColor = 'var(--aiti-secondary)';
+    function highlightElement(el) {
+        el.style.transform = 'scale(1.01)';
+        el.style.borderColor = 'var(--aiti-accent)';
         setTimeout(() => {
-            card.style.transform = '';
-            card.style.borderColor = '';
-        }, 800);
+            el.style.transform = '';
+            el.style.borderColor = '';
+        }, 700);
     }
 
     function updateProgress() {
         let answered = 0;
         
+        // 1. Revisar las 18 preguntas de opción múltiple
         questionCards.forEach((card, idx) => {
             const qId = card.getAttribute('data-qid');
             const selected = examForm.querySelector(`input[name="respuestas[${qId}]"]:checked`);
@@ -95,21 +111,32 @@ function initExamQuestionnaire() {
             }
         });
 
+        // 2. Revisar el reto de código
+        if (codeTextarea) {
+            const gridBtnCode = document.querySelector('.grid-q-btn.challenge-btn');
+            if (codeTextarea.value.trim().length >= 10) {
+                answered++;
+                if (gridBtnCode) gridBtnCode.classList.add('answered');
+            } else {
+                if (gridBtnCode) gridBtnCode.classList.remove('answered');
+            }
+        }
+
         if (answeredCountEl) answeredCountEl.textContent = answered;
         
-        if (progressFill && totalQuestions > 0) {
-            const pct = Math.round((answered / totalQuestions) * 100);
+        if (progressFill && totalItems > 0) {
+            const pct = Math.round((answered / totalItems) * 100);
             progressFill.style.width = `${pct}%`;
         }
     }
 
-    // 3. Temporizador regresivo (30 minutos)
+    // 3. Temporizador regresivo de 30 minutos
     let totalSeconds = 30 * 60;
     const timerInterval = setInterval(() => {
         totalSeconds--;
         if (totalSeconds <= 0) {
             clearInterval(timerInterval);
-            alert('¡El tiempo límite de 30 minutos ha concluido! Tu examen se enviará automáticamente.');
+            alert('¡El tiempo límite de 30 minutos ha concluido! Tu evaluación se enviará automáticamente.');
             examForm.submit();
             return;
         }
@@ -120,12 +147,12 @@ function initExamQuestionnaire() {
         
         if (timerDisplay) timerDisplay.textContent = timeFormatted;
 
-        if (totalSeconds <= 300 && timerContainer) { // Menos de 5 minutos
+        if (totalSeconds <= 300 && timerContainer) { // Últimos 5 minutos
             timerContainer.classList.add('urgent');
         }
     }, 1000);
 
-    // 4. Confirmación antes de enviar si faltan preguntas
+    // 4. Verificación previa al envío
     examForm.addEventListener('submit', (e) => {
         let unanswered = 0;
         questionCards.forEach(card => {
@@ -135,18 +162,26 @@ function initExamQuestionnaire() {
             }
         });
 
+        if (codeTextarea && codeTextarea.value.trim().length < 10) {
+            unanswered++;
+        }
+
         if (unanswered > 0) {
-            const confirmar = confirm(`Tienes ${unanswered} pregunta(s) sin responder de las ${totalQuestions}. ¿Deseas finalizar y calificar el examen ahora?`);
+            const confirmar = confirm(`Tienes ${unanswered} sección(es) o pregunta(s) sin responder de las ${totalItems}. ¿Deseas calificar tu examen ahora?`);
             if (!confirmar) {
                 e.preventDefault();
-                // Llevar a la primera sin responder
+                // Scroll a la primera pendiente
                 for (let card of questionCards) {
                     const qId = card.getAttribute('data-qid');
                     if (!examForm.querySelector(`input[name="respuestas[${qId}]"]:checked`)) {
                         card.scrollIntoView({ behavior: 'smooth', block: 'center' });
-                        highlightCard(card);
-                        break;
+                        highlightElement(card);
+                        return;
                     }
+                }
+                if (codeCard) {
+                    codeCard.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                    highlightElement(codeCard);
                 }
             }
         }
@@ -192,7 +227,7 @@ function initEmailSubmission() {
                     </div>
                 `;
 
-                // Si viene vista previa HTML (modo local), permitir verla en modal
+                // En entorno local mostrar modal de previsualización
                 if (result.preview_html && previewModalEl) {
                     const previewContent = document.getElementById('emailPreviewContent');
                     if (previewContent) {
@@ -211,7 +246,7 @@ function initEmailSubmission() {
         } catch (err) {
             emailFeedback.innerHTML = `
                 <div class="alert alert-danger mt-3">
-                    <i class="bi bi-x-circle-fill me-2"></i> Error de conexión al procesar el envío.
+                    <i class="bi bi-x-circle-fill me-2"></i> Error al conectar con el servidor para despachar el correo.
                 </div>
             `;
         } finally {
