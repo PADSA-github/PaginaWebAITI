@@ -1,8 +1,8 @@
 <?php
-// Banco de 100 Preguntas Balanceadas de JAVA
-// Generado automáticamente con opciones equivalentes y balance A:25, B:25, C:25, D:25
+// Banco oficial de 100 Preguntas de Java para Evaluación Técnica
 
-return array (
+function get_java_bank() {
+    return array (
   0 => 
   array (
     'pregunta' => '¿Cuál de los siguientes identificadores NO corresponde a un tipo de dato primitivo en Java?',
@@ -1204,3 +1204,4 @@ return array (
     'tema' => 'java',
   ),
 );
+}

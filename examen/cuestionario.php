@@ -134,7 +134,7 @@ $stmt_reto->close();
                 <div class="d-flex align-items-center gap-2">
                     <span class="exam-info-pill timer-pill" id="timerPill">
                         <i class="bi bi-clock-history"></i>
-                        <span id="timerText">30:00</span>
+                        <span id="timerText">20:00</span>
                     </span>
                 </div>
             </div>

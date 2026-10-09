@@ -101,9 +101,14 @@ $res_ultimas = mysqli_query($conecction, $query_ultimas);
                     <span class="examen-brand-subtitle">Gestión de Reactivos y Retos</span>
                 </div>
             </a>
-            <a href="index.php" class="btn btn-sm btn-outline-light">
-                <i class="bi bi-play-circle me-1"></i> Ir al Examen
-            </a>
+            <div class="d-flex align-items-center gap-2">
+                <a href="crud.php" class="btn btn-sm btn-outline-light">
+                    <i class="bi bi-pencil-square me-1"></i> CRUD Archivos
+                </a>
+                <a href="index.php" class="btn btn-sm btn-outline-light">
+                    <i class="bi bi-play-circle me-1"></i> Ir al Examen
+                </a>
+            </div>
         </div>
     </nav>
 

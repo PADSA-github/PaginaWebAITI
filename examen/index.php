@@ -42,6 +42,9 @@ $result_lenguajes = mysqli_query($conecction, $query_lenguajes);
                 </div>
             </a>
             <div class="d-flex align-items-center gap-3">
+                <a href="crud.php" class="examen-nav-link d-inline-block">
+                    <i class="bi bi-pencil-square me-1"></i> CRUD Preguntas
+                </a>
                 <a href="agregar_pregunta.php" class="examen-nav-link d-none d-md-inline-block">
                     <i class="bi bi-plus-circle me-1"></i> Banco de Preguntas
                 </a>
@@ -83,7 +86,7 @@ $result_lenguajes = mysqli_query($conecction, $query_lenguajes);
                 <div class="row g-3">
                     <?php if ($result_lenguajes && mysqli_num_rows($result_lenguajes) > 0): ?>
                         <?php while ($lang = mysqli_fetch_assoc($result_lenguajes)): ?>
-                            <div class="col-md-4">
+                            <div class="col-md-6 col-lg-4">
                                 <div class="language-card" data-lang="<?= htmlspecialchars($lang['clave']) ?>">
                                     <div class="lang-check"><i class="bi bi-check-lg"></i></div>
                                     <div class="lang-icon-wrap">
@@ -142,7 +145,7 @@ $result_lenguajes = mysqli_query($conecction, $query_lenguajes);
                         <ul class="mb-0 ps-3 mt-1">
                             <li><strong>18 Puntos:</strong> Preguntas de opción múltiple (<strong>6 Nivel Junior</strong>, <strong>6 Nivel Semi-Senior</strong> y <strong>6 Nivel Senior</strong> valiendo 1 punto cada una).</li>
                             <li><strong>2 Puntos:</strong> Análisis de código práctico. Se te mostrará un fragmento de código que deberás describir con tus propias palabras; el sistema evaluará si tu explicación corresponde a la funcionalidad.</li>
-                            <li><strong>Tiempo Límite:</strong> 30 minutos. Al terminar obtendrás tu diagnóstico de nivel y podrás enviar el reporte por correo.</li>
+                            <li><strong>Tiempo Límite:</strong> 20 minutos. Al terminar obtendrás tu diagnóstico de nivel y podrás enviar el reporte por correo.</li>
                         </ul>
                     </div>
                 </div>

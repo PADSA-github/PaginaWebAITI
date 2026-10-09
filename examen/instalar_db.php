@@ -59,10 +59,26 @@ $lenguajes_iniciales = [
     [
         'clave' => 'cobol',
         'nombre' => 'COBOL & Mainframe Systems',
-        'descripcion' => 'Evaluación de Divisiones, Cláusulas PIC, Manejo de Archivos VSAM, Monitores CICS y DB2 SQL.',
+        'descripcion' => 'Evaluación de Divisiones, Cláusulas PIC, Manejo de Archivos VSAM, Monitores CICS, DB2 SQL y JCL.',
         'icono' => 'bi-terminal-fill',
         'color' => '#04253c',
-        'badge' => 'Mainframe & Legacy'
+        'badge' => 'Mainframe & JCL'
+    ],
+    [
+        'clave' => 'informix',
+        'nombre' => 'Informix 4GL & Relational Systems',
+        'descripcion' => 'Evaluación de Sintaxis 4GL, Formularios .per, Manejo de Cursores, Transacciones, SPL y Reportes.',
+        'icono' => 'bi-database-fill-gear',
+        'color' => '#0e4d6c',
+        'badge' => 'Database & 4GL'
+    ],
+    [
+        'clave' => 'cloud_ia',
+        'nombre' => 'Cloud & Inteligencia Artificial',
+        'descripcion' => 'Evaluación de Arquitecturas Cloud AI, LLMs, AWS Bedrock, Vertex AI, Azure OpenAI, RAG, Embeddings y Agentes.',
+        'icono' => 'bi-cpu-fill',
+        'color' => '#107569',
+        'badge' => 'AI & Cloud Systems'
     ]
 ];
 
@@ -76,7 +92,7 @@ foreach ($lenguajes_iniciales as $lang) {
     $stmt_lang->execute();
 }
 $stmt_lang->close();
-echo "[OK] Lenguajes base (Java, React, COBOL) registrados/actualizados con éxito.\n";
+echo "[OK] Lenguajes base (Java, React, COBOL, Informix 4GL, Cloud IA) registrados/actualizados con éxito.\n";
 
 // 3. Crear tabla de preguntas
 $sql_preguntas = "CREATE TABLE IF NOT EXISTS `preguntas_examen` (
@@ -140,14 +156,16 @@ if (file_exists($retos_file)) {
     echo "[OK] $total_retos retos de código insertados en 'retos_codigo_examen'.\n";
 }
 
-// 6. Cargar e insertar preguntas de los tres archivos de datos
+// 6. Cargar e insertar preguntas de los cinco archivos de datos
 $archivos_datos = [
-    'java' => __DIR__ . '/data/java_preguntas.php',
-    'react' => __DIR__ . '/data/react_preguntas.php',
-    'cobol' => __DIR__ . '/data/cobol_preguntas.php'
+    'java'     => __DIR__ . '/data/java_preguntas.php',
+    'react'    => __DIR__ . '/data/react_preguntas.php',
+    'cobol'    => __DIR__ . '/data/cobol_preguntas.php',
+    'informix' => __DIR__ . '/data/informix_preguntas.php',
+    'cloud_ia' => __DIR__ . '/data/cloud_ia_preguntas.php'
 ];
 
-$conecction->query("DELETE FROM `preguntas_examen` WHERE lenguaje IN ('java', 'react', 'cobol')");
+$conecction->query("DELETE FROM `preguntas_examen` WHERE lenguaje IN ('java', 'react', 'cobol', 'informix', 'cloud_ia')");
 echo "[INFO] Limpieza de preguntas previas realizada para inserción limpia.\n";
 
 $insert_sql = "INSERT INTO `preguntas_examen` (lenguaje, pregunta, opcion_a, opcion_b, opcion_c, opcion_d, respuesta_correcta, complejidad, explicacion, activo)

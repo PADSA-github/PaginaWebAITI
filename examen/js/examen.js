@@ -130,13 +130,13 @@ function initExamQuestionnaire() {
         }
     }
 
-    // 3. Temporizador regresivo de 30 minutos
-    let totalSeconds = 30 * 60;
+    // 3. Temporizador regresivo de 20 minutos
+    let totalSeconds = 20 * 60;
     const timerInterval = setInterval(() => {
         totalSeconds--;
         if (totalSeconds <= 0) {
             clearInterval(timerInterval);
-            alert('¡El tiempo límite de 30 minutos ha concluido! Tu evaluación se enviará automáticamente.');
+            alert('¡El tiempo límite de 20 minutos ha concluido! Tu evaluación se enviará automáticamente.');
             examForm.submit();
             return;
         }
