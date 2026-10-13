@@ -1,5 +1,6 @@
 <?php
 // Evaluación del Examen: 18 Preguntas Opción Múltiple (18 pts) + Reto de Código (2 pts) = 20 Puntos
+set_include_path(dirname(__DIR__) . PATH_SEPARATOR . get_include_path());
 require_once __DIR__ . '/../config/database.php';
 
 if ($_SERVER['REQUEST_METHOD'] !== 'POST' || empty($_POST['preguntas_ids'])) {
@@ -11,6 +12,7 @@ $lenguaje_clave = filter_var($_POST['lenguaje'] ?? 'java', FILTER_SANITIZE_FULL_
 $nombre_candidato = filter_var($_POST['nombre_candidato'] ?? 'Aspirante', FILTER_SANITIZE_FULL_SPECIAL_CHARS);
 $email_candidato = filter_var($_POST['email_candidato'] ?? '', FILTER_SANITIZE_EMAIL);
 $reto_id = intval($_POST['reto_id'] ?? 0);
+$reto_idx = intval($_POST['reto_idx'] ?? 0);
 $descripcion_codigo = trim($_POST['descripcion_codigo'] ?? '');
 $preguntas_ids = array_map('intval', $_POST['preguntas_ids'] ?? []);
 $respuestas_usuario = $_POST['respuestas'] ?? [];
@@ -87,58 +89,83 @@ $reto_data = null;
 
 if ($reto_id > 0) {
     $stmt_r = $conecction->prepare("SELECT * FROM retos_codigo_examen WHERE id = ? LIMIT 1");
-    $stmt_r->bind_param('i', $reto_id);
-    $stmt_r->execute();
-    $reto_data = $stmt_r->get_result()->fetch_assoc();
-    $stmt_r->close();
+    if ($stmt_r) {
+        $stmt_r->bind_param('i', $reto_id);
+        $stmt_r->execute();
+        $res_r = $stmt_r->get_result();
+        if ($res_r && $res_r->num_rows > 0) {
+            $reto_data = $res_r->fetch_assoc();
+        }
+        $stmt_r->close();
+    }
+}
 
-    if ($reto_data) {
-        $criterios = json_decode($reto_data['conceptos_clave'], true);
-        $esenciales = $criterios['esenciales'] ?? [];
-        $secundarios = $criterios['secundarios'] ?? [];
-        $min_esenciales = $criterios['min_esenciales'] ?? 3;
+// Fallback por si la BD no contiene el registro o se usó el banco local
+if (!$reto_data) {
+    $retos_file = __DIR__ . '/data/retos_codigo.php';
+    if (file_exists($retos_file)) {
+        $retos_all = include $retos_file;
+        if (!empty($retos_all[$lenguaje_clave])) {
+            $lista_retos = $retos_all[$lenguaje_clave];
+            $sel_item = isset($lista_retos[$reto_idx]) ? $lista_retos[$reto_idx] : $lista_retos[0];
+            $reto_data = [
+                'id' => $reto_id ?: 1,
+                'lenguaje' => $lenguaje_clave,
+                'titulo' => $sel_item['titulo'],
+                'codigo' => $sel_item['codigo'],
+                'funcionalidad_esperada' => $sel_item['funcionalidad_esperada'],
+                'conceptos_clave' => json_encode($sel_item['conceptos_clave'], JSON_UNESCAPED_UNICODE)
+            ];
+        }
+    }
+}
 
-        // Normalizar texto del candidato (quitar acentos, minúsculas)
-        $desc_norm = mb_strtolower($descripcion_codigo, 'UTF-8');
-        $desc_norm = str_replace(['á', 'é', 'í', 'ó', 'ú', 'ü', 'ñ'], ['a', 'e', 'i', 'o', 'u', 'u', 'n'], $desc_norm);
+if ($reto_data) {
+    $criterios = json_decode($reto_data['conceptos_clave'], true);
+    $esenciales = $criterios['esenciales'] ?? [];
+    $secundarios = $criterios['secundarios'] ?? [];
+    $min_esenciales = $criterios['min_esenciales'] ?? 3;
 
-        $encontrados_esenciales = 0;
-        $encontrados_secundarios = 0;
+    // Normalizar texto del candidato (quitar acentos, minúsculas)
+    $desc_norm = mb_strtolower($descripcion_codigo, 'UTF-8');
+    $desc_norm = str_replace(['á', 'é', 'í', 'ó', 'ú', 'ü', 'ñ'], ['a', 'e', 'i', 'o', 'u', 'u', 'n'], $desc_norm);
 
-        foreach ($esenciales as $palabra) {
-            $palabra_norm = str_replace(['á', 'é', 'í', 'ó', 'ú', 'ü', 'ñ'], ['a', 'e', 'i', 'o', 'u', 'u', 'n'], mb_strtolower($palabra, 'UTF-8'));
-            if (strpos($desc_norm, $palabra_norm) !== false) {
-                $encontrados_esenciales++;
+    $encontrados_esenciales = 0;
+    $encontrados_secundarios = 0;
+
+    foreach ($esenciales as $palabra) {
+        $palabra_norm = str_replace(['á', 'é', 'í', 'ó', 'ú', 'ü', 'ñ'], ['a', 'e', 'i', 'o', 'u', 'u', 'n'], mb_strtolower($palabra, 'UTF-8'));
+        if (strpos($desc_norm, $palabra_norm) !== false) {
+            $encontrados_esenciales++;
+            $criterios_detectados[] = $palabra;
+        }
+    }
+
+    foreach ($secundarios as $palabra) {
+        $palabra_norm = str_replace(['á', 'é', 'í', 'ó', 'ú', 'ü', 'ñ'], ['a', 'e', 'i', 'o', 'u', 'u', 'n'], mb_strtolower($palabra, 'UTF-8'));
+        if (strpos($desc_norm, $palabra_norm) !== false) {
+            $encontrados_secundarios++;
+            if (!in_array($palabra, $criterios_detectados)) {
                 $criterios_detectados[] = $palabra;
             }
         }
+    }
 
-        foreach ($secundarios as $palabra) {
-            $palabra_norm = str_replace(['á', 'é', 'í', 'ó', 'ú', 'ü', 'ñ'], ['a', 'e', 'i', 'o', 'u', 'u', 'n'], mb_strtolower($palabra, 'UTF-8'));
-            if (strpos($desc_norm, $palabra_norm) !== false) {
-                $encontrados_secundarios++;
-                if (!in_array($palabra, $criterios_detectados)) {
-                    $criterios_detectados[] = $palabra;
-                }
-            }
-        }
+    $longitud_valida = (mb_strlen(trim($descripcion_codigo)) >= 35);
 
-        $longitud_valida = (mb_strlen(trim($descripcion_codigo)) >= 35);
-
-        // Calificación semántica:
-        // 2 Puntos: Describe la funcionalidad esencial completa (>= min_esenciales y longitud suficiente)
-        // 1 Punto: Describe parcialmente la intención (al menos 1 o 2 conceptos)
-        // 0 Puntos: No describe la funcionalidad, vacío o sin relación
-        if ($encontrados_esenciales >= $min_esenciales && $longitud_valida) {
-            $puntos_reto = 2;
-            $feedback_reto = "Excelente interpretación. Tu descripción identificó con precisión la funcionalidad, propósito técnico y flujo del código.";
-        } elseif (($encontrados_esenciales >= 1 || $encontrados_secundarios >= 2) && mb_strlen(trim($descripcion_codigo)) >= 15) {
-            $puntos_reto = 1;
-            $feedback_reto = "Comprensión parcial. Identificaste conceptos clave generales, pero faltó profundizar en el resultado final o en los mecanismos internos del código.";
-        } else {
-            $puntos_reto = 0;
-            $feedback_reto = "Descripción insuficiente o incompleta. La explicación proporcionada no corresponde adecuadamente a la funcionalidad del código analizado.";
-        }
+    // Calificación semántica:
+    // 2 Puntos: Describe la funcionalidad esencial completa (>= min_esenciales y longitud suficiente)
+    // 1 Punto: Describe parcialmente la intención (al menos 1 o 2 conceptos)
+    // 0 Puntos: No describe la funcionalidad, vacío o sin relación
+    if ($encontrados_esenciales >= $min_esenciales && $longitud_valida) {
+        $puntos_reto = 2;
+        $feedback_reto = "Excelente interpretación. Tu descripción identificó con precisión la funcionalidad, propósito técnico y flujo del código.";
+    } elseif (($encontrados_esenciales >= 1 || $encontrados_secundarios >= 2) && mb_strlen(trim($descripcion_codigo)) >= 15) {
+        $puntos_reto = 1;
+        $feedback_reto = "Comprensión parcial. Identificaste conceptos clave generales, pero faltó profundizar en el resultado final o en los mecanismos internos del código.";
+    } else {
+        $puntos_reto = 0;
+        $feedback_reto = "Descripción insuficiente o incompleta. La explicación proporcionada no corresponde adecuadamente a la funcionalidad del código analizado.";
     }
 }
 

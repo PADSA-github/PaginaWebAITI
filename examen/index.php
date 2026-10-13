@@ -1,15 +1,36 @@
 <?php
+// Forzar reporte de errores para diagnóstico
+ini_set('display_errors', '1');
+ini_set('display_startup_errors', '1');
+error_reporting(E_ALL);
+
 // Página Inicial - Selección de Examen Técnico Multi-Lenguaje
-require_once __DIR__ . '/../config/database.php';
+$error_db = null;
+$tablas_instaladas = false;
+$result_lenguajes = null;
 
-// Obtener lenguajes disponibles y activos
-$query_lenguajes = "SELECT l.*, 
-    (SELECT COUNT(*) FROM preguntas_examen p WHERE p.lenguaje = l.clave AND p.activo = 1) as total_preguntas
-    FROM lenguajes_examen l 
-    WHERE l.activo = 1 
-    ORDER BY l.id ASC";
+try {
+    // Asegurar que se resuelva 'config/constants.php' desde la raíz del proyecto
+    set_include_path(dirname(__DIR__) . PATH_SEPARATOR . get_include_path());
+    require_once __DIR__ . '/../config/database.php';
 
-$result_lenguajes = mysqli_query($conecction, $query_lenguajes);
+    if (isset($conecction) && $conecction) {
+        $check = $conecction->query("SHOW TABLES LIKE 'lenguajes_examen'");
+        if ($check && $check->num_rows > 0) {
+            $tablas_instaladas = true;
+            $query_lenguajes = "SELECT l.*, 
+                (SELECT COUNT(*) FROM preguntas_examen p WHERE p.lenguaje = l.clave AND p.activo = 1) as total_preguntas
+                FROM lenguajes_examen l 
+                WHERE l.activo = 1 
+                ORDER BY l.id ASC";
+            $result_lenguajes = $conecction->query($query_lenguajes);
+        } else {
+            $tablas_instaladas = false;
+        }
+    }
+} catch (Throwable $e) {
+    $error_db = $e->getMessage();
+}
 ?>
 <!DOCTYPE html>
 <html lang="es">
@@ -105,10 +126,32 @@ $result_lenguajes = mysqli_query($conecction, $query_lenguajes);
                             </div>
                         <?php endwhile; ?>
                     <?php else: ?>
-                        <div class="col-12 text-center py-5">
-                            <div class="alert alert-warning">
-                                No hay lenguajes activos. Por favor ejecuta el <a href="instalar_db.php">instalador inicial</a>.
-                            </div>
+                        <div class="col-12 py-3">
+                            <?php if (!empty($error_db)): ?>
+                                <div class="alert alert-danger shadow-sm rounded-4 p-4">
+                                    <div class="d-flex align-items-center gap-2 mb-2">
+                                        <i class="bi bi-exclamation-triangle-fill fs-4"></i>
+                                        <h5 class="fw-bold mb-0">Error de Base de Datos</h5>
+                                    </div>
+                                    <p class="mb-2"><?= htmlspecialchars($error_db) ?></p>
+                                    <small class="text-muted">Verifica las credenciales en <code>config/constants.php</code> o asegúrate de que el servidor MySQL permita la conexión.</small>
+                                </div>
+                            <?php else: ?>
+                                <div class="alert alert-info shadow-sm rounded-4 p-4 border" style="background:#f0f9ff; border-color:#bae6fd !important;">
+                                    <div class="d-flex flex-column flex-md-row align-items-md-center justify-content-between gap-3">
+                                        <div class="d-flex align-items-center gap-3">
+                                            <i class="bi bi-database-fill-gear fs-1 text-primary"></i>
+                                            <div>
+                                                <h5 class="fw-bold mb-1 text-dark">Base de datos del examen no inicializada</h5>
+                                                <p class="mb-0 text-secondary small">Las tablas del examen técnico (lenguajes, preguntas y retos) aún no han sido creadas o pobladas en la base de datos del servidor.</p>
+                                            </div>
+                                        </div>
+                                        <a href="instalar_db.php" class="btn btn-primary btn-lg px-4 fw-bold text-nowrap">
+                                            <i class="bi bi-play-circle-fill me-1"></i> Inicializar Base de Datos
+                                        </a>
+                                    </div>
+                                </div>
+                            <?php endif; ?>
                         </div>
                     <?php endif; ?>
                 </div>

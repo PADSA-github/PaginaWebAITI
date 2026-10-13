@@ -36,10 +36,7 @@ require 'config/database.php';
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="<?= ROOT_URL ?>examen/">Evaluación Técnica</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="<?= ROOT_URL ?>examen/crud.php">CRUD Preguntas</a>
-                        </li>
+                        </li>                       
                     </ul>
                     <!--Redes Sociales-->
                     <ul class="navbar-nav flex-row flex-wrap md-auto" >

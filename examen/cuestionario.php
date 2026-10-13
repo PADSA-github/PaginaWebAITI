@@ -1,5 +1,6 @@
 <?php
 // Cuestionario de Examen Dinámico: 18 Preguntas (6 Jr, 6 Mid, 6 Sr) + 1 Reto de Código (2 pts) = 20 Puntos
+set_include_path(dirname(__DIR__) . PATH_SEPARATOR . get_include_path());
 require_once __DIR__ . '/../config/database.php';
 
 if ($_SERVER['REQUEST_METHOD'] !== 'POST' || empty($_POST['lenguaje'])) {
@@ -65,11 +66,77 @@ if (count($preguntas_seleccionadas) < 18) {
 }
 
 // Consultar 1 reto de código para el lenguaje (Valor: 2 puntos)
+$reto_codigo = null;
+$reto_idx = 0;
+
+// 1. Asegurar que la tabla exista
+$conecction->query("CREATE TABLE IF NOT EXISTS `retos_codigo_examen` (
+  `id` INT AUTO_INCREMENT PRIMARY KEY,
+  `lenguaje` VARCHAR(50) NOT NULL,
+  `titulo` VARCHAR(150) NOT NULL,
+  `codigo` TEXT NOT NULL,
+  `funcionalidad_esperada` TEXT NOT NULL,
+  `conceptos_clave` TEXT NOT NULL,
+  `activo` TINYINT(1) DEFAULT 1,
+  `fecha_creacion` TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+  INDEX `idx_reto_lenguaje` (`lenguaje`, `activo`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;");
+
+// 2. Intentar consultar desde la base de datos
 $stmt_reto = $conecction->prepare("SELECT id, titulo, codigo FROM retos_codigo_examen WHERE lenguaje = ? AND activo = 1 ORDER BY RAND() LIMIT 1");
-$stmt_reto->bind_param('s', $lenguaje_clave);
-$stmt_reto->execute();
-$reto_codigo = $stmt_reto->get_result()->fetch_assoc();
-$stmt_reto->close();
+if ($stmt_reto) {
+    $stmt_reto->bind_param('s', $lenguaje_clave);
+    $stmt_reto->execute();
+    $res_reto = $stmt_reto->get_result();
+    if ($res_reto && $res_reto->num_rows > 0) {
+        $reto_codigo = $res_reto->fetch_assoc();
+    }
+    $stmt_reto->close();
+}
+
+// 3. Si la tabla no tenía retos para este lenguaje, poblarlos desde data/retos_codigo.php
+$retos_file = __DIR__ . '/data/retos_codigo.php';
+if (file_exists($retos_file)) {
+    $retos_data = include $retos_file;
+    if (!empty($retos_data[$lenguaje_clave])) {
+        $lista_retos = $retos_data[$lenguaje_clave];
+        
+        if (!$reto_codigo) {
+            $stmt_ins = $conecction->prepare("INSERT INTO `retos_codigo_examen` (lenguaje, titulo, codigo, funcionalidad_esperada, conceptos_clave, activo) VALUES (?, ?, ?, ?, ?, 1)");
+            if ($stmt_ins) {
+                foreach ($lista_retos as $r) {
+                    $conceptos_json = json_encode($r['conceptos_clave'], JSON_UNESCAPED_UNICODE);
+                    $stmt_ins->bind_param('sssss', $lenguaje_clave, $r['titulo'], $r['codigo'], $r['funcionalidad_esperada'], $conceptos_json);
+                    $stmt_ins->execute();
+                }
+                $stmt_ins->close();
+                
+                // Volver a consultar
+                $stmt_reto2 = $conecction->prepare("SELECT id, titulo, codigo FROM retos_codigo_examen WHERE lenguaje = ? AND activo = 1 ORDER BY RAND() LIMIT 1");
+                if ($stmt_reto2) {
+                    $stmt_reto2->bind_param('s', $lenguaje_clave);
+                    $stmt_reto2->execute();
+                    $res2 = $stmt_reto2->get_result();
+                    if ($res2 && $res2->num_rows > 0) {
+                        $reto_codigo = $res2->fetch_assoc();
+                    }
+                    $stmt_reto2->close();
+                }
+            }
+        }
+        
+        // 4. Fallback directo en memoria si la BD no tuviese datos o fallase
+        if (!$reto_codigo) {
+            $reto_idx = array_rand($lista_retos);
+            $sel_reto = $lista_retos[$reto_idx];
+            $reto_codigo = [
+                'id' => 999000 + $reto_idx,
+                'titulo' => $sel_reto['titulo'],
+                'codigo' => $sel_reto['codigo']
+            ];
+        }
+    }
+}
 ?>
 <!DOCTYPE html>
 <html lang="es">
@@ -153,6 +220,7 @@ $stmt_reto->close();
             <input type="hidden" name="nombre_candidato" value="<?= htmlspecialchars($nombre_candidato) ?>">
             <input type="hidden" name="email_candidato" value="<?= htmlspecialchars($email_candidato) ?>">
             <input type="hidden" name="reto_id" value="<?= $reto_codigo ? $reto_codigo['id'] : 0 ?>">
+            <input type="hidden" name="reto_idx" value="<?= $reto_idx ?>">
 
             <div class="row">
                 <!-- Columna Principal: 18 Preguntas + 1 Reto de Código -->
@@ -171,12 +239,12 @@ $stmt_reto->close();
                         <?php foreach ($preguntas_seleccionadas as $index => $q): 
                             $num = $index + 1;
                             $q_id = $q['id'];
-                            $comp_class = match($q['complejidad']) {
+                            $comp_map = [
                                 'Junior' => 'badge-jr',
                                 'Semi-Senior' => 'badge-mid',
-                                'Senior' => 'badge-sr',
-                                default => 'bg-secondary'
-                            };
+                                'Senior' => 'badge-sr'
+                            ];
+                            $comp_class = isset($comp_map[$q['complejidad']]) ? $comp_map[$q['complejidad']] : 'bg-secondary';
                         ?>
                             <input type="hidden" name="preguntas_ids[]" value="<?= $q_id ?>">
                             

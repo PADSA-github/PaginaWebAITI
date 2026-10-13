@@ -1,8 +1,10 @@
 <?php
 // Script de instalación y migración de base de datos para el módulo de examen
 header('Content-Type: text/html; charset=utf-8');
+@set_time_limit(300);
 
 // Cargar configuración de base de datos
+set_include_path(dirname(__DIR__) . PATH_SEPARATOR . get_include_path());
 $config_path = __DIR__ . '/../config/database.php';
 if (file_exists($config_path)) {
     require_once $config_path;
