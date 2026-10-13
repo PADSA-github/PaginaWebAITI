@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <style>
+        body { font-family: 'Segoe UI', Arial, sans-serif; background-color: #f4f7fb; margin: 0; padding: 20px; color: #2C3E50; }
+        .email-container { max-width: 600px; margin: 0 auto; background: #ffffff; border-radius: 12px; overflow: hidden; box-shadow: 0 4px 15px rgba(0,0,0,0.08); border: 1px solid #e2e8f0; }
+        .email-header { background: linear-gradient(135deg, #073E63, #0b588c); padding: 30px 20px; text-align: center; color: #ffffff; }
+        .email-header h1 { margin: 0; font-size: 24px; font-weight: bold; }
+        .email-header p { margin: 5px 0 0; color: #00E1D9; font-size: 13px; text-transform: uppercase; letter-spacing: 1.5px; }
+        .email-body { padding: 30px 25px; }
+        .candidate-title { font-size: 20px; font-weight: bold; margin-bottom: 4px; color: #073E63; }
+        .candidate-meta { font-size: 13px; color: #64748b; margin-bottom: 25px; }
+        .score-box { background: #f0f9ff; border: 2px solid #00A8CC; border-radius: 10px; padding: 20px; text-align: center; margin-bottom: 25px; }
+        .score-val { font-size: 38px; font-weight: 800; color: #073E63; line-height: 1; }
+        .rank-badge { display: inline-block; background: #073E63; color: #ffffff; font-size: 14px; font-weight: bold; padding: 6px 18px; border-radius: 20px; margin-top: 10px; }
+        .table-breakdown { width: 100%; border-collapse: collapse; margin-top: 15px; margin-bottom: 20px; }
+        .table-breakdown th { background: #f8fafc; text-align: left; padding: 10px; font-size: 12px; color: #64748b; border-bottom: 2px solid #e2e8f0; }
+        .table-breakdown td { padding: 12px 10px; border-bottom: 1px solid #e2e8f0; font-size: 14px; }
+        .email-footer { background: #f8fafc; padding: 20px; text-align: center; font-size: 12px; color: #94a3b8; border-top: 1px solid #e2e8f0; }
+    </style>
+</head>
+<body>
+    <div class="email-container">
+        <div class="email-header">
+            <h1>AI-TI &bull; Evaluaciones Técnicas</h1>
+            <p>Reporte Oficial de Diagnóstico</p>
+        </div>
+        <div class="email-body">
+            <div class="candidate-title">Aspirante de Prueba</div>
+            <div class="candidate-meta">Evaluación de <strong>Java (Core, JVM &amp; Spring)</strong> &bull; 18/09/2026 01:00:13</div>
+
+            <div class="score-box">
+                <div class="score-val">85%</div>
+                <div style="font-size:13px; color:#64748b; margin-top:4px;">17 aciertos de 20 reactivos (42 puntos ponderados)</div>
+                <div><span class="rank-badge">Nivel Dictaminado: Programador Senior</span></div>
+            </div>
+
+            <h3 style="font-size:15px; margin-bottom:10px; color:#073E63;">Desglose por Nivel de Complejidad:</h3>
+            <table class="table-breakdown">
+                <thead>
+                    <tr>
+                        <th>Nivel</th>
+                        <th>Aciertos</th>
+                        <th>Ponderación</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Junior</strong></td>
+                        <td>5/5</td>
+                        <td>1 pt c/u</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Semi-Senior (Mid)</strong></td>
+                        <td>5/5</td>
+                        <td>2 pts c/u</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Senior</strong></td>
+                        <td>4/5</td>
+                        <td>3 pts c/u</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Experto / Lead</strong></td>
+                        <td>3/5</td>
+                        <td>4 pts c/u</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <p style="font-size: 13px; line-height: 1.5; color: #475569;">
+                Este reporte ha sido generado automáticamente por el sistema de evaluación técnica de AI-TI como parte del proceso de reclutamiento y validación de competencias de desarrollo de software.
+            </p>
+        </div>
+        <div class="email-footer">
+            &copy; AI-TI (Aplicaciones Integrales en TI) &bull; <a href="http://ai-ti.com.mx/" style="color:#00A8CC; text-decoration:none;">www.ai-ti.com.mx</a>
+        </div>
+    </div>
+</body>
+</html>

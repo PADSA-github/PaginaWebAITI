@@ -1,0 +1,233 @@
+<?php
+// Script de instalación y migración de base de datos para el módulo de examen
+header('Content-Type: text/html; charset=utf-8');
+@set_time_limit(300);
+
+// Cargar configuración de base de datos
+set_include_path(dirname(__DIR__) . PATH_SEPARATOR . get_include_path());
+$config_path = __DIR__ . '/../config/database.php';
+if (file_exists($config_path)) {
+    require_once $config_path;
+} else {
+    // Fallback de conexión
+    $conecction = new mysqli('localhost', 'root', '', 'blog_aiticommx');
+    if ($conecction->connect_error) {
+        die("Error de conexión: " . $conecction->connect_error);
+    }
+}
+
+$conecction->set_charset('utf8mb4');
+
+echo "<h2>Instalador del Módulo de Exámenes Técnicos Multi-Lenguaje</h2>";
+echo "<pre style='background:#f4f4f4; padding:15px; border-radius:6px; font-family:monospace;'>";
+
+// 1. Crear tabla de lenguajes
+$sql_lenguajes = "CREATE TABLE IF NOT EXISTS `lenguajes_examen` (
+  `id` INT AUTO_INCREMENT PRIMARY KEY,
+  `clave` VARCHAR(50) UNIQUE NOT NULL,
+  `nombre` VARCHAR(100) NOT NULL,
+  `descripcion` TEXT,
+  `icono` VARCHAR(100) DEFAULT 'bi-code-slash',
+  `color` VARCHAR(20) DEFAULT '#073E63',
+  `badge` VARCHAR(50) DEFAULT 'Tecnología',
+  `activo` TINYINT(1) DEFAULT 1,
+  `fecha_creacion` TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;";
+
+if ($conecction->query($sql_lenguajes)) {
+    echo "[OK] Tabla 'lenguajes_examen' verificada/creada correctamente.\n";
+} else {
+    echo "[ERROR] Creando tabla 'lenguajes_examen': " . $conecction->error . "\n";
+}
+
+// 2. Insertar o actualizar lenguajes iniciales con colores armónicos AI-TI
+$lenguajes_iniciales = [
+    [
+        'clave' => 'java',
+        'nombre' => 'Java (Core, JVM & Spring)',
+        'descripcion' => 'Evaluación de Core Java, Programación Orientada a Objetos, Colecciones, Concurrencia y Arquitectura.',
+        'icono' => 'bi-cup-hot-fill',
+        'color' => '#073E63',
+        'badge' => 'Backend & Enterprise'
+    ],
+    [
+        'clave' => 'react',
+        'nombre' => 'React.js & Modern Frontend',
+        'descripcion' => 'Evaluación técnica de Hooks, Reconciliación Virtual DOM, Gestión de Estado y Arquitectura Web.',
+        'icono' => 'bi-atom',
+        'color' => '#289CC7',
+        'badge' => 'Frontend & Web'
+    ],
+    [
+        'clave' => 'cobol',
+        'nombre' => 'COBOL & Mainframe Systems',
+        'descripcion' => 'Evaluación de Divisiones, Cláusulas PIC, Manejo de Archivos VSAM, Monitores CICS, DB2 SQL y JCL.',
+        'icono' => 'bi-terminal-fill',
+        'color' => '#04253c',
+        'badge' => 'Mainframe & JCL'
+    ],
+    [
+        'clave' => 'informix',
+        'nombre' => 'Informix 4GL & Relational Systems',
+        'descripcion' => 'Evaluación de Sintaxis 4GL, Formularios .per, Manejo de Cursores, Transacciones, SPL y Reportes.',
+        'icono' => 'bi-database-fill-gear',
+        'color' => '#0e4d6c',
+        'badge' => 'Database & 4GL'
+    ],
+    [
+        'clave' => 'cloud_ia',
+        'nombre' => 'Cloud & Inteligencia Artificial',
+        'descripcion' => 'Evaluación de Arquitecturas Cloud AI, LLMs, AWS Bedrock, Vertex AI, Azure OpenAI, RAG, Embeddings y Agentes.',
+        'icono' => 'bi-cpu-fill',
+        'color' => '#107569',
+        'badge' => 'AI & Cloud Systems'
+    ]
+];
+
+$stmt_lang = $conecction->prepare("INSERT INTO `lenguajes_examen` (clave, nombre, descripcion, icono, color, badge, activo) 
+    VALUES (?, ?, ?, ?, ?, ?, 1)
+    ON DUPLICATE KEY UPDATE 
+    nombre = VALUES(nombre), descripcion = VALUES(descripcion), icono = VALUES(icono), color = VALUES(color), badge = VALUES(badge), activo = 1");
+
+foreach ($lenguajes_iniciales as $lang) {
+    $stmt_lang->bind_param('ssssss', $lang['clave'], $lang['nombre'], $lang['descripcion'], $lang['icono'], $lang['color'], $lang['badge']);
+    $stmt_lang->execute();
+}
+$stmt_lang->close();
+echo "[OK] Lenguajes base (Java, React, COBOL, Informix 4GL, Cloud IA) registrados/actualizados con éxito.\n";
+
+// 3. Crear tabla de preguntas
+$sql_preguntas = "CREATE TABLE IF NOT EXISTS `preguntas_examen` (
+  `id` INT AUTO_INCREMENT PRIMARY KEY,
+  `lenguaje` VARCHAR(50) NOT NULL,
+  `pregunta` TEXT NOT NULL,
+  `opcion_a` TEXT NOT NULL,
+  `opcion_b` TEXT NOT NULL,
+  `opcion_c` TEXT NOT NULL,
+  `opcion_d` TEXT NOT NULL,
+  `respuesta_correcta` CHAR(1) NOT NULL,
+  `complejidad` ENUM('Junior', 'Semi-Senior', 'Senior', 'Experto') NOT NULL,
+  `explicacion` TEXT NULL,
+  `activo` TINYINT(1) DEFAULT 1,
+  `fecha_creacion` TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+  INDEX `idx_lenguaje_complejidad` (`lenguaje`, `complejidad`, `activo`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;";
+
+if ($conecction->query($sql_preguntas)) {
+    echo "[OK] Tabla 'preguntas_examen' verificada/creada correctamente.\n";
+} else {
+    echo "[ERROR] Creando tabla 'preguntas_examen': " . $conecction->error . "\n";
+}
+
+// 4. Crear tabla de retos de código
+$sql_retos = "CREATE TABLE IF NOT EXISTS `retos_codigo_examen` (
+  `id` INT AUTO_INCREMENT PRIMARY KEY,
+  `lenguaje` VARCHAR(50) NOT NULL,
+  `titulo` VARCHAR(150) NOT NULL,
+  `codigo` TEXT NOT NULL,
+  `funcionalidad_esperada` TEXT NOT NULL,
+  `conceptos_clave` TEXT NOT NULL,
+  `activo` TINYINT(1) DEFAULT 1,
+  `fecha_creacion` TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+  INDEX `idx_reto_lenguaje` (`lenguaje`, `activo`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;";
+
+if ($conecction->query($sql_retos)) {
+    echo "[OK] Tabla 'retos_codigo_examen' verificada/creada correctamente.\n";
+} else {
+    echo "[ERROR] Creando tabla 'retos_codigo_examen': " . $conecction->error . "\n";
+}
+
+// 5. Cargar e insertar retos de código
+$retos_file = __DIR__ . '/data/retos_codigo.php';
+if (file_exists($retos_file)) {
+    $conecction->query("TRUNCATE TABLE `retos_codigo_examen`");
+    $retos_data = include $retos_file;
+    $stmt_reto = $conecction->prepare("INSERT INTO `retos_codigo_examen` (lenguaje, titulo, codigo, funcionalidad_esperada, conceptos_clave, activo) VALUES (?, ?, ?, ?, ?, 1)");
+    
+    $total_retos = 0;
+    foreach ($retos_data as $clave_lang => $lista_retos) {
+        foreach ($lista_retos as $reto) {
+            $conceptos_json = json_encode($reto['conceptos_clave'], JSON_UNESCAPED_UNICODE);
+            $stmt_reto->bind_param('sssss', $clave_lang, $reto['titulo'], $reto['codigo'], $reto['funcionalidad_esperada'], $conceptos_json);
+            $stmt_reto->execute();
+            $total_retos++;
+        }
+    }
+    $stmt_reto->close();
+    echo "[OK] $total_retos retos de código insertados en 'retos_codigo_examen'.\n";
+}
+
+// 6. Cargar e insertar preguntas de los cinco archivos de datos
+$archivos_datos = [
+    'java'     => __DIR__ . '/data/java_preguntas.php',
+    'react'    => __DIR__ . '/data/react_preguntas.php',
+    'cobol'    => __DIR__ . '/data/cobol_preguntas.php',
+    'informix' => __DIR__ . '/data/informix_preguntas.php',
+    'cloud_ia' => __DIR__ . '/data/cloud_ia_preguntas.php'
+];
+
+$conecction->query("DELETE FROM `preguntas_examen` WHERE lenguaje IN ('java', 'react', 'cobol', 'informix', 'cloud_ia')");
+echo "[INFO] Limpieza de preguntas previas realizada para inserción limpia.\n";
+
+$insert_sql = "INSERT INTO `preguntas_examen` (lenguaje, pregunta, opcion_a, opcion_b, opcion_c, opcion_d, respuesta_correcta, complejidad, explicacion, activo)
+VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, 1)";
+$stmt_preg = $conecction->prepare($insert_sql);
+
+if (!$stmt_preg) {
+    die("[ERROR FATAL] Error al preparar consulta de preguntas: " . $conecction->error . "\n");
+}
+
+$total_insertadas = 0;
+
+foreach ($archivos_datos as $clave_lenguaje => $ruta_archivo) {
+    if (!file_exists($ruta_archivo)) {
+        echo "[ADVERTENCIA] Archivo no encontrado: $ruta_archivo\n";
+        continue;
+    }
+    
+    $preguntas = include $ruta_archivo;
+    $count_lang = 0;
+    
+    foreach ($preguntas as $p) {
+        $stmt_preg->bind_param(
+            'sssssssss',
+            $clave_lenguaje,
+            $p['pregunta'],
+            $p['opcion_a'],
+            $p['opcion_b'],
+            $p['opcion_c'],
+            $p['opcion_d'],
+            $p['respuesta_correcta'],
+            $p['complejidad'],
+            $p['explicacion']
+        );
+        if ($stmt_preg->execute()) {
+            $count_lang++;
+            $total_insertadas++;
+        } else {
+            echo "[ERROR] Error al insertar pregunta: " . $stmt_preg->error . "\n";
+        }
+    }
+    echo "[OK] $count_lang preguntas balanceadas insertadas exitosamente para '$clave_lenguaje'.\n";
+}
+
+$stmt_preg->close();
+
+echo "\n============================================\n";
+echo "RESUMEN FINAL DE INSTALACIÓN:\n";
+echo "Total de preguntas en base de datos: $total_insertadas\n";
+
+// Conteo por lenguaje y complejidad
+$res = $conecction->query("SELECT lenguaje, complejidad, COUNT(*) as cantidad FROM preguntas_examen WHERE activo=1 GROUP BY lenguaje, complejidad ORDER BY lenguaje, FIELD(complejidad, 'Junior', 'Semi-Senior', 'Senior', 'Experto')");
+echo "\nDesglose por tecnología y nivel:\n";
+while ($row = $res->fetch_assoc()) {
+    printf("  %-8s | %-12s : %2d preguntas\n", strtoupper($row['lenguaje']), $row['complejidad'], $row['cantidad']);
+}
+
+echo "\n¡Instalación completada con éxito!\n";
+echo "</pre>";
+
+if (php_sapi_name() !== 'cli') {
+    echo "<p><a href='index.php' style='display:inline-block; background:#073E63; color:#fff; padding:10px 20px; text-decoration:none; border-radius:5px;'>Ir al Examen</a></p>";
+}
