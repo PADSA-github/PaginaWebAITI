@@ -26,7 +26,8 @@ INSERT INTO `lenguajes_examen` (`clave`, `nombre`, `descripcion`, `icono`, `colo
 ('react', 'React.js & Modern Frontend', 'Evaluación técnica de Hooks, Reconciliación Virtual DOM, Gestión de Estado y Arquitectura Web.', 'bi-atom', '#289CC7', 'Frontend & Web', 1),
 ('cobol', 'COBOL & Mainframe Systems', 'Evaluación de Divisiones, Cláusulas PIC, Manejo de Archivos VSAM, Monitores CICS, DB2 SQL y JCL.', 'bi-terminal-fill', '#04253c', 'Mainframe & JCL', 1),
 ('informix', 'Informix 4GL & Relational Systems', 'Evaluación de Sintaxis 4GL, Formularios .per, Manejo de Cursores, Transacciones, SPL y Reportes.', 'bi-database-fill-gear', '#0e4d6c', 'Database & 4GL', 1),
-('cloud_ia', 'Cloud & Inteligencia Artificial', 'Evaluación de Arquitecturas Cloud AI, LLMs, AWS Bedrock, Vertex AI, Azure OpenAI, RAG, Embeddings y Agentes.', 'bi-cpu-fill', '#107569', 'AI & Cloud Systems', 1)
+('cloud_ia', 'Cloud & Inteligencia Artificial', 'Evaluación de Arquitecturas Cloud AI, LLMs, AWS Bedrock, Vertex AI, Azure OpenAI, RAG, Embeddings y Agentes.', 'bi-cpu-fill', '#107569', 'AI & Cloud Systems', 1),
+('sap', 'SAP (Core Modules & CAR Retail)', 'Evaluación técnica de SAP Core (MM, SD, FI/CO, ABAP, Retail Master Data) y SAP Customer Activity Repository (CAR, POS DTA, UDF, OPP, OAA).', 'bi-cart-check-fill', '#0A6ED1', 'Retail & SAP CAR', 1)
 ON DUPLICATE KEY UPDATE nombre=VALUES(nombre), descripcion=VALUES(descripcion), color=VALUES(color), badge=VALUES(badge);
 
 -- ----------------------------------------------------------

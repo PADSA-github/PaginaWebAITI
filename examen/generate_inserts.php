@@ -48,6 +48,14 @@ $lenguajes_iniciales = [
         'icono' => 'bi-cpu-fill',
         'color' => '#107569',
         'badge' => 'AI & Cloud Systems'
+    ],
+    [
+        'clave' => 'sap',
+        'nombre' => 'SAP (Core Modules & CAR Retail)',
+        'descripcion' => 'Evaluación técnica de SAP Core (MM, SD, FI/CO, ABAP, Retail Master Data) y SAP Customer Activity Repository (CAR, POS DTA, UDF, OPP, OAA).',
+        'icono' => 'bi-cart-check-fill',
+        'color' => '#0A6ED1',
+        'badge' => 'Retail & SAP CAR'
     ]
 ];
 
@@ -85,7 +93,8 @@ $archivos_datos = [
     'react'    => __DIR__ . '/data/react_preguntas.php',
     'cobol'    => __DIR__ . '/data/cobol_preguntas.php',
     'informix' => __DIR__ . '/data/informix_preguntas.php',
-    'cloud_ia' => __DIR__ . '/data/cloud_ia_preguntas.php'
+    'cloud_ia' => __DIR__ . '/data/cloud_ia_preguntas.php',
+    'sap'      => __DIR__ . '/data/sap_preguntas.php'
 ];
 
 foreach ($archivos_datos as $clave_lenguaje => $ruta_archivo) {

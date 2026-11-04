@@ -81,6 +81,14 @@ $lenguajes_iniciales = [
         'icono' => 'bi-cpu-fill',
         'color' => '#107569',
         'badge' => 'AI & Cloud Systems'
+    ],
+    [
+        'clave' => 'sap',
+        'nombre' => 'SAP (Core Modules & CAR Retail)',
+        'descripcion' => 'Evaluación técnica de SAP Core (MM, SD, FI/CO, ABAP, Retail Master Data) y SAP Customer Activity Repository (CAR, POS DTA, UDF, OPP, OAA).',
+        'icono' => 'bi-cart-check-fill',
+        'color' => '#0A6ED1',
+        'badge' => 'Retail & SAP CAR'
     ]
 ];
 
@@ -94,7 +102,7 @@ foreach ($lenguajes_iniciales as $lang) {
     $stmt_lang->execute();
 }
 $stmt_lang->close();
-echo "[OK] Lenguajes base (Java, React, COBOL, Informix 4GL, Cloud IA) registrados/actualizados con éxito.\n";
+echo "[OK] Lenguajes base (Java, React, COBOL, Informix 4GL, Cloud IA, SAP Retail/CAR) registrados/actualizados con éxito.\n";
 
 // 3. Crear tabla de preguntas
 $sql_preguntas = "CREATE TABLE IF NOT EXISTS `preguntas_examen` (
@@ -164,10 +172,11 @@ $archivos_datos = [
     'react'    => __DIR__ . '/data/react_preguntas.php',
     'cobol'    => __DIR__ . '/data/cobol_preguntas.php',
     'informix' => __DIR__ . '/data/informix_preguntas.php',
-    'cloud_ia' => __DIR__ . '/data/cloud_ia_preguntas.php'
+    'cloud_ia' => __DIR__ . '/data/cloud_ia_preguntas.php',
+    'sap'      => __DIR__ . '/data/sap_preguntas.php'
 ];
 
-$conecction->query("DELETE FROM `preguntas_examen` WHERE lenguaje IN ('java', 'react', 'cobol', 'informix', 'cloud_ia')");
+$conecction->query("DELETE FROM `preguntas_examen` WHERE lenguaje IN ('java', 'react', 'cobol', 'informix', 'cloud_ia', 'sap')");
 echo "[INFO] Limpieza de preguntas previas realizada para inserción limpia.\n";
 
 $insert_sql = "INSERT INTO `preguntas_examen` (lenguaje, pregunta, opcion_a, opcion_b, opcion_c, opcion_d, respuesta_correcta, complejidad, explicacion, activo)
