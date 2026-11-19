@@ -7,6 +7,8 @@ if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
     exit;
 }
 
+require_once __DIR__ . '/smtp_mailer.php';
+
 $destinatario = filter_var($_POST['destinatario_email'] ?? '', FILTER_SANITIZE_EMAIL);
 $nombre = filter_var($_POST['nombre_candidato'] ?? 'Aspirante', FILTER_SANITIZE_FULL_SPECIAL_CHARS);
 $lenguaje = filter_var($_POST['lenguaje_nombre'] ?? 'Tecnología', FILTER_SANITIZE_FULL_SPECIAL_CHARS);
@@ -116,19 +118,11 @@ $mensaje_html = <<<HTML
 HTML;
 
 $asunto = "Resultados de Evaluación Técnica en {$lenguaje} (20 Pts) - {$nombre}";
-$headers  = "MIME-Version: 1.0\r\n";
-$headers .= "Content-type: text/html; charset=utf-8\r\n";
-$headers .= "From: AI-TI Evaluaciones <no-reply@ai-ti.com.mx>\r\n";
-$headers .= "Reply-To: soporte@ai-ti.com.mx\r\n";
-$headers .= "X-Mailer: PHP/" . phpversion();
 
-$enviado = false;
-try {
-    $enviado = @mail($destinatario, $asunto, $mensaje_html, $headers);
-} catch (\Throwable $t) {
-    $enviado = false;
-}
+// 1. Envío de correo (intenta SMTP 587/465 y conmuta a Sendmail interno con Envelope -f)
+$smtp_res = enviar_correo_examen_smtp($destinatario, $nombre, $asunto, $mensaje_html, true);
 
+// 2. Guardar respaldo HTML del reporte
 $log_dir = __DIR__ . '/logs_correos';
 if (!is_dir($log_dir)) {
     @mkdir($log_dir, 0777, true);
@@ -136,8 +130,25 @@ if (!is_dir($log_dir)) {
 $log_file = $log_dir . '/envio_' . date('Ymd_His') . '_' . preg_replace('/[^a-zA-Z0-9]/', '_', $destinatario) . '.html';
 @file_put_contents($log_file, $mensaje_html);
 
-echo json_encode([
-    'status' => 'success',
-    'message' => 'Reporte oficial generado exitosamente para ' . htmlspecialchars($destinatario) . '.',
-    'preview_html' => $mensaje_html
-]);
+if (!$smtp_res['success'] && !empty($smtp_res['logs'])) {
+    @file_put_contents($log_dir . '/smtp_errors.log', date('Y-m-d H:i:s') . "\n" . implode("\n", $smtp_res['logs']) . "\n\n", FILE_APPEND);
+}
+
+// 3. Respuesta JSON al frontend
+if ($smtp_res['success']) {
+    $metodo = $smtp_res['method'] ?? 'Servicio de Correo';
+    echo json_encode([
+        'status' => 'success',
+        'message' => 'Reporte oficial entregado exitosamente a ' . htmlspecialchars($destinatario) . ' (vía ' . $metodo . ').',
+        'preview_html' => $mensaje_html,
+        'method' => $metodo
+    ]);
+} else {
+    echo json_encode([
+        'status' => 'error',
+        'message' => 'No fue posible entregar el correo: ' . htmlspecialchars($smtp_res['error'] ?? 'Error desconocido'),
+        'preview_html' => $mensaje_html,
+        'smtp_error' => $smtp_res['error'],
+        'smtp_logs' => $smtp_res['logs']
+    ]);
+}

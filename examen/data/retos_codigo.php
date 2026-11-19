@@ -307,6 +307,72 @@ PYTHON
                 'min_esenciales' => 3
             ]
         ]
+    ],
+    'sap' => [
+        [
+            'titulo' => 'Auditoría y Cuadratura Financiera de Transacción POS (POS DTA)',
+            'codigo' => <<<'ABAP'
+METHOD /posdw/if_ex_badi_rfins~process_transaction.
+  DATA: lv_items_total TYPE /posdw/amount,
+        lv_tenders_tot TYPE /posdw/amount,
+        lv_diff        TYPE /posdw/amount.
+
+  LOOP AT ct_transaction-retail-lineitem INTO DATA(ls_item).
+    lv_items_total = lv_items_total + ls_item-sales_amount + ls_item-tax_amount.
+  ENDLOOP.
+
+  LOOP AT ct_transaction-retail-tender INTO DATA(ls_tender).
+    lv_tenders_tot = lv_tenders_tot + ls_tender-tender_amount.
+  ENDLOOP.
+
+  lv_diff = abs( lv_items_total - lv_tenders_tot ).
+
+  IF lv_diff <= '0.05'. " Tolerancia por redondeo de centavos
+    ct_transaction-status = /posdw/cl_constants=>cs_status_audit_ok.
+  ELSE.
+    ct_transaction-status = /posdw/cl_constants=>cs_status_audit_error.
+    APPEND VALUE #( msgid = '/POSDW/CORE' msgno = '104' msgty = 'E' ) TO ct_messages.
+  ENDIF.
+ENDMETHOD.
+ABAP
+            ,
+            'funcionalidad_esperada' => 'Valida la cuadratura financiera de una transacción de punto de venta en POS DTA. Suma el total de artículos e impuestos y lo compara contra la suma de los medios de pago (tenders). Si la diferencia está dentro de la tolerancia de redondeo (0.05), aprueba la auditoría del ticket; de lo contrario, marca error de cuadratura y registra un mensaje de inconsistencia.',
+            'conceptos_clave' => [
+                'esenciales' => ['cuadratura', 'valida', 'items', 'tenders', 'pagos', 'impuestos', 'tolerancia', 'redondeo', 'error'],
+                'secundarios' => ['badi', 'posdw', 'status', 'diferencia', 'suma', 'ticket', 'transaccion', 'auditoria'],
+                'min_esenciales' => 3
+            ]
+        ],
+        [
+            'titulo' => 'Cálculo de Stock Omnicanal Disponible con Reservas Temporales (SAP CAR OAA)',
+            'codigo' => <<<'ABAP'
+@AbapCatalog.sqlViewName: 'ZVOAAATP'
+define view ZI_OAA_StockAvailability
+  as select from /oaa/stock_pool as sp
+  left outer join /oaa/temp_res as tr
+    on sp.article_id = tr.article_id and sp.site_id = tr.site_id
+{
+  key sp.article_id,
+  key sp.site_id,
+  sp.unrestricted_stock,
+  sp.safety_stock,
+  coalesce(sum(tr.reserved_qty), 0) as total_reserved,
+  case
+    when (sp.unrestricted_stock - sp.safety_stock - coalesce(sum(tr.reserved_qty), 0)) > 0
+      then (sp.unrestricted_stock - sp.safety_stock - coalesce(sum(tr.reserved_qty), 0))
+    else 0
+  end as omni_available_qty
+}
+group by sp.article_id, sp.site_id, sp.unrestricted_stock, sp.safety_stock
+ABAP
+            ,
+            'funcionalidad_esperada' => 'Calcula en SAP CAR la disponibilidad omnicanal neta de un artículo por tienda para venta web (OAA). Descuenta del stock de libre utilización el stock de seguridad y las reservas temporales del e-commerce. Si la cantidad resultante es positiva la retorna como disponible para venta; de lo contrario retorna 0 para evitar sobreventas.',
+            'conceptos_clave' => [
+                'esenciales' => ['disponibilidad', 'stock', 'omnicanal', 'reservas', 'seguridad', 'libre utilizacion', 'articulo', 'tienda'],
+                'secundarios' => ['oaa', 'atp', 'sobreventa', 'car', 'cds', 'resta', 'cero', 'ecommerce'],
+                'min_esenciales' => 3
+            ]
+        ]
     ]
 ];
 
